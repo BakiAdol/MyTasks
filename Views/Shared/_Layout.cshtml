@@ -3,13 +3,30 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - MyTasks</title>
+    <title>MyTasks</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+
+    <header>
+        <h2 class="headerTitle">My Tasks</h2>
+    </header>
+
+    <main>
+        <nav class="options_container">
+            <ul>
+                <li><a href="/Home">All Tasks</a></li>
+                <li><a href="/Home">Completed</a></li>
+                <li><a href="/Home">In Progress</a></li>
+                <li><a href="/Home">Not Started</a></li>
+                <li><a href="/Home">Overdue</a></li>
+            </ul>
+            <div>
+                <a href="/Home" class="addNewButton">Add New</a>
+            </div>
+        </nav>
+        @RenderBody()
+    </main>
+
 </body>
 </html>

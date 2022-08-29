@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+:root {
+    --primary: #180542;
+    --white: #ffffff;
+    --slate: #495670;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+a {
+    text-decoration: none;
+}
+li{
+    list-style:none;
+}
+
+/*------- Header style --------------**/
+.headerTitle {
+    background-color: var(--primary);
+    font-size: 2rem;
+    color: var(--white);
+    padding: 1rem 0 1rem 10rem;
+}
+/*------- End of Header style --------*/
+
+main {
+    width: 60%;
+    margin: 2rem auto;
+}
+
+/*------- Navbar style --------------**/
+.options_container{
+    display:flex;
+    justify-content:space-between;
+}
+.options_container ul {
+    display: flex;
+    justify-content: flex-start;
+    font-size: 1.8rem;
+    padding: 1.5rem 0 1.5rem;
+}
+.options_container ul li a {
+    padding: 1rem 2rem 1rem 0;
+    color: var(--slate);
+}
+.addNewButton {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: .8rem;
+    font-size: 1.7rem;
+    display:inline-block;
+    margin-top:.6rem;
+}
+/*------- End of Navbar style --------*/
