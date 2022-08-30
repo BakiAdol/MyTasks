@@ -31,6 +31,15 @@ namespace MyTasks.Services
 
             return tasks ?? new List<TaskModel>();
         }
+        public void DeleteATask(int taskId)
+        {
+            var task = dbContext.MyTasks.FirstOrDefault(item => item.Id == taskId);
+            if(task != null)
+            {
+                dbContext.MyTasks.Remove(task);
+                dbContext.SaveChanges();
+            }
+        }
         #endregion
     }
 }
