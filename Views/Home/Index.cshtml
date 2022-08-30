@@ -1,3 +1,17 @@
-﻿<h1>Hello</h1>
+﻿@model IEnumerable<MyTasks.Models.TaskModel>
 
-@Html.Partial("_taskCard")
+@{
+    string[] priority = { "High", "Medium", "Low" };
+    int priorityPos = -1;
+    foreach(var task in Model)
+    {
+        if(priorityPos < task.Priority)
+        {
+            <p class="priorityTitle">@priority[task.Priority] Priority</p>
+            priorityPos = task.Priority;
+        }
+        @Html.Partial("_taskCard",task)
+    }
+}
+
+

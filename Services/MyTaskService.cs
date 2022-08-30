@@ -22,6 +22,15 @@ namespace MyTasks.Services
             dbContext.MyTasks.Add(task);
             dbContext.SaveChanges();
         }
+        public List<TaskModel> GetAllTasks()
+        {
+            var tasks = dbContext.MyTasks
+                .OrderBy(task => task.Priority)
+                .ThenByDescending(task => task.Id)
+                .ToList();
+
+            return tasks ?? new List<TaskModel>();
+        }
         #endregion
     }
 }

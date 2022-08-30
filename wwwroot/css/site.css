@@ -153,3 +153,12 @@ main {
     color: var(--primary);
 }
 /*------- End Task Card style --------*/
+
+/*------- Home style -----------------*/
+.priorityTitle {
+    font-size: 1.9rem;
+    color: var(--primary);
+    padding: 3.5rem 0 0 2rem;
+    font-weight: bold;
+}
+/*------- End of Home style -----------------*/
