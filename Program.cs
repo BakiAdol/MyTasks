@@ -1,7 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using MyTasks.Data;
+using MyTasks.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// dependencie injection
+builder.Services.AddScoped<IMyTaskService, MyTaskService>();
 
 // db connection build
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
