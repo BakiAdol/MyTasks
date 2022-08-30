@@ -25,7 +25,9 @@ namespace MyTasks.Controllers
         [HttpPost]
         public IActionResult Index(TaskModel task)
         {
-            return View();
+            myTaskService.AddNewTask(task);
+
+            return RedirectToAction("Index", "Home");
         }
         #endregion
     }
