@@ -1,0 +1,21 @@
+﻿<div class="addNewTaskFormContainer">
+    <form asp-controller="AddNew" asp-action="Index">
+        <p class="formTitle">Add New Task</p>
+        <input type="text" class="" placeholder="Task" />
+        <div class="addNewPickerRow">
+            <div class="prioritySelectionBox">
+                <p>Priority: </p>
+                <select>
+                    <option value="0">High</option>
+                    <option value="1">Medium</option>
+                    <option value="2">Low</option>
+                </select>
+            </div>
+            <div class="dueDatePickerBox">
+                <p>Due Date: </p>
+                <input type="date">
+            </div>
+        </div>
+        <input type="submit" value="Add" class="" />
+    </form>
+</div>

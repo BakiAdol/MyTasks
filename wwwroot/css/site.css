@@ -8,6 +8,7 @@
     --primary: #180542;
     --white: #ffffff;
     --slate: #495670;
+    --gray: #e3e1e1;
 }
 
 html {
@@ -59,3 +60,60 @@ main {
     margin-top:.6rem;
 }
 /*------- End of Navbar style --------*/
+
+
+/*------- Addnew style --------------**/
+.addNewTaskFormContainer {
+    width: 80%;
+    padding:1rem;
+    margin: 2rem auto;
+    box-shadow: 1px 1px 8px rgba(0,0,0,0.5);
+    background-color: var(--white);
+}
+.formTitle{
+    font-size:2rem;
+    color: var(--slate);
+    text-align:center;
+    margin-bottom: 1.5rem;
+}
+.addNewTaskFormContainer input[type=text], input[type=submit] {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    margin: 0 0 1.5rem;
+    border: none;
+    background-color: var(--gray);
+    color: var(--slate);
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1.6rem;
+}
+.addNewPickerRow{
+    display:flex;
+    justify-content:space-around;
+    margin: 0 0 1.5rem;
+}
+.addNewPickerRow p{
+    display:inline;
+    font-size:1.6rem;
+    color: var(--slate);
+}
+.prioritySelectionBox select {
+    width: 12rem;
+    padding: .5rem;
+    border: none;
+    background-color: var(--gray);
+}
+.dueDatePickerBox input {
+    width: 12rem;
+    padding: .5rem;
+    border:none;
+    background-color:var(--gray);
+}
+.addNewTaskFormContainer input[type=submit]{
+    margin:0 auto;
+    width:15rem;
+    background-color: var(--primary);
+    color: var(--white);
+}
+/*------- End of Addnew style --------*/
