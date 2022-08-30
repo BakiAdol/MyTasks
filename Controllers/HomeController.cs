@@ -26,9 +26,13 @@ namespace MyTasks.Controllers
             {
                 tasks = myTaskService.GetAllTasks();
             }
-            else if(options == 4)
+            else if(options == 3)
             {
                 tasks = myTaskService.GetOverDueTasks();
+            }
+            else if(options<4 && options>=0)
+            {
+                tasks = myTaskService.GetStatusTasks((int)options);
             }
 
             return View(tasks);

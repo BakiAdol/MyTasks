@@ -49,6 +49,16 @@ namespace MyTasks.Services
 
             return tasks ?? new List<TaskModel>();
         }
+        public List<TaskModel> GetStatusTasks(int needStatus)
+        {
+            var tasks = dbContext.MyTasks
+                        .Where(item => item.Status == needStatus)
+                        .OrderBy(task => task.Priority)
+                        .ThenByDescending(task => task.Id)
+                        .ToList();
+
+            return tasks ?? new List<TaskModel>();
+        }
         #endregion
     }
 }

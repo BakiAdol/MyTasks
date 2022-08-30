@@ -16,10 +16,10 @@
         <nav class="options_container">
             <ul>
                 <li><a href="/Home">All Tasks</a></li>
-                <li><a href="/Home">Completed</a></li>
-                <li><a href="/Home">In Progress</a></li>
-                <li><a href="/Home">Not Started</a></li>
-                <li><a href="@Url.Action("Index", "Home", new { options = 4 })">Overdue</a></li>
+                <li><a href="@Url.Action("Index", "Home", new { options = 2 })">Completed</a></li>
+                <li><a href="@Url.Action("Index", "Home", new { options = 1 })">In Progress</a></li>
+                <li><a href="@Url.Action("Index", "Home", new { options = 0 })">Not Started</a></li>
+                <li><a href="@Url.Action("Index", "Home", new { options = 3 })">Overdue</a></li>
             </ul>
             <div>
                 <a href="/AddNew" class="addNewButton">Add New</a>

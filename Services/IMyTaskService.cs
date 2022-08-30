@@ -8,5 +8,6 @@ namespace MyTasks.Services
         public List<TaskModel> GetAllTasks();
         public void DeleteATask(int taskId);
         public List<TaskModel> GetOverDueTasks();
+        public List<TaskModel> GetStatusTasks(int needStatus);
     }
 }
