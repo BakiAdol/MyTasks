@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyTasks.Models;
 using MyTasks.Services;
 using System.Diagnostics;
 
@@ -18,9 +19,17 @@ namespace MyTasks.Controllers
         #endregion
 
         #region Methods
-        public IActionResult Index()
+        public IActionResult Index(int? options)
         {
-            var tasks = myTaskService.GetAllTasks();
+            List<TaskModel> tasks = new List<TaskModel>();
+            if (options == null)
+            {
+                tasks = myTaskService.GetAllTasks();
+            }
+            else if(options == 4)
+            {
+                tasks = myTaskService.GetOverDueTasks();
+            }
 
             return View(tasks);
         }

@@ -40,6 +40,15 @@ namespace MyTasks.Services
                 dbContext.SaveChanges();
             }
         }
+        public List<TaskModel> GetOverDueTasks()
+        {
+            var tasks = dbContext.MyTasks.Where(task => task.DueDate < DateTime.Now)
+                .OrderBy(task => task.Priority)
+                .ThenByDescending(task => task.Id)
+                .ToList();
+
+            return tasks ?? new List<TaskModel>();
+        }
         #endregion
     }
 }

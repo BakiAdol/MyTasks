@@ -19,7 +19,7 @@
                 <li><a href="/Home">Completed</a></li>
                 <li><a href="/Home">In Progress</a></li>
                 <li><a href="/Home">Not Started</a></li>
-                <li><a href="/Home">Overdue</a></li>
+                <li><a href="@Url.Action("Index", "Home", new { options = 4 })">Overdue</a></li>
             </ul>
             <div>
                 <a href="/AddNew" class="addNewButton">Add New</a>
