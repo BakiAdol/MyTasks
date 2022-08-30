@@ -9,6 +9,7 @@
     --white: #ffffff;
     --slate: #495670;
     --gray: #e3e1e1;
+    --dark-gray: #949392;
 }
 
 html {
@@ -117,3 +118,38 @@ main {
     color: var(--white);
 }
 /*------- End of Addnew style --------*/
+
+/*------- Task Card style --------------**/
+.taskCardBody {
+    display: flex;
+    justify-content:space-between;
+    align-items:center;
+    width:100%;
+    height:6.2rem;
+    margin-top: 2rem;
+    box-shadow: 1px 1px 8px rgba(0,0,0,0.5);
+    background-color: var(--white);
+}
+.taskCardBody p:first-child{
+    width:50%;
+}
+.taskCardBody p{
+    font-size:1.4rem;
+    padding:1rem;
+    border-right: .2rem solid var(--dark-gray);
+}
+.taskCardBody p:nth-child(2), p:nth-child(3){
+    width:19%;
+    text-align:center;
+}
+.taskEditDelete{
+    width:12%;
+    font-size:1.5rem;
+    text-align:center;
+}
+.taskEditDelete ul li a{
+    display:inline-block;
+    padding-bottom: .6rem;
+    color: var(--primary);
+}
+/*------- End Task Card style --------*/
