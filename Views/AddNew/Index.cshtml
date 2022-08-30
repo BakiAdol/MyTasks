@@ -1,11 +1,13 @@
-﻿<div class="addNewTaskFormContainer">
+﻿@model MyTasks.Models.TaskModel
+
+<div class="addNewTaskFormContainer">
     <form asp-controller="AddNew" asp-action="Index">
         <p class="formTitle">Add New Task</p>
-        <input type="text" class="" placeholder="Task" />
+        <input asp-for="MyTask" type="text" class="" placeholder="Task" />
         <div class="addNewPickerRow">
             <div class="prioritySelectionBox">
                 <p>Priority: </p>
-                <select>
+                <select asp-for="Priority">
                     <option value="0">High</option>
                     <option value="1">Medium</option>
                     <option value="2">Low</option>
@@ -13,9 +15,9 @@
             </div>
             <div class="dueDatePickerBox">
                 <p>Due Date: </p>
-                <input type="date">
+                <input asp-for="DueDate" type="date">
             </div>
         </div>
-        <input type="submit" value="Add" class="" />
+        <input type="submit" value="Add"/>
     </form>
 </div>
