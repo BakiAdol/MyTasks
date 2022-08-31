@@ -120,13 +120,15 @@ main {
 /*------- End of Addnew style --------*/
 
 /*------- Task Card style --------------**/
+.taskBodyLink {
+    display:block;
+}
 .taskCardBody {
     display: flex;
-    justify-content:space-between;
-    align-items:center;
-    width:100%;
-    height:6.2rem;
+    justify-content: space-between;
     margin-top: 2rem;
+    height:5rem;
+    align-items:center;
     box-shadow: 1px 1px 8px rgba(0,0,0,0.5);
     background-color: var(--white);
 }
@@ -134,23 +136,14 @@ main {
     width:50%;
 }
 .taskCardBody p{
-    font-size:1.4rem;
+    font-size:1.5rem;
     padding:1rem;
-    border-right: .2rem solid var(--dark-gray);
+    color: var(--slate);
 }
 .taskCardBody p:nth-child(2), p:nth-child(3){
-    width:19%;
+    width:25%;
     text-align:center;
-}
-.taskEditDelete{
-    width:12%;
-    font-size:1.5rem;
-    text-align:center;
-}
-.taskEditDelete ul li a{
-    display:inline-block;
-    padding-bottom: .6rem;
-    color: var(--primary);
+    border-left: .2rem solid var(--dark-gray);
 }
 /*------- End Task Card style --------*/
 

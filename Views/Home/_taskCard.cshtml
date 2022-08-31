@@ -1,15 +1,20 @@
-﻿<div class="taskCardBody">
-    <p>@Model.MyTask</p>
-    <p>Task @(Model.Status == 0 ? "Not Started" : Model.Status == 1 ? "In Progress" : "Completed")</p>
-    <p>Due On @Model.DueDate.ToString("dd MMM")</p>
-    <div class="taskEditDelete">
-        <ul>
-            <li>
-                <a href="">Edit</a>
-            </li>
-            <li>
-                <a href="@Url.Action("DeleteATask", "Home", new { taskId = Model.Id })">Delete</a>
-            </li>
-        </ul>
+﻿<a href="" class="taskBodyLink">
+    <div class="taskCardBody">
+        <p>@Model.MyTask</p>
+        <p>Task @(Model.Status == 0 ? "Not Started" : Model.Status == 1 ? "In Progress" : "Completed")</p>
+        <p>Due On @Model.DueDate.ToString("dd MMM")</p>
     </div>
-</div>
+</a>
+
+<!--
+    <div class="taskEditDelete">
+            <ul>
+                <li>
+                    <a href="">Edit</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("DeleteATask", "Home", new { taskId = Model.Id })">Delete</a>
+                </li>
+            </ul>
+        </div>
+-->
