@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyTasks.Models;
 using MyTasks.Services;
 using System.Threading.Tasks;
 
@@ -24,7 +25,19 @@ namespace MyTasks.Controllers
             
             return View(task);
         }
+        public IActionResult DeleteATask(int taskId)
+        {
+            myTaskService.DeleteATask(taskId);
 
+            return RedirectToAction("Index", "Home");
+        }
+        [HttpPost]
+        public IActionResult SaveEditTask(TaskModel task)
+        {
+            myTaskService.UpdateATask(task);
+
+            return RedirectToAction("Index", "Home");
+        }
         #endregion
     }
 }

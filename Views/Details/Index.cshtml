@@ -7,12 +7,14 @@
         @{
             if (Model.UpdatedDate != null)
             {
-                <p>Last Modified Model.UpdatedDate.ToString("dd MMM")</p>
+                var dd = (DateTime)Model.UpdatedDate;
+                <p>Last Modified @dd.ToString("dd MMM")</p>
             }
         }
     </div>
     
-    <form asp-controller="Details" asp-action="">
+    <form asp-controller="Details" asp-action="SaveEditTask">
+        @Html.HiddenFor(item => item.Id)
         <input asp-for="MyTask" type="text" class="" placeholder="@Model.MyTask" />
         <div class="detailPickerRow">
             <div class="prioritySelection">
@@ -25,7 +27,7 @@
             </div>
             <div class="statusSelection">
                 <p>Status: </p>
-                <select asp-for="Priority">
+                <select asp-for="Status">
                     <option value="0">Not Started</option>
                     <option value="1">In Progress</option>
                     <option value="2">Completed</option>

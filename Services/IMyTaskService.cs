@@ -10,5 +10,6 @@ namespace MyTasks.Services
         public List<TaskModel> GetOverDueTasks();
         public List<TaskModel> GetStatusTasks(int needStatus);
         public TaskModel GetATask(int taskId);
+        public void UpdateATask(TaskModel updatedTask);
     }
 }

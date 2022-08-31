@@ -37,12 +37,6 @@ namespace MyTasks.Controllers
 
             return View(tasks);
         }
-        public IActionResult DeleteATask(int taskId)
-        {
-            myTaskService.DeleteATask(taskId);
-
-            return RedirectToAction("Index");
-        }
         #endregion
     }
 }

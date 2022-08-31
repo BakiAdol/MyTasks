@@ -64,6 +64,20 @@ namespace MyTasks.Services
             var task = dbContext.MyTasks.FirstOrDefault(item => item.Id == taskId);
             return task ?? new TaskModel();
         }
+        public void UpdateATask(TaskModel updatedTask)
+        {
+            var oldTask = dbContext.MyTasks.FirstOrDefault(item => item.Id == updatedTask.Id);
+
+            if (oldTask == null) return;
+
+            oldTask.MyTask = updatedTask.MyTask;
+            oldTask.Status = updatedTask.Status;
+            oldTask.Priority = updatedTask.Priority;
+            oldTask.DueDate = updatedTask.DueDate;
+            oldTask.UpdatedDate = DateTime.Now;
+
+            dbContext.SaveChanges();
+        }
         #endregion
     }
 }
