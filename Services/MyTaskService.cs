@@ -16,7 +16,7 @@ namespace MyTasks.Services
         }
         #endregion
 
-        #region
+        #region Methods
         public void AddNewTask(TaskModel task)
         {
             dbContext.MyTasks.Add(task);
@@ -42,7 +42,8 @@ namespace MyTasks.Services
         }
         public List<TaskModel> GetOverDueTasks()
         {
-            var tasks = dbContext.MyTasks.Where(task => task.DueDate < DateTime.Now)
+            var tasks = dbContext.MyTasks
+                .Where(task => task.DueDate < DateTime.Now && task.Status != 2)
                 .OrderBy(task => task.Priority)
                 .ThenByDescending(task => task.Id)
                 .ToList();
