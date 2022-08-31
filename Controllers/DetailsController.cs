@@ -17,9 +17,14 @@ namespace MyTasks.Controllers
         }
         #endregion
 
+        #region Methods
         public IActionResult Index(int taskId)
         {
-            return View();
+            var task = myTaskService.GetATask(taskId);
+            
+            return View(task);
         }
+
+        #endregion
     }
 }

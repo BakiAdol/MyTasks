@@ -3,12 +3,17 @@
 <div class="detailsContainer">
     <p class="detailsTitle">Task Details</p>
     <div class="taskDatesContainer">
-        <p>Created Date</p>
-        <p>Updated date</p>
+        <p>Created on @Model.CreatedDate.ToString("dd MMM")</p>
+        @{
+            if (Model.UpdatedDate != null)
+            {
+                <p>Last Modified Model.UpdatedDate.ToString("dd MMM")</p>
+            }
+        }
     </div>
     
     <form asp-controller="Details" asp-action="">
-        <input asp-for="MyTask" type="text" class="" placeholder="Task" />
+        <input asp-for="MyTask" type="text" class="" placeholder="@Model.MyTask" />
         <div class="detailPickerRow">
             <div class="prioritySelection">
                 <p>Priority: </p>
@@ -33,7 +38,7 @@
         </div>
         <div class="saveDeleteTaskInDetail">
             <input type="submit" value="Save" />
-            <a href="@Url.Action("", "", new { taskId = 0 })" class="deleteTaskBtn">Delete</a>
+            <a href="@Url.Action("DeleteATask", "Details", new { taskId = Model.Id })" class="deleteTaskBtn">Delete</a>
         </div>
     </form>
 </div>

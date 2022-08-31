@@ -59,6 +59,11 @@ namespace MyTasks.Services
 
             return tasks ?? new List<TaskModel>();
         }
+        public TaskModel GetATask(int taskId)
+        {
+            var task = dbContext.MyTasks.FirstOrDefault(item => item.Id == taskId);
+            return task ?? new TaskModel();
+        }
         #endregion
     }
 }
