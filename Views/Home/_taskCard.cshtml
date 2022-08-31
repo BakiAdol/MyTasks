@@ -1,6 +1,6 @@
 ﻿
 <a href="@Url.Action("Index", "Details", new { taskId = Model.Id })" class="taskBodyLink">
-    <div class="taskCardBody">
+    <div class="taskCardBody shadowAndBackground">
         <p>@Model.MyTask</p>
         <p>Task @(Model.Status == 0 ? "Not Started" : Model.Status == 1 ? "In Progress" : "Completed")</p>
         <p>Due On @Model.DueDate.ToString("dd MMM")</p>
