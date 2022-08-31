@@ -1,1 +1,39 @@
-﻿<h1>Detail</h1>
+﻿@model MyTasks.Models.TaskModel
+
+<div class="detailsContainer">
+    <p class="detailsTitle">Task Details</p>
+    <div class="taskDatesContainer">
+        <p>Created Date</p>
+        <p>Updated date</p>
+    </div>
+    
+    <form asp-controller="Details" asp-action="">
+        <input asp-for="MyTask" type="text" class="" placeholder="Task" />
+        <div class="detailPickerRow">
+            <div class="prioritySelection">
+                <p>Priority: </p>
+                <select asp-for="Priority">
+                    <option value="0">High</option>
+                    <option value="1">Medium</option>
+                    <option value="2">Low</option>
+                </select>
+            </div>
+            <div class="statusSelection">
+                <p>Status: </p>
+                <select asp-for="Priority">
+                    <option value="0">Not Started</option>
+                    <option value="1">In Progress</option>
+                    <option value="2">Completed</option>
+                </select>
+            </div>
+            <div class="dueDatePicker">
+                <p>Due Date: </p>
+                <input asp-for="DueDate" type="date">
+            </div>
+        </div>
+        <div class="saveDeleteTaskInDetail">
+            <input type="submit" value="Save" />
+            <a href="@Url.Action("", "", new { taskId = 0 })" class="deleteTaskBtn">Delete</a>
+        </div>
+    </form>
+</div>

@@ -155,3 +155,86 @@ main {
     font-weight: bold;
 }
 /*------- End of Home style -----------------*/
+
+/*------- Details style -----------------*/
+.detailsContainer {
+    box-shadow: 1px 1px 8px rgba(0,0,0,0.5);
+    background-color: var(--white);
+    color: var(--slate);
+    padding: 2rem 5rem 2rem 5rem;
+    margin-top: 3rem;
+}
+.detailsTitle{
+    font-size:2rem;
+    color: var(--slate);
+    text-align:center;
+}
+.taskDatesContainer{
+    display:flex;
+    justify-content:space-between;
+    font-size:1.5rem;
+}
+.detailsContainer input[type=text] {
+    display: inline-block;
+    width: 100%;
+    padding: 1rem;
+    margin: 1.5rem 0;
+    border: none;
+    background-color: var(--gray);
+    color: var(--slate);
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1.6rem;
+}
+.detailsContainer form{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+}
+.detailPickerRow{
+    width:100%;
+    display:flex;
+    justify-content: space-between;
+}
+.detailPickerRow div{
+    display:flex;
+    align-items:center;
+    padding: 1rem 0 1rem;
+}
+.detailPickerRow select, input[type=date]{
+    border:none;
+    background-color: var(--gray);
+    padding: .5rem;
+    margin-left: .5rem;
+}
+.detailPickerRow p{
+    font-size: 1.5rem;
+    color: var(--slate);
+}
+.saveDeleteTaskInDetail{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 1.5rem;
+}
+.detailsContainer input[type=submit] {
+    display: inline-block;
+    width: 15rem;
+    background-color: var(--primary);
+    color: var(--white);
+    height: 4rem;
+}
+.deleteTaskBtn {
+    display: block;
+    box-sizing: border-box;
+    background-color: red;
+    color: var(--white);
+    width: 15rem;
+    font-size: 1.5rem;
+    border-radius: 4px;
+    text-align:center;
+    height:4rem;
+    padding-top: 1.1rem;
+}
+/*------- End of Details style -----------------*/
