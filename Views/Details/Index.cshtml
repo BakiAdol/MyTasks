@@ -15,7 +15,13 @@
     
     <form asp-controller="Details" asp-action="SaveEditTask">
         @Html.HiddenFor(item => item.Id)
-        <input asp-for="MyTask" type="text" class="" placeholder="@Model.MyTask" />
+        
+        <div style="width:100%">
+            <span asp-validation-for="MyTask" class="ErrorMessageText"></span>
+        </div>
+        <input asp-for="MyTask" type="text" class=""
+               placeholder="@(Model.MyTask ?? "Enter task")" />
+
         <div class="detailPickerRow">
             <div class="prioritySelection">
                 <p>Priority: </p>

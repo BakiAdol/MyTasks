@@ -34,6 +34,9 @@ namespace MyTasks.Controllers
         [HttpPost]
         public IActionResult SaveEditTask(TaskModel task)
         {
+            if (!ModelState.IsValid) return RedirectToAction("Index",
+                new {taskId = task.Id});
+            
             myTaskService.UpdateATask(task);
 
             return RedirectToAction("Index", "Home");
