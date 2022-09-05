@@ -19,7 +19,7 @@
             </div>
             <div class="dueDatePickerBox">
                 <p>Due Date: </p>
-                <input asp-for="DueDate" type="date" value="@DateTime.Today.ToString("yyyy-MM-dd")">
+                <input asp-for="DueDate" type="date" value="@DateTime.Today.ToString("yyyy-MM-dd")" min="@DateTime.Today.ToString("yyyy-MM-dd")">
             
                 <span asp-validation-for="DueDate" class="ErrorMessageText"></span>
             </div>

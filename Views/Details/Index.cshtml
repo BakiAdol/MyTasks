@@ -35,7 +35,7 @@
             </div>
             <div class="dueDatePicker">
                 <p>Due Date: </p>
-                <input asp-for="DueDate" type="date">
+                <input asp-for="DueDate" type="date" value="@Model.DueDate.ToString("yyyy-MM-dd")" min="@DateTime.Now.ToString("yyyy-MM-dd")">
             </div>
         </div>
         <div class="saveDeleteTaskInDetail">
