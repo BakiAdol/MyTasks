@@ -176,12 +176,13 @@ main {
     display:flex;
     justify-content:space-between;
     font-size:1.5rem;
+    padding-bottom: .5rem;
 }
 .detailsContainer input[type=text] {
     display: inline-block;
     width: 100%;
     padding: 1rem;
-    margin: 1.5rem 0;
+    margin: .5rem 0;
     border: none;
     background-color: var(--gray);
     color: var(--slate);

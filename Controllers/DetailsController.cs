@@ -25,19 +25,18 @@ namespace MyTasks.Controllers
             
             return View(task);
         }
-        public IActionResult DeleteATask(int taskId)
+        [HttpPost]
+        public IActionResult Index(TaskModel task) // save edit task
         {
-            myTaskService.DeleteATask(taskId);
+            if (!ModelState.IsValid) return View(task);
+
+            myTaskService.UpdateATask(task);
 
             return RedirectToAction("Index", "Home");
         }
-        [HttpPost]
-        public IActionResult SaveEditTask(TaskModel task)
+        public IActionResult DeleteATask(int taskId)
         {
-            if (!ModelState.IsValid) return RedirectToAction("Index",
-                new {taskId = task.Id});
-            
-            myTaskService.UpdateATask(task);
+            myTaskService.DeleteATask(taskId);
 
             return RedirectToAction("Index", "Home");
         }
