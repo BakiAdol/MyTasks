@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MyTasks.CustomValidations;
+using System.ComponentModel.DataAnnotations;
 
 namespace MyTasks.Models
 {
@@ -12,6 +13,8 @@ namespace MyTasks.Models
         public string MyTask { get; set; }
         public int Priority { get; set; } = 0;
         public int Status { get; set; } = 0;
+
+        [DueDateValidation]
         public DateTime DueDate { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public string? CreatedSource { get; set; }
