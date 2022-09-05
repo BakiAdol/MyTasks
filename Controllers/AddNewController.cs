@@ -25,6 +25,8 @@ namespace MyTasks.Controllers
         [HttpPost]
         public IActionResult Index(TaskModel task)
         {
+            if (!ModelState.IsValid) return View();
+
             myTaskService.AddNewTask(task);
 
             return RedirectToAction("Index", "Home");

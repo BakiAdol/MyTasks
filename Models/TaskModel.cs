@@ -6,6 +6,9 @@ namespace MyTasks.Models
     {
         [Key]
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "Please Enter task.")]
+        [StringLength(60)]
         public string MyTask { get; set; }
         public int Priority { get; set; } = 0;
         public int Status { get; set; } = 0;

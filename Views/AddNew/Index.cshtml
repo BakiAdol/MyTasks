@@ -2,8 +2,12 @@
 
 <div class="addNewTaskFormContainer shadowAndBackground">
     <form asp-controller="AddNew" asp-action="Index">
+
         <p class="formTitle">Add New Task</p>
-        <input asp-for="MyTask" type="text" class="" placeholder="Task" />
+        
+        <span asp-validation-for="MyTask" class="ErrorMessageText"></span>
+        <input asp-for="MyTask" class="" placeholder="Task" />
+
         <div class="addNewPickerRow">
             <div class="prioritySelectionBox">
                 <p>Priority: </p>
