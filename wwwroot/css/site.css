@@ -145,20 +145,15 @@ main {
     padding:1rem;
     color: var(--slate);
 }
-.taskCardBody p:nth-child(2), p:nth-child(3){
-    width:25%;
+.taskCardBody p:nth-child(2), p:nth-child(3), p:nth-child(4){
+    width:17%;
     text-align:center;
-    border-left: .2rem solid var(--dark-gray);
+    border-left: .18rem solid var(--dark-gray);
 }
 /*------- End Task Card style --------*/
 
 /*------- Home style -----------------*/
-.priorityTitle {
-    font-size: 1.9rem;
-    color: var(--primary);
-    padding: 3.5rem 0 0 2rem;
-    font-weight: bold;
-}
+
 /*------- End of Home style -----------------*/
 
 /*------- Details style -----------------*/
@@ -255,7 +250,7 @@ main {
         padding: 1rem 0 0 2rem;
     }
 
-    .taskCardBody p:nth-child(2), p:nth-child(3) {
+    .taskCardBody p:nth-child(2), p:nth-child(3), p:nth-child(4) {
         display: none;
     }
 
