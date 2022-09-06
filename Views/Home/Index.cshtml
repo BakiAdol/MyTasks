@@ -1,6 +1,8 @@
 ﻿@model IEnumerable<MyTasks.Models.TaskModel>
 
 @Html.Partial("_topBar")
+<br />
+@Html.Partial("_cardHeader")
 
 @{
     foreach(var task in Model)

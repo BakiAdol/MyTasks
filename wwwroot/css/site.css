@@ -40,12 +40,12 @@ li{
     font-size: 1.4rem;
     color: var(--slate);
 }
-/* -------- end of common ---------*/
 
 .shadowAndBackground {
     box-shadow: 1px 1px 6px rgba(0,0,0,0.5);
     background-color: var(--light-gray);
 }
+/* -------- end of common ---------*/
 
 /*------- Header style --------------**/
 .headerTitle {
@@ -92,6 +92,8 @@ main {
 .topBar {
     padding: 1.4rem;
     margin-top: 2rem;
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    background-color: var(--white);
 }
 .topBarSubHeading{
     font-size: 1.7rem;
@@ -105,6 +107,22 @@ main {
     margin-right: 10px;
 }
 /*------- End of Top Bar style --------------**/
+
+/* -------- task card header ----------------*/
+.taskCardHeader {
+    display:flex;
+    justify-content: space-around;
+    background-color: var(--white);
+    text-align: center;
+    border-bottom: 1.5px solid var(--dark-gray);
+    font-size: 1.5rem;
+    padding: .5rem;
+    margin-top: 2rem;
+}
+.taskCardHeader div:nth-child(1){
+    width: 35%;
+}
+/* ---------end of task card header ----------*/
 /*------- Addnew style --------------**/
 .addNewTaskFormContainer {
     width: 80%;
