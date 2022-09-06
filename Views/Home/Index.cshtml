@@ -1,9 +1,11 @@
 ﻿@model IEnumerable<MyTasks.Models.TaskModel>
 
+@Html.Partial("_topBar")
+
 @{
     foreach(var task in Model)
     {
-        @Html.Partial("_taskCard",task)
+    @Html.Partial("_taskCard",task)
     }
 }
 

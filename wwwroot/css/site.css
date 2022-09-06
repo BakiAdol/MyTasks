@@ -25,6 +25,23 @@ li{
     list-style:none;
 }
 
+/* -------- common ---------------*/
+.displayFjcsb{
+    display: flex;
+    justify-content: space-between;
+}
+.displayInlineBlock{
+    display: inline-block;
+}
+.selectOption{
+    border: none;
+    background-color: var(--gray);
+    padding: .5rem;
+    font-size: 1.4rem;
+    color: var(--slate);
+}
+/* -------- end of common ---------*/
+
 .shadowAndBackground {
     box-shadow: 1px 1px 6px rgba(0,0,0,0.5);
     background-color: var(--light-gray);
@@ -71,11 +88,27 @@ main {
 }
 /*------- End of Navbar style --------*/
 
-
+/*------- Top Bar style --------------**/
+.topBar {
+    padding: 1.4rem;
+    margin-top: 2rem;
+}
+.topBarSubHeading{
+    font-size: 1.7rem;
+    padding-top: .2rem;
+}
+.optionLable{
+    font-size: 1.4rem;
+    color: var(--slate);
+}
+.numberOfShowItem{
+    margin-right: 10px;
+}
+/*------- End of Top Bar style --------------**/
 /*------- Addnew style --------------**/
 .addNewTaskFormContainer {
     width: 80%;
-    padding:1rem;
+    padding: 1rem;
     margin: 2rem auto;
 }
 .formTitle{
