@@ -1,6 +1,10 @@
 ﻿@{
     var pageNumber = ViewData["TaskPagerPageNumber"];
+    var showTasksnumber = ViewBag.pager.PageItemShow;
+    var orderTaskShow = ViewBag.pager.OrderOfItemShow;
 }
-<a href="@Url.Action("Index", "Home", new { page=pageNumber, show=3, order=0 })" class="pagerButton">
+<a href="@Url.Action("Index", "Home", 
+    new { page = pageNumber, show = showTasksnumber, order=orderTaskShow })" 
+    class="pagerButton">
     @ViewBag.TaskPagerButtonText
 </a>
