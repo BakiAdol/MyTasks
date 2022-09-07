@@ -6,18 +6,33 @@
     <div class="topBarRIght displayFjcsb">
         <div class="numberOfShowItem">
             <p class="displayInlineBlock optionLable">Show: </p>
-            <select class="displayInlineBlock selectOption">
-                <option value="8">8</option>
-                <option value="16">16</option>
-                <option value="32">32</option>
-                <option value="64">64</option>
+            <select class="displayInlineBlock selectOption"
+                    onchange="window.location.href=this.value">
+                <option selected=@(ViewBag.pager.PageItemShow==2)
+                    value="@Url.Action("Index", "Home", new { page=1, show=2, order=0 })">
+                    2
+                </option>
+
+                <option selected=@(ViewBag.pager.PageItemShow==3)
+                    value="@Url.Action("Index", "Home", new { page=1, show=3, order=0 })">
+                    3
+                </option>
+                <option selected=@(ViewBag.pager.PageItemShow==4)
+                        value="@Url.Action("Index", "Home", new { page=1, show=4, order=0 })">
+                    4
+                </option>
+                <option selected=@(ViewBag.pager.PageItemShow==5)
+                    value="@Url.Action("Index", "Home", new { page=1, show=5, order=0 })">
+                    5
+                </option>
             </select>
         </div>
         <div class="sortByShow">
             <p class="displayInlineBlock optionLable">Sort By: </p>
-            <select class="displayInlineBlock selectOption">
-                <option value="8">Date</option>
-                <option value="16">Priority</option>
+            <select class="displayInlineBlock selectOption" 
+                onchange="window.location.href=this.value">
+                <option value="https://www.google.com/">Date</option>
+                <option value="/AddNew">Priority</option>
             </select>
         </div>
     </div>

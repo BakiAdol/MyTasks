@@ -19,7 +19,7 @@ namespace MyTasks.Controllers
         #endregion
 
         #region Methods
-        public IActionResult Index(int? option, int page=1, int show=3, int order=0)
+        public IActionResult Index(int? option, int page=1, int show=2, int order=0)
         {
             Pager pager = new Pager
             {
@@ -33,6 +33,7 @@ namespace MyTasks.Controllers
                 var tasks = myTaskService.GetAllTasks(pager);
 
                 ViewBag.pager = pager;
+                // ViewBag.showOptonSelect = show;
 
                 return View(tasks);
             }
