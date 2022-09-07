@@ -1,0 +1,6 @@
+﻿@{
+    var pageNumber = ViewData["TaskPagerPageNumber"];
+}
+<a href="@Url.Action("Index", "Home", new { page=pageNumber, show=3, order=0 })" class="pagerButton">
+    @ViewBag.TaskPagerButtonText
+</a>

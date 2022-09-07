@@ -45,7 +45,7 @@ namespace MyTasks.Services
 
             int skipePages = (pager.CurrentPageNumber - 1) * pager.PageItemShow;
 
-            pager.TotalPage = tasks.Count;
+            pager.TotalPage = (tasks.Count + pager.PageItemShow-1)/pager.PageItemShow;
             tasks = tasks.Skip(skipePages)
                 .Take(pager.PageItemShow)
                 .ToList();

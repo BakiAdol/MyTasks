@@ -289,6 +289,18 @@ main {
 }
 /*------- End of Details style -----------------*/
 
+/* --------- Pager botton -------------------*/
+.pagerBody{
+    margin-top: 2rem;
+}
+.pagerButton {
+    background-color: var(--white);
+    color: var(--slate);
+    font-size: 1.6rem;
+    padding: .5rem;
+    display: inline-block;
+}
+/* --------- end of pager bottom -------------*/
 /*-------- responsive */
 @media screen and (max-width: 1100px) {
     .options_container ul {

@@ -1,0 +1,26 @@
+﻿@{
+    List<KeyValuePair<string, int>> pageButtons = new List<KeyValuePair<string, int>>();
+    pageButtons.Add(new KeyValuePair<string, int>("First", 1));
+
+    int displayPage = Math.Max(1, ViewBag.pager.CurrentPageNumber - 2);
+    int maxDisplayPage = Math.Min(ViewBag.pager.CurrentPageNumber + 2, ViewBag.pager.TotalPage);
+
+    for (; displayPage <= maxDisplayPage; displayPage++)
+    {
+        pageButtons.Add(new KeyValuePair<string, int>(displayPage.ToString(), displayPage));
+    }
+
+    pageButtons.Add(new KeyValuePair<string, int>("Last", ViewBag.pager.TotalPage));
+}
+<div class="pagerBody">
+    @{
+        foreach(var pairPageButton in pageButtons)
+        {
+            ViewData["TaskPagerButtonText"] = pairPageButton.Key;
+            ViewData["TaskPagerPageNumber"] = pairPageButton.Value;
+            <partial name="_TaskPagerButton" view-data="ViewData" />
+        }
+    }
+</div>
+
+
