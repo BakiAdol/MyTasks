@@ -28,16 +28,12 @@ namespace MyTasks.Controllers
                 OrderOfItemShow = order
             };
 
-            if(option == null)
-            {
-                var tasks = myTaskService.GetAllTasks(pager);
+            var tasks = myTaskService.GetAllTasks(pager, option);
 
-                ViewBag.pager = pager;
-                // ViewBag.showOptonSelect = show;
+            ViewBag.pager = pager;
+            ViewBag.PageOption = option;
 
-                return View(tasks);
-            }
-            return View( new List<TaskModel>());
+            return View(tasks);
         }
         #endregion
     }

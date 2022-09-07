@@ -22,23 +22,25 @@ namespace MyTasks.Services
             dbContext.MyTasks.Add(task);
             dbContext.SaveChanges();
         }
-        public List<TaskModel> GetAllTasks(Pager pager)
+        public List<TaskModel> GetAllTasks(Pager pager, int? option)
         {
             List<TaskModel> tasks = null;
 
-            if(pager.OrderOfItemShow == 0)
+            // all task filter by option
+            tasks = dbContext.MyTasks
+                .Where(task => option == null ? task.Status != -1 : task.Status == option)
+                .ToList();
+
+            if (tasks == null) return new List<TaskModel>();
+
+            if (pager.OrderOfItemShow == 0) // only sort date wise
             {
-                tasks = dbContext.MyTasks
-                    .OrderByDescending(task => task.Id)
-                    .ThenBy(task => task.Priority)
-                    .ToList();
+                tasks = tasks.OrderByDescending(task => task.Id).ToList();
             }
-            else if(pager.OrderOfItemShow == 1)
+            else // sort priority wise then date
             {
-                tasks = dbContext.MyTasks
-                    .OrderBy(task => task.Priority)
-                    .ThenByDescending(task => task.Id)
-                    .ToList();
+                tasks = tasks.OrderBy(task => task.Priority)
+                    .ThenByDescending(task => task.Id).ToList();
             }
 
             if(tasks == null) return new List<TaskModel>();
