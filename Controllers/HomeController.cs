@@ -19,23 +19,24 @@ namespace MyTasks.Controllers
         #endregion
 
         #region Methods
-        public IActionResult Index(int? options)
+        public IActionResult Index(int? option, int page=1, int show=8, int order=0)
         {
-            List<TaskModel> tasks = new List<TaskModel>();
-            if (options == null)
+            Pager pager = new Pager
             {
-                tasks = myTaskService.GetAllTasks();
-            }
-            else if(options == 3)
-            {
-                tasks = myTaskService.GetOverDueTasks();
-            }
-            else if(options<4 && options>=0)
-            {
-                tasks = myTaskService.GetStatusTasks((int)options);
-            }
+                CurrentPageNumber = page,
+                PageItemShow = show,
+                OrderOfItemShow = order
+            };
 
-            return View(tasks);
+            if(option == null)
+            {
+                var tasks = myTaskService.GetAllTasks(pager);
+
+                ViewBag.pager = pager;
+
+                return View(tasks);
+            }
+            return View( new List<TaskModel>());
         }
         #endregion
     }

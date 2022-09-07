@@ -22,14 +22,35 @@ namespace MyTasks.Services
             dbContext.MyTasks.Add(task);
             dbContext.SaveChanges();
         }
-        public List<TaskModel> GetAllTasks()
+        public List<TaskModel> GetAllTasks(Pager pager)
         {
-            var tasks = dbContext.MyTasks
-                .OrderBy(task => task.Priority)
-                .ThenByDescending(task => task.Id)
+            List<TaskModel> tasks = null;
+
+            if(pager.OrderOfItemShow == 0)
+            {
+                tasks = dbContext.MyTasks
+                    .OrderByDescending(task => task.Id)
+                    .ThenBy(task => task.Priority)
+                    .ToList();
+            }
+            else if(pager.OrderOfItemShow == 1)
+            {
+                tasks = dbContext.MyTasks
+                    .OrderBy(task => task.Priority)
+                    .ThenByDescending(task => task.Id)
+                    .ToList();
+            }
+
+            if(tasks == null) return new List<TaskModel>();
+
+            int skipePages = (pager.CurrentPageNumber - 1) * pager.PageItemShow;
+
+            pager.TotalPage = tasks.Count;
+            tasks = tasks.Skip(skipePages)
+                .Take(pager.PageItemShow)
                 .ToList();
 
-            return tasks ?? new List<TaskModel>();
+            return tasks;
         }
         public void DeleteATask(int taskId)
         {

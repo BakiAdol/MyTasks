@@ -5,7 +5,7 @@ namespace MyTasks.Services
     public interface IMyTaskService
     {
         public void AddNewTask(TaskModel task);
-        public List<TaskModel> GetAllTasks();
+        public List<TaskModel> GetAllTasks(Pager pager);
         public void DeleteATask(int taskId);
         public List<TaskModel> GetOverDueTasks();
         public List<TaskModel> GetStatusTasks(int needStatus);
