@@ -1,20 +1,43 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyTasks.Models;
+using MyTasks.Services;
 
 namespace MyTasks.Controllers
 {
     public class SearchController : Controller
     {
+        #region Props
+        private readonly IMyTaskService myTaskService;
+        #endregion
+
+        #region Ctor
+        public SearchController(IMyTaskService myTaskService)
+        {
+            this.myTaskService = myTaskService;
+        }
+        #endregion
+
+        #region Methods
         public IActionResult Index()
         {
-            return View(new List<TaskModel>());
+            SearchModelMembers searchModelMembers = new SearchModelMembers();
+            searchModelMembers.TaskModel = new List<TaskModel>();
+
+            return View(searchModelMembers);
         }
         [HttpPost]
-        public IActionResult Index(SearchModel searchInfo)
+        public IActionResult Index(SearchModelMembers getInfo)
         {
-            if(!ModelState.IsValid) return View();
+            SearchModelMembers searchModelMembers = new SearchModelMembers();
+            searchModelMembers.TaskModel = new List<TaskModel>();
 
-            return View();
+            if(getInfo.SearchModel.SearchText == null) return View(searchModelMembers);
+
+            searchModelMembers.TaskModel = myTaskService.GetSearchTasks(getInfo.SearchModel);
+
+            return View(searchModelMembers);
         }
+        #endregion
+
     }
 }

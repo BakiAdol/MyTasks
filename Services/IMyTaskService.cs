@@ -9,5 +9,6 @@ namespace MyTasks.Services
         public void DeleteATask(int taskId);
         public TaskModel GetATask(int taskId);
         public void UpdateATask(TaskModel updatedTask);
+        public List<TaskModel> GetSearchTasks(SearchModel searchInfo);
     }
 }

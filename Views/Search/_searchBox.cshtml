@@ -1,10 +1,10 @@
 ﻿@using MyTasks.Enums
-@model MyTasks.Models.SearchModel
+@model MyTasks.Models.SearchModelMembers
 
 <div>
     <form asp-controller="Search" asp-action="Index">
         <div>
-            <input asp-for=@Model.SearchText placeholder="Search task"/>
+            <input asp-for=@Model.SearchModel.SearchText placeholder="Search task"/>
             <input type="submit" value="Search"/>
         </div>
         <div>
@@ -16,17 +16,17 @@
                 </tr>
                 <tr>
                     <td>
-                        <select  asp-for=@Model.Option
+                        <select  asp-for=@Model.SearchModel.Option
                             asp-items="Html.GetEnumSelectList<TaskOptionEnum>()">
                         </select>
                     </td>
                     <td>
-                        <select asp-for=@Model.Priority
+                        <select asp-for=@Model.SearchModel.Priority
                             asp-items="Html.GetEnumSelectList<PriorityEnum>()">
                         </select>
                     </td>
                     <td>
-                        <select  asp-for=@Model.Order
+                        <select  asp-for=@Model.SearchModel.Order
                             asp-items="Html.GetEnumSelectList<OrderDateEnum>()">
                         </select>
                     </td>

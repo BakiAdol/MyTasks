@@ -1,4 +1,5 @@
-﻿using MyTasks.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using MyTasks.Data;
 using MyTasks.Models;
 
 namespace MyTasks.Services
@@ -88,9 +89,26 @@ namespace MyTasks.Services
         {
             List<TaskModel> tasks = null;
 
+            int srPriority = searchInfo.Priority;
+            int srOrder = searchInfo.Order;
+            int srOption = searchInfo.Option;
+
             tasks = dbContext.MyTasks
-                    .Where(task => task.MyTask.Contains(searchInfo.SearchText))
+                    .Where(task => (srOption == 0 ? task.Status != -1 :
+                    srOption == 4 ? task.DueDate.Day < DateTime.Now.Day && task.Status != 2 :
+                    task.Status == srOption-1) &&
+                    (srPriority==0 ? task.Priority != -1 :
+                    task.Priority == srPriority-1) &&
+                        task.MyTask.Contains(searchInfo.SearchText))
                     .ToList();
+            
+            if(tasks == null) return new List<TaskModel>();
+
+            tasks = (srOrder == 0 ? tasks.OrderByDescending(task => task.Id) :
+                 tasks.OrderBy(task => task.Id)).ToList();
+            
+            if(srOrder == 0)
+            tasks = tasks.OrderBy(task => task.Priority).ToList();
 
             return tasks ?? new List<TaskModel>();
         }

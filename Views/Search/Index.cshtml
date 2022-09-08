@@ -1,9 +1,9 @@
-﻿@model IEnumerable<MyTasks.Models.TaskModel>
+﻿@model MyTasks.Models.SearchModelMembers
 
 <partial name="_searchBox"/>
 
 @{
-    foreach (var task in Model)
+    foreach (var task in Model.TaskModel)
     {
         @Html.Partial("_taskCard",task)
     }
