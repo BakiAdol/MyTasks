@@ -28,7 +28,9 @@ namespace MyTasks.Services
 
             // all task filter by option
             tasks = dbContext.MyTasks
-                .Where(task => option == null ? task.Status != -1 : task.Status == option)
+                .Where(task => option == null ? task.Status != -1 :
+                option == 3 ? task.DueDate < DateTime.Now && task.Status != 2 :
+                task.Status == option)
                 .ToList();
 
             if (tasks == null) return new List<TaskModel>();
@@ -62,26 +64,6 @@ namespace MyTasks.Services
                 dbContext.MyTasks.Remove(task);
                 dbContext.SaveChanges();
             }
-        }
-        public List<TaskModel> GetOverDueTasks()
-        {
-            var tasks = dbContext.MyTasks
-                .Where(task => task.DueDate < DateTime.Now && task.Status != 2)
-                .OrderBy(task => task.Priority)
-                .ThenByDescending(task => task.Id)
-                .ToList();
-
-            return tasks ?? new List<TaskModel>();
-        }
-        public List<TaskModel> GetStatusTasks(int needStatus)
-        {
-            var tasks = dbContext.MyTasks
-                        .Where(item => item.Status == needStatus)
-                        .OrderBy(task => task.Priority)
-                        .ThenByDescending(task => task.Id)
-                        .ToList();
-
-            return tasks ?? new List<TaskModel>();
         }
         public TaskModel GetATask(int taskId)
         {

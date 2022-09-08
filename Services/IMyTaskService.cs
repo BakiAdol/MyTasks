@@ -7,8 +7,6 @@ namespace MyTasks.Services
         public void AddNewTask(TaskModel task);
         public List<TaskModel> GetAllTasks(Pager pager, int? option);
         public void DeleteATask(int taskId);
-        public List<TaskModel> GetOverDueTasks();
-        public List<TaskModel> GetStatusTasks(int needStatus);
         public TaskModel GetATask(int taskId);
         public void UpdateATask(TaskModel updatedTask);
     }
