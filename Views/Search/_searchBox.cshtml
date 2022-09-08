@@ -1,0 +1,37 @@
+﻿@using MyTasks.Enums
+@model MyTasks.Models.SearchModel
+
+<div>
+    <form asp-controller="Search" asp-action="Index">
+        <div>
+            <input asp-for=@Model.SearchText placeholder="Search task"/>
+            <input type="submit" value="Search"/>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <th>Task Status</th>
+                    <th>Task Priority</th>
+                    <th>Order By</th>
+                </tr>
+                <tr>
+                    <td>
+                        <select  asp-for=@Model.Option
+                            asp-items="Html.GetEnumSelectList<TaskOptionEnum>()">
+                        </select>
+                    </td>
+                    <td>
+                        <select asp-for=@Model.Priority
+                            asp-items="Html.GetEnumSelectList<PriorityEnum>()">
+                        </select>
+                    </td>
+                    <td>
+                        <select  asp-for=@Model.Order
+                            asp-items="Html.GetEnumSelectList<OrderDateEnum>()">
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>

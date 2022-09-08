@@ -84,6 +84,16 @@ namespace MyTasks.Services
 
             dbContext.SaveChanges();
         }
+        public List<TaskModel> GetSearchTasks(SearchModel searchInfo)
+        {
+            List<TaskModel> tasks = null;
+
+            tasks = dbContext.MyTasks
+                    .Where(task => task.MyTask.Contains(searchInfo.SearchText))
+                    .ToList();
+
+            return tasks ?? new List<TaskModel>();
+        }
         #endregion
     }
 }

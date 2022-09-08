@@ -1,0 +1,10 @@
+﻿@model IEnumerable<MyTasks.Models.TaskModel>
+
+<partial name="_searchBox"/>
+
+@{
+    foreach (var task in Model)
+    {
+        @Html.Partial("_taskCard",task)
+    }
+}
