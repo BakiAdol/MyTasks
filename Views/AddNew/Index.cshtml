@@ -8,7 +8,7 @@
         <span asp-validation-for="MyTask" class="ErrorMessageText"></span>
         <input asp-for="MyTask" class="textInputStyle inputTypeTextStyle" placeholder="Task" />
 
-        <textarea rows="3" class="textInputStyle textAreaStyle"
+        <textarea asp-for="Description" rows="3" class="textInputStyle textAreaStyle"
                   placeholder="Task Description"></textarea>
 
         <div class="addNewPickerRow">

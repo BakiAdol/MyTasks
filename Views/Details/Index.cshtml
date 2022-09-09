@@ -1,7 +1,7 @@
 ﻿@model MyTasks.Models.TaskModel
 
 <div class="detailsContainer shadowAndBackground">
-    <p class="detailsTitle">Task Details</p>
+    <p class="formTitle">Task Details</p>
     <div class="taskDatesContainer">
         <p>Created on @Model.CreatedDate.ToString("dd MMM")</p>
         @{
@@ -19,11 +19,14 @@
         <div style="width:100%">
             <span asp-validation-for="MyTask" class="ErrorMessageText"></span>
         </div>
-        <input asp-for="MyTask" type="text" class=""
+        <input asp-for="MyTask" type="text" class="textInputStyle inputTypeTextStyle"
                placeholder="@(Model.MyTask ?? "Enter task")" />
 
+        <textarea asp-for="Description" rows="3" class="textInputStyle textAreaStyle"
+                  placeholder="@(Model.Description ?? "Task Description")"></textarea>
+
         <div class="detailPickerRow">
-            <div class="prioritySelection">
+            <div class="selectOptionBox">
                 <p>Priority: </p>
                 <select asp-for="Priority">
                     <option value="0">High</option>
@@ -31,7 +34,7 @@
                     <option value="2">Low</option>
                 </select>
             </div>
-            <div class="statusSelection">
+            <div class="selectOptionBox">
                 <p>Status: </p>
                 <select asp-for="Status">
                     <option value="0">Not Started</option>
@@ -41,12 +44,21 @@
             </div>
             <div class="dueDatePicker">
                 <p>Due Date: </p>
-                <input asp-for="DueDate" type="date" value="@Model.DueDate.ToString("yyyy-MM-dd")" min="@DateTime.Now.ToString("yyyy-MM-dd")">
+                <input asp-for="DueDate" type="date" class="inputTypeDate" required
+                value="@Model.DueDate.ToString("yyyy-MM-dd")" min="@DateTime.Now.ToString("yyyy-MM-dd")">
             </div>
         </div>
         <div class="saveDeleteTaskInDetail">
-            <input type="submit" value="Save" />
-            <a href="@Url.Action("DeleteATask", "Details", new { taskId = Model.Id })" class="deleteTaskBtn">Delete</a>
+            <div class="editTaskButtonArea">
+                <input type="submit" value="Save" class="inputTypeSubmitPrimary" />
+            </div>
+            
+            <div class="editTaskButtonArea">
+                <a href="@Url.Action("DeleteATask", "Details",
+                new { taskId = Model.Id })"
+                       class="dangerButton">Delete</a>
+            </div>
+            
         </div>
     </form>
 </div>

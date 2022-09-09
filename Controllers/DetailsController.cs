@@ -32,13 +32,13 @@ namespace MyTasks.Controllers
 
             myTaskService.UpdateATask(task);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Tasks");
         }
         public IActionResult DeleteATask(int taskId)
         {
             myTaskService.DeleteATask(taskId);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Tasks");
         }
         #endregion
     }

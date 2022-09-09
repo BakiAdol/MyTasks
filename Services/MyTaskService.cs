@@ -82,6 +82,7 @@ namespace MyTasks.Services
             oldTask.Priority = updatedTask.Priority;
             oldTask.DueDate = updatedTask.DueDate;
             oldTask.UpdatedDate = DateTime.Now;
+            oldTask.Description = updatedTask.Description;
 
             dbContext.SaveChanges();
         }
