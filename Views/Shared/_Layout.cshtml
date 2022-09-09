@@ -9,7 +9,7 @@
 <body>
 
     <header>
-        <h2 class="headerTitle">My Tasks</h2>
+        <a href="/" class="headerTitle">My Tasks</a>
     </header>
 
     <main>
@@ -18,20 +18,7 @@
             Save successful
         </div>
 
-        <nav class="options_container layoutWidth marginTopauto">
-            <ul>
-                <li><a href="@Url.Action("Index", "Home", new { page=1, show=2, order=0 })">All Tasks</a></li>
-                <li><a href="@Url.Action("Index", "Home", new { option = 2, page=1, show=2, order=0 })">Completed</a></li>
-                <li><a href="@Url.Action("Index", "Home", new { option = 1, page=1, show=2, order=0 })">In Progress</a></li>
-                <li><a href="@Url.Action("Index", "Home", new { option = 0, page=1, show=2, order=0 })">Not Started</a></li>
-                <li><a href="@Url.Action("Index", "Home", new { option = 3, page=1, show=2, order=0 })">Overdue</a></li>
-            </ul>
-            <div>
-                <a href="/Search" class="">Search</a>
-                <a href="/AddNew" class="addNewButton">Add New</a>
-            </div>
-        </nav>
-        <div class="layoutWidth marginTopauto">
+        <div>
             @RenderBody()
         </div>
     </main>

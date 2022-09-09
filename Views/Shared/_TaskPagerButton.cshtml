@@ -9,7 +9,7 @@
     (ViewBag.TaskPagerButtonText != "First" && ViewBag.TaskPagerButtonText != "Last")
     && (int)currentPageNo == (int)pageNumber;
 }
-<a href="@Url.Action("Index", "Home", 
+<a href="@Url.Action("Index", "Tasks",
     new { option = PageOption, page = pageNumber, show = showTasksnumber, order=orderTaskShow })"
    class="pagerButton 
     @(isPrimaryColourButton ? " primarySubmitButton" : "whiteSubmitButton" )">

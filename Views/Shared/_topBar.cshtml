@@ -21,25 +21,25 @@
             <select class="displayInlineBlock selectOption"
                     onchange="window.location.href=this.value">
                 <option selected=@(itemShowNumber==2)
-                    value="@Url.Action("Index", "Home", 
+                    value="@Url.Action("Index", "Tasks", 
                     new { option = PageOption, page = 1, show = 2, order = itemShowOrder })">
                     2
                 </option>
 
                 <option selected=@(itemShowNumber==3)
-                        value="@Url.Action("Index", "Home",
+                        value="@Url.Action("Index", "Tasks",
                     new { option = PageOption, page = 1, show = 3, order = itemShowOrder })">
                     3
                 </option>
 
                 <option selected=@(itemShowNumber==4)
-                        value="@Url.Action("Index", "Home",
+                        value="@Url.Action("Index", "Tasks",
                     new { option = PageOption, page = 1, show = 4, order = itemShowOrder })">
                     4
                 </option>
 
                 <option selected=@(itemShowNumber==5)
-                        value="@Url.Action("Index", "Home",
+                        value="@Url.Action("Index", "Tasks",
                     new { option = PageOption, page = 1, show = 5, order = itemShowOrder })">
                     5
                 </option>
@@ -50,13 +50,13 @@
             <select class="displayInlineBlock selectOption" 
                 onchange="window.location.href=this.value">
                 <option selected=@(itemShowOrder==0)
-                        value="@Url.Action("Index", "Home",
+                        value="@Url.Action("Index", "Tasks",
                     new { option = PageOption, page = 1, show = itemShowNumber, order = 0 })">
                     Date
                 </option>
 
                 <option selected=@(itemShowOrder==1)
-                        value="@Url.Action("Index", "Home",
+                        value="@Url.Action("Index", "Tasks",
                     new { option = PageOption, page = 1, show = itemShowNumber, order = 1 })">
                     Priority
                 </option>

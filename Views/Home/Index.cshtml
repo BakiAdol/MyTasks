@@ -1,15 +1,7 @@
-﻿@model IEnumerable<MyTasks.Models.TaskModel>
-
-
-@Html.Partial("_topBar")
-<br />
-@Html.Partial("_cardHeader")
-
-@{
-    foreach(var task in Model)
-    {
-    @Html.Partial("_taskCard",task)
-    }
-}
-
-@Html.Partial("_taskPagerLayout")
+﻿<div style="margin-top: 4rem; display: flex; flex-direction: column; align-items: center">
+    <h1> My Tasks Help you to keep track your work </h1>
+    <div style="margin-top: 2rem;">
+        <a href="/Tasks" class="primaryButton">Go to Tasks</a>
+    </div>
+    
+</div>

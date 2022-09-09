@@ -44,6 +44,15 @@ li{
     box-shadow: 1px 1px 6px rgba(0,0,0,0.5);
     background-color: var(--light-gray);
 }
+
+.primaryButton {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: .8rem;
+    font-size: 1.7rem;
+    display: inline-block;
+}
+
 .primarySubmitButton {
     background-color: var(--primary);
     color: var(--white);
@@ -55,11 +64,14 @@ li{
 }
 /* -------- end of common ---------*/
 /*------- Header style --------------**/
-.headerTitle {
+header {
     background-color: var(--primary);
+}
+.headerTitle {
+    display: inline-block;
     font-size: 2rem;
     color: var(--white);
-    padding: 1rem 0 1rem 10rem;
+    padding: 1rem 0 1rem 10%;
 }
 /*------- End of Header style --------*/
 main{

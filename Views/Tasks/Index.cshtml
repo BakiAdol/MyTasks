@@ -1,0 +1,17 @@
+﻿@model IEnumerable<MyTasks.Models.TaskModel>
+
+<partial name="_navBar" />
+
+<partial name="_topBar" />
+<br />
+
+<partial name="_cardHeader" />
+
+@{
+    foreach (var task in Model)
+    {
+        @Html.Partial("_taskCard",task)
+    }
+}
+
+<partial name="_taskPagerLayout" />
