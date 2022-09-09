@@ -6,10 +6,13 @@
         <p class="formTitle">Add New Task</p>
         
         <span asp-validation-for="MyTask" class="ErrorMessageText"></span>
-        <input asp-for="MyTask" class="" placeholder="Task" />
+        <input asp-for="MyTask" class="textInputStyle inputTypeTextStyle" placeholder="Task" />
+
+        <textarea rows="3" class="textInputStyle textAreaStyle"
+                  placeholder="Task Description"></textarea>
 
         <div class="addNewPickerRow">
-            <div class="prioritySelectionBox">
+            <div class="selectOptionBox">
                 <p>Priority: </p>
                 <select asp-for="Priority">
                     <option value="0">High</option>
@@ -17,13 +20,14 @@
                     <option value="2">Low</option>
                 </select>
             </div>
-            <div class="dueDatePickerBox">
+            <div class="">
                 <p>Due Date: </p>
-                <input asp-for="DueDate" type="date" value="@DateTime.Today.ToString("yyyy-MM-dd")" min="@DateTime.Today.ToString("yyyy-MM-dd")">
+                <input asp-for="DueDate" type="date" class="inputTypeDate" required
+                value="@DateTime.Today.ToString("yyyy-MM-dd")" min="@DateTime.Today.ToString("yyyy-MM-dd")">
             
                 <span asp-validation-for="DueDate" class="ErrorMessageText"></span>
             </div>
         </div>
-        <input type="submit" value="Add"/>
+        <input type="submit" value="Add" class="inputTypeSubmitPrimary" />
     </form>
 </div>

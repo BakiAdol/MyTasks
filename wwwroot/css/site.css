@@ -53,14 +53,53 @@ li{
     display: inline-block;
 }
 
-.primarySubmitButton {
-    background-color: var(--primary);
-    color: var(--white);
-    font-weight: 600;
-}
 .whiteSubmitButton{
     background-color: var(--white);
     color: var(--slate);
+}
+.textInputStyle {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1.5rem;
+    border: none;
+    background-color: var(--gray);
+    color: var(--slate);
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1.6rem;
+}
+.textAreaStyle {
+    resize: none;
+}
+.inputTypeTextStyle {
+    display: inline-block;
+}
+textarea:focus, input:focus{
+    outline: 1px solid var(--dark-gray);
+}
+.inputTypeSubmitPrimary {
+    width: 100%;
+    padding: 1rem;
+    margin: 0 0 1.5rem;
+    border: none;
+    background-color: var(--primary);
+    color: var(--white);
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+.selectOptionBox select{
+    padding: .5rem;
+    border: none;
+    background-color: var(--gray);
+    cursor: pointer;
+}
+.inputTypeDate {
+    padding: .5rem;
+    border: none;
+    background-color: var(--gray);
+    cursor: pointer;
 }
 /* -------- end of common ---------*/
 /*------- Header style --------------**/
@@ -161,47 +200,18 @@ main{
     font-size:2rem;
     color: var(--slate);
     text-align:center;
-    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
 }
-.addNewTaskFormContainer input[type=text], input[type=submit] {
-    display: block;
-    width: 100%;
-    padding: 1rem;
-    margin: 0 0 1.5rem;
-    border: none;
-    background-color: var(--gray);
-    color: var(--slate);
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 1.6rem;
-}
+
 .addNewPickerRow{
     display:flex;
     justify-content:space-around;
-    margin: 0 0 1.5rem;
+    margin-top: 1.5rem;
 }
 .addNewPickerRow p{
     display:inline;
     font-size:1.6rem;
     color: var(--slate);
-}
-.prioritySelectionBox select {
-    width: 12rem;
-    padding: .5rem;
-    border: none;
-    background-color: var(--gray);
-}
-.dueDatePickerBox input {
-    width: 12rem;
-    padding: .5rem;
-    border:none;
-    background-color:var(--gray);
-}
-.addNewTaskFormContainer input[type=submit]{
-    margin:0 auto;
-    width:15rem;
-    background-color: var(--primary);
-    color: var(--white);
 }
 /*------- End of Addnew style --------*/
 
@@ -252,18 +262,7 @@ main{
     font-size:1.5rem;
     padding-bottom: .5rem;
 }
-.detailsContainer input[type=text] {
-    display: inline-block;
-    width: 100%;
-    padding: 1rem;
-    margin: .5rem 0;
-    border: none;
-    background-color: var(--gray);
-    color: var(--slate);
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 1.6rem;
-}
+
 .detailsContainer form{
     display:flex;
     flex-direction:column;
@@ -280,12 +279,7 @@ main{
     align-items:center;
     padding: 1rem 0 1rem;
 }
-.detailPickerRow select, input[type=date]{
-    border:none;
-    background-color: var(--gray);
-    padding: .5rem;
-    margin-left: .5rem;
-}
+
 .detailPickerRow p{
     font-size: 1.5rem;
     color: var(--slate);
@@ -296,13 +290,7 @@ main{
     width: 100%;
     margin-top: 1.5rem;
 }
-.detailsContainer input[type=submit] {
-    display: inline-block;
-    width: 15rem;
-    background-color: var(--primary);
-    color: var(--white);
-    height: 4rem;
-}
+
 .deleteTaskBtn {
     display: block;
     box-sizing: border-box;
@@ -360,9 +348,6 @@ main{
         width: 8rem;
     }
 
-    .detailsContainer input[type=submit] {
-        width: 8rem;
-    }
 }
 
 
