@@ -1,6 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using MyTasks.Data;
 using MyTasks.Models;
+using System.Threading.Tasks;
 
 namespace MyTasks.Services
 {
@@ -95,13 +98,16 @@ namespace MyTasks.Services
             int srOption = searchInfo.Option;
 
             tasks = dbContext.MyTasks
-                    .Where(task => (srOption == 0 ? task.Status != -1 :
-                    srOption == 4 ? task.DueDate.Day < DateTime.Now.Day && task.Status != 2 :
-                    task.Status == srOption-1) &&
-                    (srPriority==0 ? task.Priority != -1 :
-                    task.Priority == srPriority-1) &&
-                        task.MyTask.Contains(searchInfo.SearchText))
-                    .ToList();
+            .Where(task => (
+                    srOption == 0 ? task.Status != -1 : srOption == 4 ?
+                    (task.DueDate.Day < DateTime.Now.Day) && task.Status != -2 : task.Status == srOption - 1
+                ) && (
+                    srPriority == 0 ? task.Priority != -1 : task.Priority == srPriority - 1
+                ) && (
+                    task.MyTask.Contains(searchInfo.SearchText) ||
+                    task.Description.Contains(searchInfo.SearchText)
+                )
+            ).ToList();
             
             if(tasks == null) return new List<TaskModel>();
 
