@@ -13,7 +13,12 @@
     </header>
 
     <main>
-        <nav class="options_container">
+
+        <div id="hideMeAfter5Seconds" class="notificationContainer">
+            Save successful
+        </div>
+
+        <nav class="options_container layoutWidth marginTopauto">
             <ul>
                 <li><a href="@Url.Action("Index", "Home", new { page=1, show=2, order=0 })">All Tasks</a></li>
                 <li><a href="@Url.Action("Index", "Home", new { option = 2, page=1, show=2, order=0 })">Completed</a></li>
@@ -26,7 +31,9 @@
                 <a href="/AddNew" class="addNewButton">Add New</a>
             </div>
         </nav>
-        @RenderBody()
+        <div class="layoutWidth marginTopauto">
+            @RenderBody()
+        </div>
     </main>
 
 </body>

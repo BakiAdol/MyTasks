@@ -62,16 +62,19 @@ li{
     padding: 1rem 0 1rem 10rem;
 }
 /*------- End of Header style --------*/
-
-main {
-    width: 60%;
+main{
+    width: 100%;
+}
+.marginTopauto {
     margin: 2rem auto;
 }
-
+.layoutWidth {
+    width: 60%;
+}
 /*------- Navbar style --------------**/
-.options_container{
-    display:flex;
-    justify-content:space-between;
+.options_container {
+    display: flex;
+    justify-content: space-between;
 }
 .options_container ul {
     display: flex;
@@ -350,3 +353,27 @@ main {
     padding: 1rem;
     color: var(--alert);
 }
+
+
+/* ------------ notificaiton -----*/
+.notificationContainer{
+    background-color: red;
+    padding: 1.2rem;
+    font-size: 1.8rem;
+    position: absolute;
+    top:2rem;
+    right: 2rem;
+}
+#hideMeAfter5Seconds {
+    animation: hideAnimation 0s ease-in-out 5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes hideAnimation {
+    to {
+        visibility: hidden;
+        width: 0;
+        height: 0;
+    }
+}
+/*------------- end of notificaiton -------*/
