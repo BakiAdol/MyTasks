@@ -130,9 +130,15 @@ main{
 }
 /*------- End of Top Bar style --------------**/
 
+/* ------------- Task style -------------------*/
+.pagerContainer{
+    display: flex;
+    justify-content: space-around;
+}
+/* ------------ end of task style -------------*/
 /* -------- task card header ----------------*/
 .taskCardHeader {
-    display:flex;
+    display: flex;
     justify-content: space-around;
     background-color: var(--white);
     text-align: center;
@@ -313,7 +319,8 @@ main{
 
 /* --------- Pager botton -------------------*/
 .pagerBody{
-    margin-top: 2rem;
+    margin-top: 2.5rem;
+    display: inline-block;
 }
 .pagerButton {
     font-size: 1.7rem;
