@@ -234,6 +234,10 @@ main{
 .taskBodyLink {
     display:block;
 }
+div.hoverUp:hover {
+    transition: all .3s ease-in-out;
+    transform: scale(1.06);
+}
 .taskCardBody {
     display: flex;
     justify-content: space-between;

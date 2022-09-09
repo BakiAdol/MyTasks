@@ -2,7 +2,7 @@
     string[] borderColors = { "8f8f8f", "f2aa1d", "11f219" };
 }
 <a href="@Url.Action("Index", "Details", new { taskId = Model.Id })" class="taskBodyLink">
-    <div class="taskCardBody shadowAndBackground"
+    <div class="taskCardBody shadowAndBackground hoverUp"
          style="border-left: 7px solid #@borderColors[Model.Status];">
         <p>@Model.MyTask</p>
         <p>@(Model.Priority == 0 ? "High" : Model.Priority == 1 ? "Medium" : "Low")</p>
