@@ -162,8 +162,12 @@ main{
     text-align:center;
     margin-top:.6rem;
 }
+.gotoSearchButton{
+    font-size: 1.8rem;
+    color: var(--slate);
+    margin-right: 1rem;
+}
 /*------- End of Navbar style --------*/
-
 /*------- Top Bar style --------------**/
 .topBar {
     padding: 1.4rem;
@@ -217,12 +221,13 @@ input.filterCheckbox {
     width: 80%;
     margin: 0 auto;
     display: flex;
+    justify-content: space-between;
 }
 .fullPageTasksShow{
     height: 33rem;
 }
 .allTaskShowFilterBody {
-    width: 19%;
+    width: 20%;
     margin-top: 2rem;
 }
 .allTaskFilterItem {
@@ -232,7 +237,7 @@ input.filterCheckbox {
     padding: 1rem;
 }
 .allTaskShowRightBody {
-    width: 75%;
+    width: 78%;
     margin-left: 1rem;
 }
 .pagerContainer {
@@ -374,6 +379,10 @@ div.hoverUp:hover {
     padding: .5rem;
     display: inline-block;
 }
+.pagerCurrentButton {
+    background-color: var(--primary);
+    color: var(--white);
+}
 /* --------- end of pager bottom -------------*/
 /*-------- responsive */
 @media screen and (max-width: 1100px) {
@@ -444,7 +453,7 @@ div.hoverUp:hover {
 /* ------------- search box style -----------*/
 .searchBoxContainerForm {
     width: 70%;
-    margin: 2rem auto 34rem auto;
+    margin: 2rem auto;
     display: flex;
     justify-content: space-between;
     padding: 1rem;
@@ -468,7 +477,8 @@ div.hoverUp:hover {
 }
 .searchResultShowContainer{
     width: 70%;
-    margin: 1rem auto;
+    margin: 3rem auto 2rem auto;
+    min-height: 29rem;
 }
 .searchBoxRightContainer{
     margin-top: 1.6rem;

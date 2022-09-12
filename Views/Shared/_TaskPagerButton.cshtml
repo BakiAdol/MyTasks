@@ -12,6 +12,6 @@
 <a href="@Url.Action("Index", "Tasks",
     new { option = PageOption, page = pageNumber, show = showTasksnumber, order=orderTaskShow })"
    class="pagerButton 
-    @(isPrimaryColourButton ? " primarySubmitButton" : "whiteSubmitButton" )">
+    @(isPrimaryColourButton ? " pagerCurrentButton" : "whiteSubmitButton" )">
     @ViewBag.TaskPagerButtonText
 </a>
