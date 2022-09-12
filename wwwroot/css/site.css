@@ -258,9 +258,10 @@ input.filterCheckbox {
 
 /*------- Addnew style --------------**/
 .addNewTaskFormContainer {
-    width: 80%;
+    width: 60%;
     padding: 1rem;
     margin: 2rem auto;
+    margin-bottom: 13rem;
 }
 .formTitle{
     font-size:2rem;
@@ -319,7 +320,8 @@ div.hoverUp:hover {
 .detailsContainer {
     color: var(--slate);
     padding: 2rem 5rem 2rem 5rem;
-    margin-top: 3rem;
+    margin: 3rem auto 8rem auto;
+    width: 50%;
 }
 
 .taskDatesContainer{
@@ -442,9 +444,10 @@ div.hoverUp:hover {
 /* ------------- search box style -----------*/
 .searchBoxContainerForm {
     width: 70%;
-    margin: 1rem auto;
+    margin: 2rem auto 34rem auto;
     display: flex;
     justify-content: space-between;
+    padding: 1rem;
 }
 .serchBoxLeftContainer {
     width: 80%;
@@ -471,3 +474,16 @@ div.hoverUp:hover {
     margin-top: 1.6rem;
 }
 /* ------------- end of search box ----------*/
+
+/* --------------- footer style ----------------*/
+.footerContainer{
+    background-color: var(--primary);
+    margin-top: 1rem;
+}
+.footerContainer p{
+    font-size: 1.6rem;
+    color: var(--white);
+    text-align: center;
+    padding: 3rem 0 3rem;
+}
+/* ---------------- end of footer --------------*/
