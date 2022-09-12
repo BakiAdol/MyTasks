@@ -29,7 +29,9 @@ namespace MyTasks.Controllers
 
             myTaskService.AddNewTask(task);
 
-            return RedirectToAction("Index", "Home");
+            TempData["GetNotification"] = 0;
+
+            return RedirectToAction("Index", "Tasks");
         }
         #endregion
     }

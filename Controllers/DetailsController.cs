@@ -32,11 +32,15 @@ namespace MyTasks.Controllers
 
             myTaskService.UpdateATask(task);
 
+            TempData["GetNotification"] = 1;
+
             return RedirectToAction("Index", "Tasks");
         }
         public IActionResult DeleteATask(int taskId)
         {
             myTaskService.DeleteATask(taskId);
+
+            TempData["GetNotification"] = 2;
 
             return RedirectToAction("Index", "Tasks");
         }

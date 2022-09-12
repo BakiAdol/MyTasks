@@ -366,13 +366,13 @@ div.hoverUp:hover {
 
 
 /* ------------ notificaiton -----*/
-.notificationContainer{
-    background-color: red;
+.notificationContainer {
     padding: 1.2rem;
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     position: absolute;
-    top:2rem;
-    right: 2rem;
+    top: 2rem;
+    margin-left: 85%;
+    box-shadow: 1px 1px 6px rgba(0,0,0,0.5);
 }
 #hideMeAfter5Seconds {
     animation: hideAnimation 0s ease-in-out 5s;

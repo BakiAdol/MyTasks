@@ -14,9 +14,19 @@
 
     <main>
 
-        <div id="hideMeAfter5Seconds" class="notificationContainer">
-            Save successful
-        </div>
+        @{
+            if (TempData["GetNotification"] != null)
+            {
+                int notif = (int)TempData["GetNotification"];
+
+                <div id="hideMeAfter5Seconds" class="notificationContainer"
+                 style="background-color:@(notif > 1 ? "red" : "green")">
+                    Successfully @(notif == 0 ? "added" : notif == 1 ? "edited" : "deleted")
+                </div>
+
+                TempData["GetNotification"] = null;
+            }
+        }
 
         <div>
             @RenderBody()
