@@ -8,5 +8,8 @@
         public int OrderOfItemShow { get; set; } = 0;
         public int StartPageNumber { get; } = 1;
         public int EndPageNumber { get; set; }
+        public int HighPriority { get; set; } = 0;
+        public int LowPriority { get; set; } = 0;
+        public int MediumPriority { get; set; } = 0;
     }
 }

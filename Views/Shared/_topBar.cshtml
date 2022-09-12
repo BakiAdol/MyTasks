@@ -2,6 +2,9 @@
     var PageOption = ViewBag.PageOption;
     var itemShowNumber = ViewBag.pager.PageItemShow;
     var itemShowOrder = ViewBag.pager.OrderOfItemShow;
+    var high = ViewBag.pager.HighPriority;
+    var low = ViewBag.pager.LowPriority;
+    var medium = ViewBag.pager.MediumPriority;
 }
 <div class="topBar displayFjcsb">
     <div class="topBarLeft">
@@ -22,25 +25,29 @@
                     onchange="window.location.href=this.value">
                 <option selected=@(itemShowNumber==2)
                     value="@Url.Action("Index", "Tasks", 
-                    new { option = PageOption, page = 1, show = 2, order = itemShowOrder })">
+                    new { option = PageOption, page = 1, show = 2, order = itemShowOrder,
+                    high = high, medium = medium, low = low})">
                     2
                 </option>
 
                 <option selected=@(itemShowNumber==3)
                         value="@Url.Action("Index", "Tasks",
-                    new { option = PageOption, page = 1, show = 3, order = itemShowOrder })">
+                    new { option = PageOption, page = 1, show = 3, order = itemShowOrder,
+                    high = high, medium = medium, low = low})">
                     3
                 </option>
 
                 <option selected=@(itemShowNumber==4)
                         value="@Url.Action("Index", "Tasks",
-                    new { option = PageOption, page = 1, show = 4, order = itemShowOrder })">
+                    new { option = PageOption, page = 1, show = 4, order = itemShowOrder,
+                    high = high, medium = medium, low = low})">
                     4
                 </option>
 
                 <option selected=@(itemShowNumber==5)
                         value="@Url.Action("Index", "Tasks",
-                    new { option = PageOption, page = 1, show = 5, order = itemShowOrder })">
+                    new { option = PageOption, page = 1, show = 5, order = itemShowOrder,
+                    high = high, medium = medium, low = low})">
                     5
                 </option>
             </select>
@@ -51,13 +58,15 @@
                 onchange="window.location.href=this.value">
                 <option selected=@(itemShowOrder==0)
                         value="@Url.Action("Index", "Tasks",
-                    new { option = PageOption, page = 1, show = itemShowNumber, order = 0 })">
+                    new { option = PageOption, page = 1, show = itemShowNumber, order = 0,
+                    high = high, medium = medium, low = low})">
                     Latest
                 </option>
 
                 <option selected=@(itemShowOrder==1)
                         value="@Url.Action("Index", "Tasks",
-                    new { option = PageOption, page = 1, show = itemShowNumber, order = 1 })">
+                    new { option = PageOption, page = 1, show = itemShowNumber, order = 1,
+                    high = high, medium = medium, low = low})">
                     Oldest
                 </option>
             </select>

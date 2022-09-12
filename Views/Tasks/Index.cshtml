@@ -1,5 +1,13 @@
 ﻿@model IEnumerable<MyTasks.Models.TaskModel>
-
+@{
+    var PageOption = ViewBag.PageOption;
+    var itemShowNumber = ViewBag.pager.PageItemShow;
+    var itemShowOrder = ViewBag.pager.OrderOfItemShow;
+    var PageNum = ViewBag.pager.CurrentPageNumber;
+    var high = ViewBag.pager.HighPriority;
+    var low = ViewBag.pager.LowPriority;
+    var medium = ViewBag.pager.MediumPriority;
+}
 <partial name="_navBar" />
 
 <div class="allTaksTopBarContainer">
@@ -12,20 +20,29 @@
         <div class="allTaskFilterItem">
             <p class="filterTitle">Priority</p>
             <div class="filterItems">
-                <a href="/">
-                    <input type="checkbox" class="filterCheckbox"/>
+                <a href="@Url.Action("Index", "Tasks",
+                    new { option = PageOption, page = PageNum, show = itemShowNumber, order = itemShowOrder,
+                    high = 1-high, medium = medium, low = low})">
+                    <input type="checkbox" class="filterCheckbox"
+                           checked="@(high == 1)" />
                 </a>
                 <label>High</label>
             </div>
             <div class="filterItems">
-                <a href="/">
-                    <input type="checkbox" class="filterCheckbox" />
+                <a href="@Url.Action("Index", "Tasks",
+                    new { option = PageOption, page = PageNum, show = itemShowNumber, order = itemShowOrder,
+                    high = high, medium = 1-medium, low = low})">
+                    <input type="checkbox" class="filterCheckbox"
+                           checked="@(medium == 1)" />
                 </a>
                 <label>Medium</label>
             </div>
             <div class="filterItems">
-                <a href="/">
-                    <input type="checkbox" class="filterCheckbox" />
+                <a href="@Url.Action("Index", "Tasks",
+                    new { option = PageOption, page = PageNum, show = itemShowNumber, order = itemShowOrder,
+                    high = high, medium = medium, low = 1-low})">
+                    <input type="checkbox" class="filterCheckbox"
+                           checked="@(low == 1)" />
                 </a>
                 <label>Low</label>
             </div>
@@ -39,7 +56,7 @@
             @{
                 foreach (var task in Model)
                 {
-                        @Html.Partial("_taskCard",task)
+                            @Html.Partial("_taskCard",task)
                 }
             }
         </div>
