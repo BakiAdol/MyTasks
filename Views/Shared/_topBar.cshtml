@@ -52,13 +52,13 @@
                 <option selected=@(itemShowOrder==0)
                         value="@Url.Action("Index", "Tasks",
                     new { option = PageOption, page = 1, show = itemShowNumber, order = 0 })">
-                    Date
+                    Latest
                 </option>
 
                 <option selected=@(itemShowOrder==1)
                         value="@Url.Action("Index", "Tasks",
                     new { option = PageOption, page = 1, show = itemShowNumber, order = 1 })">
-                    Priority
+                    Oldest
                 </option>
             </select>
         </div>

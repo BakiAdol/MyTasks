@@ -39,14 +39,13 @@ namespace MyTasks.Services
 
             if (tasks == null) return new List<TaskModel>();
 
-            if (pager.OrderOfItemShow == 0) // only sort date wise
+            if (pager.OrderOfItemShow == 0) // latest taks
             {
                 tasks = tasks.OrderByDescending(task => task.Id).ToList();
             }
-            else // sort priority wise then date
+            else // oldest taks
             {
-                tasks = tasks.OrderBy(task => task.Priority)
-                    .ThenByDescending(task => task.Id).ToList();
+                tasks = tasks.OrderBy(task => task.Id).ToList();
             }
 
             if(tasks == null) return new List<TaskModel>();
