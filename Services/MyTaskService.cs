@@ -39,6 +39,17 @@ namespace MyTasks.Services
 
             if (tasks == null) return new List<TaskModel>();
 
+            bool isUncheckAllPriority = (pager.HighPriority == pager.MediumPriority
+                && pager.MediumPriority == pager.LowPriority && pager.LowPriority == 0);
+            
+            if(!isUncheckAllPriority)
+            {
+                tasks = tasks.Where(task => (
+                task.Priority==0 && pager.HighPriority==1) ||
+                (task.Priority==1 && pager.MediumPriority==1) || 
+                (task.Priority==2 && pager.LowPriority==1)).ToList();
+            }
+
             if (pager.OrderOfItemShow == 0) // latest taks
             {
                 tasks = tasks.OrderByDescending(task => task.Id).ToList();
