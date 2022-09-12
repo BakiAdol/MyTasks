@@ -185,7 +185,53 @@ main{
 /*------- End of Top Bar style --------------**/
 
 /* ------------- Task style -------------------*/
-.pagerContainer{
+.allTaksTopBarContainer{
+    width: 80%;
+    margin: 0 auto;
+}
+.filterTitle {
+    font-size: 1.7rem;
+    color: var(--slate);
+    font-weight: 600;
+    padding: .5rem 0 .5rem;
+}
+.filterItems{
+    display: flex;
+    align-items: center;
+    padding: 1rem 0 0 1rem;
+    font-size: 1.5rem;
+}
+.filterItems a{
+    display: inline-block;
+}
+filterItem label{
+    display: inline-block;
+}
+input.filterCheckbox {
+    width: 18px;
+    height: 18px;
+    margin-right: .5rem;
+    cursor: pointer;
+}
+.allTaskShowBody {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+}
+.allTaskShowFilterBody {
+    width: 20%;
+    margin-top: 2rem;
+}
+.allTaskFilterItem {
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    background-color: var(--white);
+    margin-right: 2rem;
+    padding: 1rem;
+}
+.allTaskShowRightBody {
+    width: 80%;
+}
+.pagerContainer {
     display: flex;
     justify-content: space-around;
 }
@@ -205,6 +251,7 @@ main{
     width: 35%;
 }
 /* ---------end of task card header ----------*/
+
 /*------- Addnew style --------------**/
 .addNewTaskFormContainer {
     width: 80%;
