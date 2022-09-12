@@ -1,37 +1,47 @@
 ﻿@using MyTasks.Enums
 @model MyTasks.Models.SearchModelMembers
 
-<div>
-    <form asp-controller="Search" asp-action="Index">
-        <div>
-            <input asp-for=@Model.SearchModel.SearchText placeholder="Search task"/>
-            <input type="submit" value="Search"/>
+<div class="">
+    <form asp-controller="Search" asp-action="Index" class="searchBoxContainerForm">
+        <div class="serchBoxLeftContainer">
+            <div class="searchBoxTextInputContainer">
+                <input class="textInputStyle inputTypeTextStyle"
+                       asp-for=@Model.SearchModel.SearchText placeholder="Search task" />
+            </div>
+
+            <div class="searchBoxTable">
+                <table>
+                    <tr>
+                        <th>Task Status</th>
+                        <th>Task Priority</th>
+                        <th>Order By</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select class="selectOption"
+                                asp-for=@Model.SearchModel.Option
+                                    asp-items="Html.GetEnumSelectList<TaskOptionEnum>()">
+                            </select>
+                        </td>
+                        <td>
+                            <select class="selectOption"
+                                asp-for=@Model.SearchModel.Priority
+                                    asp-items="Html.GetEnumSelectList<PriorityEnum>()">
+                            </select>
+                        </td>
+                        <td>
+                            <select class="selectOption"
+                                asp-for=@Model.SearchModel.Order
+                                    asp-items="Html.GetEnumSelectList<OrderDateEnum>()">
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
-        <div>
-            <table>
-                <tr>
-                    <th>Task Status</th>
-                    <th>Task Priority</th>
-                    <th>Order By</th>
-                </tr>
-                <tr>
-                    <td>
-                        <select  asp-for=@Model.SearchModel.Option
-                            asp-items="Html.GetEnumSelectList<TaskOptionEnum>()">
-                        </select>
-                    </td>
-                    <td>
-                        <select asp-for=@Model.SearchModel.Priority
-                            asp-items="Html.GetEnumSelectList<PriorityEnum>()">
-                        </select>
-                    </td>
-                    <td>
-                        <select  asp-for=@Model.SearchModel.Order
-                            asp-items="Html.GetEnumSelectList<OrderDateEnum>()">
-                        </select>
-                    </td>
-                </tr>
-            </table>
+        <div class="searchBoxRightContainer">
+            <input class="inputTypeSubmitPrimary" type="submit" value="Search" />
         </div>
+        
     </form>
 </div>

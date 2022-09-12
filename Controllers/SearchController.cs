@@ -29,9 +29,12 @@ namespace MyTasks.Controllers
         public IActionResult Index(SearchModelMembers getInfo)
         {
             SearchModelMembers searchModelMembers = new SearchModelMembers();
+
+            searchModelMembers.SearchModel = getInfo.SearchModel;
+
             searchModelMembers.TaskModel = new List<TaskModel>();
 
-            if(getInfo.SearchModel.SearchText == null) return View(searchModelMembers);
+            if(getInfo?.SearchModel?.SearchText == null) return View(searchModelMembers);
 
             searchModelMembers.TaskModel = myTaskService.GetSearchTasks(getInfo.SearchModel);
 

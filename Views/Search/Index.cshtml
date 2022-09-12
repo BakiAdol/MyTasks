@@ -2,9 +2,11 @@
 
 <partial name="_searchBox"/>
 
-@{
-    foreach (var task in Model.TaskModel)
-    {
-        @Html.Partial("_taskCard",task)
+<div class="searchResultShowContainer">
+    @{
+        foreach (var task in Model.TaskModel)
+        {
+            @Html.Partial("_taskCard",task)
+        }
     }
-}
+</div>

@@ -218,6 +218,9 @@ input.filterCheckbox {
     margin: 0 auto;
     display: flex;
 }
+.fullPageTasksShow{
+    height: 33rem;
+}
 .allTaskShowFilterBody {
     width: 20%;
     margin-top: 2rem;
@@ -434,3 +437,36 @@ div.hoverUp:hover {
     }
 }
 /*------------- end of notificaiton -------*/
+
+/* ------------- search box style -----------*/
+.searchBoxContainerForm {
+    width: 70%;
+    margin: 1rem auto;
+    display: flex;
+    justify-content: space-between;
+}
+.serchBoxLeftContainer {
+    width: 80%;
+}
+.searchBoxRightContainer{
+    width: 15%;
+}
+
+.searchBoxTable table {
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+}
+.searchBoxTable table tr th{
+    font-size: 1.5rem;
+    color: var(--slate);
+    padding-bottom: .5rem;
+}
+.searchResultShowContainer{
+    width: 70%;
+    margin: 1rem auto;
+}
+.searchBoxRightContainer{
+    margin-top: 1.6rem;
+}
+/* ------------- end of search box ----------*/

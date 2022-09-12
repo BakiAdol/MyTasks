@@ -35,12 +35,14 @@
     <div class="allTaskShowRightBody">
         <partial name="_cardHeader" />
 
-        @{
-            foreach (var task in Model)
-            {
-                @Html.Partial("_taskCard",task)
+        <div class="fullPageTasksShow"> 
+            @{
+                foreach (var task in Model)
+                {
+                        @Html.Partial("_taskCard",task)
+                }
             }
-        }
+        </div>
         <div class="pagerContainer">
             <partial name="_taskPagerLayout" />
         </div>
