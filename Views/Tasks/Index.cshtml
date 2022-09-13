@@ -3,7 +3,6 @@
     var PageOption = ViewBag.PageOption;
     var itemShowNumber = ViewBag.pager.PageItemShow;
     var itemShowOrder = ViewBag.pager.OrderOfItemShow;
-    var PageNum = ViewBag.pager.CurrentPageNumber;
     var high = ViewBag.pager.HighPriority;
     var low = ViewBag.pager.LowPriority;
     var medium = ViewBag.pager.MediumPriority;
@@ -21,7 +20,7 @@
             <p class="filterTitle">Priority</p>
             <div class="filterItems">
                 <a href="@Url.Action("Index", "Tasks",
-                    new { option = PageOption, page = PageNum, show = itemShowNumber, order = itemShowOrder,
+                    new { option = PageOption, page = 1, show = itemShowNumber, order = itemShowOrder,
                     high = 1-high, medium = medium, low = low})">
                     <input type="checkbox" class="filterCheckbox"
                            checked="@(high == 1)" />
@@ -30,7 +29,7 @@
             </div>
             <div class="filterItems">
                 <a href="@Url.Action("Index", "Tasks",
-                    new { option = PageOption, page = PageNum, show = itemShowNumber, order = itemShowOrder,
+                    new { option = PageOption, page = 1, show = itemShowNumber, order = itemShowOrder,
                     high = high, medium = 1-medium, low = low})">
                     <input type="checkbox" class="filterCheckbox"
                            checked="@(medium == 1)" />
@@ -39,7 +38,7 @@
             </div>
             <div class="filterItems">
                 <a href="@Url.Action("Index", "Tasks",
-                    new { option = PageOption, page = PageNum, show = itemShowNumber, order = itemShowOrder,
+                    new { option = PageOption, page = 1, show = itemShowNumber, order = itemShowOrder,
                     high = high, medium = medium, low = 1-low})">
                     <input type="checkbox" class="filterCheckbox"
                            checked="@(low == 1)" />
