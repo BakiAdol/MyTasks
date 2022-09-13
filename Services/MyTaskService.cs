@@ -108,24 +108,28 @@ namespace MyTasks.Services
             int srOption = searchInfo.Option;
 
             tasks = dbContext.MyTasks
-            .Where(task => (
-                    srOption == 0 ? task.Status != -1 : srOption == 4 ?
-                    (task.DueDate.Day < DateTime.Now.Day) && task.Status != -2 : task.Status == srOption - 1
-                ) && (
-                    srPriority == 0 ? task.Priority != -1 : task.Priority == srPriority - 1
-                ) && (
-                    task.MyTask.Contains(searchInfo.SearchText) ||
-                    task.Description.Contains(searchInfo.SearchText)
-                )
-            ).ToList();
-            
-            if(tasks == null) return new List<TaskModel>();
+                .Where(task => srOption == 0 ? task.Status != -1 :
+                    srOption == 4 ? (task.DueDate.Day < DateTime.Now.Day) &&
+                    task.Status != 2 : task.Status == srOption - 1)
+                .ToList();
+
+            if (tasks == null) return new List<TaskModel>();
+
+            tasks = tasks
+                .Where(task => srPriority == 0 ? task.Priority != -1 : task.Priority == srPriority - 1)
+                .ToList();
+
+            if (tasks == null) return new List<TaskModel>();
+
+            tasks = tasks
+                .Where(task => task.MyTask.Contains(searchInfo.SearchText) ||
+                        task.Description.Contains(searchInfo.SearchText))
+                .ToList();
+
+            if (tasks == null) return new List<TaskModel>();
 
             tasks = (srOrder == 0 ? tasks.OrderByDescending(task => task.Id) :
                  tasks.OrderBy(task => task.Id)).ToList();
-            
-            if(srOrder == 0)
-            tasks = tasks.OrderBy(task => task.Priority).ToList();
 
             return tasks ?? new List<TaskModel>();
         }
