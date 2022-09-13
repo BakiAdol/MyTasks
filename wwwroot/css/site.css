@@ -452,7 +452,7 @@ div.hoverUp:hover {
 
 /* ------------- search box style -----------*/
 .searchBoxContainerForm {
-    width: 70%;
+    width: 60%;
     margin: 2rem auto;
     display: flex;
     justify-content: space-between;
@@ -476,7 +476,7 @@ div.hoverUp:hover {
     padding-bottom: .5rem;
 }
 .searchResultShowContainer{
-    width: 70%;
+    width: 60%;
     margin: 3rem auto 2rem auto;
     min-height: 29rem;
 }
