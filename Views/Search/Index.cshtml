@@ -1,4 +1,4 @@
-﻿@model MyTasks.Models.SearchModelMembers
+﻿@model IEnumerable<MyTasks.Models.TaskModel>
 
 <partial name="_navBar" />
 
@@ -6,7 +6,7 @@
 
 <div class="searchResultShowContainer">
     @{
-        foreach (var task in Model.TaskModel)
+        foreach (var task in Model)
         {
             @Html.Partial("_taskCard",task)
         }

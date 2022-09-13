@@ -18,27 +18,28 @@ namespace MyTasks.Controllers
         #endregion
 
         #region Methods
-        public IActionResult Index()
+        [HttpGet]
+        public IActionResult Index(string? SearchText, int? Option, int? Priority, int? Order)
         {
-            SearchModelMembers searchModelMembers = new SearchModelMembers();
-            searchModelMembers.TaskModel = new List<TaskModel>();
+            if(SearchText == null || Option == null || Priority == null || Order == null)
+            {
+                ViewBag.searchInfo = new SearchModel();
+                return View(new List<TaskModel>());
+            }
 
-            return View(searchModelMembers);
-        }
-        [HttpPost]
-        public IActionResult Index(SearchModelMembers getInfo)
-        {
-            SearchModelMembers searchModelMembers = new SearchModelMembers();
+            var searchInfo = new SearchModel
+            {
+                SearchText = SearchText,
+                Option = (int)Option,
+                Priority = (int)Priority,
+                Order = (int)Order
+            };
 
-            searchModelMembers.SearchModel = getInfo.SearchModel;
+            var searchTasks = myTaskService.GetSearchTasks(searchInfo);
 
-            searchModelMembers.TaskModel = new List<TaskModel>();
+            ViewBag.searchInfo = searchInfo;
 
-            if(getInfo?.SearchModel?.SearchText == null) return View(searchModelMembers);
-
-            searchModelMembers.TaskModel = myTaskService.GetSearchTasks(getInfo.SearchModel);
-
-            return View(searchModelMembers);
+            return View(searchTasks);
         }
         #endregion
 

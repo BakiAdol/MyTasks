@@ -1,12 +1,19 @@
 ﻿@using MyTasks.Enums
-@model MyTasks.Models.SearchModelMembers
+@{
+    var SearchText = ViewBag.searchInfo.SearchText;
+    var Option = ViewBag.searchInfo.Option;
+    var Priority = ViewBag.searchInfo.Priority;
+    var Order = ViewBag.searchInfo.Order;
+}
 
 <div class="">
-    <form asp-controller="Search" asp-action="Index" class="searchBoxContainerForm shadowAndBackground">
+    <form asp-controller="Search" asp-action="Index" method="get"
+        class="searchBoxContainerForm shadowAndBackground">
         <div class="serchBoxLeftContainer">
             <div class="searchBoxTextInputContainer">
                 <input class="textInputStyle inputTypeTextStyle"
-                       asp-for=@Model.SearchModel.SearchText placeholder="Search task" />
+                       value="@(SearchText??"")" 
+                    name="SearchText" placeholder="Search task" />
             </div>
 
             <div class="searchBoxTable">
@@ -19,20 +26,44 @@
                     <tr>
                         <td>
                             <select class="selectOption"
-                                asp-for=@Model.SearchModel.Option
-                                    asp-items="Html.GetEnumSelectList<TaskOptionEnum>()">
+                                name="Option">
+                                @{
+                                    foreach (var optionValue in Enum.GetValues(typeof(TaskOptionEnum)))
+                                    {
+                                        <option value="@Convert.ToInt32(optionValue)"
+                                            selected="@(Convert.ToInt32(optionValue)==(int)Option)">
+                                            @optionValue
+                                        </option>
+                                    }
+                                }
                             </select>
                         </td>
                         <td>
                             <select class="selectOption"
-                                asp-for=@Model.SearchModel.Priority
-                                    asp-items="Html.GetEnumSelectList<PriorityEnum>()">
+                                    name="Priority">
+                                @{
+                                    foreach (var priorityValue in Enum.GetValues(typeof(PriorityEnum)))
+                                    {
+                                        <option value="@Convert.ToInt32(priorityValue)"
+                                        selected="@(Convert.ToInt32(priorityValue)==(int)Priority)">
+                                            @priorityValue
+                                        </option>
+                                    }
+                                }
                             </select>
                         </td>
                         <td>
                             <select class="selectOption"
-                                asp-for=@Model.SearchModel.Order
-                                    asp-items="Html.GetEnumSelectList<OrderDateEnum>()">
+                                    name="Order">
+                                @{
+                                    foreach (var orderValue in Enum.GetValues(typeof(OrderDateEnum)))
+                                    {
+                                        <option value="@Convert.ToInt32(orderValue)"
+                                        selected="@(Convert.ToInt32(orderValue)==(int)Order)">
+                                            @orderValue
+                                        </option>
+                                    }
+                                }
                             </select>
                         </td>
                     </tr>
