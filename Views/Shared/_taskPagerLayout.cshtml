@@ -18,6 +18,15 @@
         {
             ViewData["TaskPagerButtonText"] = pairPageButton.Key;
             ViewData["TaskPagerPageNumber"] = pairPageButton.Value;
+            ViewData["actionParameter"] = new {
+                option = ViewBag.PageOption,
+                page = pairPageButton.Value,
+                show = ViewBag.pager.PageItemShow,
+                order = ViewBag.pager.OrderOfItemShow,
+                high = ViewBag.pager.HighPriority,
+                medium = ViewBag.pager.MediumPriority,
+                low =  ViewBag.pager.LowPriority
+            };
             <partial name="_TaskPagerButton" view-data="ViewData" />
         }
     }

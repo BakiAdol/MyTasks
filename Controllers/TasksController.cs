@@ -35,7 +35,9 @@ namespace MyTasks.Controllers
 
             ViewBag.pager = pager;
             ViewBag.PageOption = option;
-
+            ViewBag.controller = "Tasks";
+            ViewBag.action = "Index";
+            
             return View(tasks);
         }
         #endregion

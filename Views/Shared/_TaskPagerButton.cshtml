@@ -1,21 +1,19 @@
 ﻿@{
-    var PageOption = ViewBag.PageOption;
     var pageNumber = ViewData["TaskPagerPageNumber"];
-    var showTasksnumber = ViewBag.pager.PageItemShow;
-    var orderTaskShow = ViewBag.pager.OrderOfItemShow;
-    var currentPageNo = ViewBag.pager.CurrentPageNumber;
-    var high = ViewBag.pager.HighPriority;
-    var low = ViewBag.pager.LowPriority;
-    var medium = ViewBag.pager.MediumPriority;
+    var actionParameter = ViewData["ActionParameter"];
+    var buttonText = ViewData["TaskPagerButtonText"];
 
+    var controllerName = ViewBag.controller;
+    var actionName = ViewBag.action;
+
+    var currentPageNo = ViewBag.pager.CurrentPageNumber;
+    
     var isPrimaryColourButton =
-    (ViewBag.TaskPagerButtonText != "First" && ViewBag.TaskPagerButtonText != "Last")
+    (buttonText.ToString() != "First" && buttonText.ToString() != "Last")
     && (int)currentPageNo == (int)pageNumber;
 }
-<a href="@Url.Action("Index", "Tasks",
-    new { option = PageOption, page = pageNumber, show = showTasksnumber, order=orderTaskShow,
-    high = high, medium = medium, low = low})"
+<a href="@Url.Action((string)actionName, (string)controllerName, actionParameter)"
    class="pagerButton 
     @(isPrimaryColourButton ? " pagerCurrentButton" : "whiteSubmitButton" )">
-    @ViewBag.TaskPagerButtonText
+    @buttonText
 </a>
