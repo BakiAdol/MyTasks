@@ -44,10 +44,18 @@
                     <option value="2">Completed</option>
                 </select>
             </div>
+            @{
+                var minDate = Model.DueDate.Date < DateTime.Now.Date ? Model.DueDate : DateTime.Now;
+            }
             <div class="dueDatePicker">
-                <p>Due Date: </p>
-                <input asp-for="DueDate" type="date" class="inputTypeDate" required
-                value="@Model.DueDate.ToString("yyyy-MM-dd")" min="@DateTime.Now.ToString("yyyy-MM-dd")">
+                <div style="width:100%">
+                    <span asp-validation-for="DueDate" class="ErrorMessageText"></span>
+                </div>
+                <div class="dueDateOptionSelector">
+                    <p>Due Date: </p>
+                    <input asp-for="DueDate" type="date" class="inputTypeDate" required
+                           value="@Model.DueDate.ToString("yyyy-MM-dd")" min="@minDate.ToString("yyyy-MM-dd")">
+                </div>
             </div>
         </div>
         <div class="saveDeleteTaskInDetail">

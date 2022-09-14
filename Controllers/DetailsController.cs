@@ -28,9 +28,9 @@ namespace MyTasks.Controllers
         [HttpPost]
         public IActionResult Index(TaskModel task) // save edit task
         {
-            if (!ModelState.IsValid) return View(task);
+            bool isUpdateSuccessful = myTaskService.UpdateATask(task);
 
-            myTaskService.UpdateATask(task);
+            if(! isUpdateSuccessful) return View(task);
 
             TempData["GetNotification"] = 1;
 

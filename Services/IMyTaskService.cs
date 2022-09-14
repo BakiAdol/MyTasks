@@ -8,7 +8,7 @@ namespace MyTasks.Services
         public List<TaskModel> GetAllTasks(Pager pager, int? option);
         public void DeleteATask(int taskId);
         public TaskModel GetATask(int taskId);
-        public void UpdateATask(TaskModel updatedTask);
+        public bool UpdateATask(TaskModel updatedTask);
         public List<TaskModel> GetSearchTasks(SearchModel searchInfo, Pager pager);
     }
 }

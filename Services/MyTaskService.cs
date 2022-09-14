@@ -85,20 +85,30 @@ namespace MyTasks.Services
             var task = dbContext.MyTasks.FirstOrDefault(item => item.Id == taskId);
             return task ?? new TaskModel();
         }
-        public void UpdateATask(TaskModel updatedTask)
+        public bool UpdateATask(TaskModel updatedTask)
         {
             var oldTask = dbContext.MyTasks.FirstOrDefault(item => item.Id == updatedTask.Id);
 
-            if (oldTask == null) return;
+            if (oldTask == null) return false;
+            if (updatedTask.MyTask == null) return false;
+            if (updatedTask.DueDate != oldTask.DueDate
+                && updatedTask.DueDate < DateTime.Now) {
+
+                updatedTask.DueDate = oldTask.DueDate;
+
+                return false;
+            }
 
             oldTask.MyTask = updatedTask.MyTask;
             oldTask.Status = updatedTask.Status;
             oldTask.Priority = updatedTask.Priority;
             oldTask.DueDate = updatedTask.DueDate;
             oldTask.UpdatedDate = DateTime.Now;
-            oldTask.Description = updatedTask.Description;
+            oldTask.Description = updatedTask.Description??"";
 
             dbContext.SaveChanges();
+
+            return true;
         }
         public List<TaskModel> GetSearchTasks(SearchModel searchInfo, Pager pager)
         {

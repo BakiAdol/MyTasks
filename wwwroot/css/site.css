@@ -39,6 +39,7 @@ li{
     padding: .5rem;
     font-size: 1.4rem;
     color: var(--slate);
+    cursor: pointer;
 }
 .shadowAndBackground {
     box-shadow: 1px 1px 6px rgba(0,0,0,0.5);
@@ -285,11 +286,14 @@ input.filterCheckbox {
     font-size:1.6rem;
     color: var(--slate);
 }
+.addNewFormSubmitButtonContainer{
+    width: 16rem;
+    margin: 1rem auto;
+}
 /*------- End of Addnew style --------*/
-
 /*------- Task Card style --------------**/
 .taskBodyLink {
-    display:block;
+    display: block;
 }
 div.hoverUp:hover {
     transition: all .3s ease-in-out;
@@ -367,10 +371,17 @@ div.hoverUp:hover {
 .editTaskButtonArea {
     width: 90px;
 }
+.dueDatePicker{
+    display: flex;
+    flex-direction: column;
+    margin-top: -1rem;
+}
+.dueDateOptionSelector{
+    margin-top: -1rem;
+}
 /*------- End of Details style -----------------*/
-
 /* --------- Pager botton -------------------*/
-.pagerBody{
+.pagerBody {
     margin-top: 2.5rem;
     display: inline-block;
 }
@@ -422,8 +433,9 @@ div.hoverUp:hover {
 .ErrorMessageText{
     font-size: 1.7rem;
     display: block;
-    padding: 1rem;
+    padding-left: 1rem;
     color: var(--alert);
+    margin: 0;
 }
 
 
@@ -477,12 +489,13 @@ div.hoverUp:hover {
 }
 .searchResultShowContainer{
     width: 60%;
-    margin: 3rem auto 2rem auto;
+    margin: 3rem auto 0 auto;
     min-height: 29rem;
 }
 .searchBoxRightContainer{
     margin-top: 1.6rem;
 }
+
 /* ------------- end of search box ----------*/
 
 /* --------------- footer style ----------------*/
