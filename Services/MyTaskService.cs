@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using MyTasks.Data;
@@ -99,7 +100,7 @@ namespace MyTasks.Services
 
             dbContext.SaveChanges();
         }
-        public List<TaskModel> GetSearchTasks(SearchModel searchInfo)
+        public List<TaskModel> GetSearchTasks(SearchModel searchInfo, Pager pager)
         {
             List<TaskModel> tasks = null;
 
@@ -130,6 +131,14 @@ namespace MyTasks.Services
 
             tasks = (srOrder == 0 ? tasks.OrderByDescending(task => task.Id) :
                  tasks.OrderBy(task => task.Id)).ToList();
+
+            // pager...........
+            if (tasks == null) return new List<TaskModel>();
+            int skipePages = (pager.CurrentPageNumber - 1) * pager.PageItemShow;
+            pager.TotalPage = (tasks.Count + pager.PageItemShow - 1) / pager.PageItemShow;
+            tasks = tasks.Skip(skipePages)
+            .Take(pager.PageItemShow)
+            .ToList();
 
             return tasks ?? new List<TaskModel>();
         }

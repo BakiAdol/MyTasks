@@ -12,3 +12,21 @@
         }
     }
 </div>
+
+@{
+    if (ViewBag.pager != null)
+    {
+        dynamic dd = new System.Dynamic.ExpandoObject();
+        dd.page = 1;
+        dd.SearchText = ViewBag.searchInfo.SearchText;
+        dd.Option = ViewBag.searchInfo.Option;
+        dd.Priority = ViewBag.searchInfo.Priority;
+        dd.Order = ViewBag.searchInfo.Order;
+        ViewData["actionParameter"] = dd;
+
+        <div class="pagerContainer">
+            <partial name="_taskPagerLayout" />
+        </div>
+    }
+}
+

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using MyTasks.Models;
 using MyTasks.Services;
 
@@ -19,7 +20,7 @@ namespace MyTasks.Controllers
 
         #region Methods
         [HttpGet]
-        public IActionResult Index(string? SearchText, int? Option, int? Priority, int? Order)
+        public IActionResult Index(string? SearchText, int? Option, int? Priority, int? Order, int page=1)
         {
             if(SearchText == null || Option == null || Priority == null || Order == null)
             {
@@ -35,9 +36,19 @@ namespace MyTasks.Controllers
                 Order = (int)Order
             };
 
-            var searchTasks = myTaskService.GetSearchTasks(searchInfo);
+            Pager pager = new Pager
+            {
+                CurrentPageNumber = page,
+                TotalPage = 1,
+                PageItemShow = 5
+            };
+
+            var searchTasks = myTaskService.GetSearchTasks(searchInfo, pager);
 
             ViewBag.searchInfo = searchInfo;
+            ViewBag.pager = pager;
+            ViewBag.controller = "Search";
+            ViewBag.action = "Index";
 
             return View(searchTasks);
         }
