@@ -6,6 +6,17 @@
     var high = ViewBag.pager.HighPriority;
     var low = ViewBag.pager.LowPriority;
     var medium = ViewBag.pager.MediumPriority;
+
+    // object for action parameter
+    dynamic dd = new System.Dynamic.ExpandoObject();
+    dd.option = PageOption;
+    dd.page = 1;
+    dd.show = itemShowNumber;
+    dd.order = itemShowOrder;
+    dd.high = high;
+    dd.medium = medium;
+    dd.low = low;
+    ViewData["actionParameter"] = dd;
 }
 <partial name="_navBar" />
 
@@ -55,7 +66,7 @@
             @{
                 foreach (var task in Model)
                 {
-                            @Html.Partial("_taskCard",task)
+                    @Html.Partial("_taskCard",task)
                 }
             }
         </div>
