@@ -1,4 +1,4 @@
-﻿<nav class="options_container layoutWidth marginTopauto">
+﻿<nav class="options_container marginTopauto">
     <ul>
         <li><a href="@Url.Action("Index", "Tasks", new { page=1, show=2, order=0 })">All Tasks</a></li>
         <li><a href="@Url.Action("Index", "Tasks", new { option = 2, page=1, show=2, order=0 })">Completed</a></li>
@@ -6,7 +6,7 @@
         <li><a href="@Url.Action("Index", "Tasks", new { option = 0, page=1, show=2, order=0 })">Not Started</a></li>
         <li><a href="@Url.Action("Index", "Tasks", new { option = 3, page=1, show=2, order=0 })">Overdue</a></li>
     </ul>
-    <div>
+    <div class="navBarButtonContainer">
         <a href="/Search" class="gotoSearchButton">Search</a>
         <a href="/AddNew" class="addNewButton">Add New</a>
     </div>
