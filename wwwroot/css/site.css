@@ -357,6 +357,7 @@ div.hoverUp:hover {
     width:100%;
     display:flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     margin-top: .5rem;
 }
 .detailPickerRow div{
@@ -495,6 +496,10 @@ div.hoverUp:hover {
         padding: 1rem 0 0 2rem;
     }
 
+    .taskCardHeader div:not(:first-child){
+        display: none;
+    }
+
     .taskCardBody p:nth-child(2), p:nth-child(3), p:nth-child(4) {
         display: none;
     }
@@ -503,12 +508,12 @@ div.hoverUp:hover {
         flex-direction: column;
     }
 
-        .taskDatesContainer p {
-            margin-top: 1rem;
-        }
+    .taskDatesContainer p {
+        margin-top: 1rem;
+    }
 
     .detailPickerRow {
-        flex-direction: column;
+        justify-content: space-around;
     }
 
     .deleteTaskBtn {
