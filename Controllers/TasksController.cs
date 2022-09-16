@@ -18,7 +18,7 @@ namespace MyTasks.Controllers
         #endregion
 
         #region Methods
-        public IActionResult Index(int? option, int page = 1, int show = 2, int order = 0,
+        public async Task<IActionResult> Index(int? option, int page = 1, int show = 2, int order = 0,
             int high = 0, int medium = 0, int low = 0)
         {
             Pager pager = new Pager
@@ -31,7 +31,7 @@ namespace MyTasks.Controllers
                 MediumPriority = medium
             };
 
-            var tasks = myTaskService.GetAllTasks(pager, option);
+            var tasks = await myTaskService.GetAllTasksAsync(pager, option);
 
             ViewBag.pager = pager;
             ViewBag.PageOption = option;

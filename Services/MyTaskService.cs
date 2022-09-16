@@ -22,21 +22,21 @@ namespace MyTasks.Services
         #endregion
 
         #region Methods
-        public void AddNewTask(TaskModel task)
+        public async Task AddNewTaskAsync(TaskModel task)
         {
             dbContext.MyTasks.Add(task);
-            dbContext.SaveChanges();
+            await dbContext.SaveChangesAsync();
         }
-        public List<TaskModel> GetAllTasks(Pager pager, int? option)
+        public async Task<List<TaskModel>> GetAllTasksAsync(Pager pager, int? option)
         {
             List<TaskModel> tasks = null;
 
             // all task filter by option
-            tasks = dbContext.MyTasks
+            tasks = await dbContext.MyTasks
                 .Where(task => option == null ? task.Status != -1 :
                 option == 3 ? task.DueDate < DateTime.Now && task.Status != 2 :
                 task.Status == option)
-                .ToList();
+                .ToListAsync();
 
             if (tasks == null) return new List<TaskModel>();
 
@@ -46,9 +46,9 @@ namespace MyTasks.Services
             if(!isUncheckAllPriority)
             {
                 tasks = tasks.Where(task => (
-                task.Priority==0 && pager.HighPriority==1) ||
-                (task.Priority==1 && pager.MediumPriority==1) || 
-                (task.Priority==2 && pager.LowPriority==1)).ToList();
+                task.Priority == 0 && pager.HighPriority == 1) ||
+                (task.Priority == 1 && pager.MediumPriority == 1) ||
+                (task.Priority == 2 && pager.LowPriority == 1)).ToList();
             }
 
             if (pager.OrderOfItemShow == 0) // latest taks
@@ -71,23 +71,23 @@ namespace MyTasks.Services
 
             return tasks;
         }
-        public void DeleteATask(int taskId)
+        public async Task DeleteATaskAsync(int taskId)
         {
-            var task = dbContext.MyTasks.FirstOrDefault(item => item.Id == taskId);
+            var task = await dbContext.MyTasks.FirstOrDefaultAsync(item => item.Id == taskId);
             if(task != null)
             {
                 dbContext.MyTasks.Remove(task);
-                dbContext.SaveChanges();
+                await dbContext.SaveChangesAsync();
             }
         }
-        public TaskModel GetATask(int taskId)
+        public async Task<TaskModel> GetATaskAsync(int taskId)
         {
-            var task = dbContext.MyTasks.FirstOrDefault(item => item.Id == taskId);
+            var task = await dbContext.MyTasks.FirstOrDefaultAsync(item => item.Id == taskId);
             return task ?? new TaskModel();
         }
-        public bool UpdateATask(TaskModel updatedTask)
+        public async Task<bool> UpdateATaskAsync(TaskModel updatedTask)
         {
-            var oldTask = dbContext.MyTasks.FirstOrDefault(item => item.Id == updatedTask.Id);
+            var oldTask = await dbContext.MyTasks.FirstOrDefaultAsync(item => item.Id == updatedTask.Id);
 
             if (oldTask == null) return false;
             if (updatedTask.MyTask == null) return false;
@@ -106,11 +106,11 @@ namespace MyTasks.Services
             oldTask.UpdatedDate = DateTime.Now;
             oldTask.Description = updatedTask.Description??"";
 
-            dbContext.SaveChanges();
+            await dbContext.SaveChangesAsync();
 
             return true;
         }
-        public List<TaskModel> GetSearchTasks(SearchModel searchInfo, Pager pager)
+        public async Task<List<TaskModel>> GetSearchTasksAsync(SearchModel searchInfo, Pager pager)
         {
             List<TaskModel> tasks = null;
 
@@ -118,11 +118,11 @@ namespace MyTasks.Services
             int srOrder = searchInfo.Order;
             int srOption = searchInfo.Option;
 
-            tasks = dbContext.MyTasks
+            tasks = await dbContext.MyTasks
                 .Where(task => srOption == 0 ? task.Status != -1 :
                     srOption == 4 ? (task.DueDate.Day < DateTime.Now.Day) &&
                     task.Status != 2 : task.Status == srOption - 1)
-                .ToList();
+                .ToListAsync();
 
             if (tasks == null) return new List<TaskModel>();
 

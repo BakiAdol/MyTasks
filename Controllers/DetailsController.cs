@@ -19,16 +19,16 @@ namespace MyTasks.Controllers
         #endregion
 
         #region Methods
-        public IActionResult Index(int taskId)
+        public async Task<IActionResult> Index(int taskId)
         {
-            var task = myTaskService.GetATask(taskId);
+            var task = await myTaskService.GetATaskAsync(taskId);
             
             return View(task);
         }
         [HttpPost]
-        public IActionResult Index(TaskModel task) // save edit task
+        public async Task<IActionResult> Index(TaskModel task) // save edit task
         {
-            bool isUpdateSuccessful = myTaskService.UpdateATask(task);
+            bool isUpdateSuccessful = await myTaskService.UpdateATaskAsync(task);
 
             if(! isUpdateSuccessful) return View(task);
 
@@ -36,9 +36,9 @@ namespace MyTasks.Controllers
 
             return RedirectToAction("Index", "Tasks");
         }
-        public IActionResult DeleteATask(int taskId)
+        public async Task<IActionResult> DeleteATask(int taskId)
         {
-            myTaskService.DeleteATask(taskId);
+            await myTaskService.DeleteATaskAsync(taskId);
 
             TempData["GetNotification"] = 2;
 

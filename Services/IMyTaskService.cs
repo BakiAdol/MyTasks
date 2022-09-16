@@ -4,11 +4,11 @@ namespace MyTasks.Services
 {
     public interface IMyTaskService
     {
-        public void AddNewTask(TaskModel task);
-        public List<TaskModel> GetAllTasks(Pager pager, int? option);
-        public void DeleteATask(int taskId);
-        public TaskModel GetATask(int taskId);
-        public bool UpdateATask(TaskModel updatedTask);
-        public List<TaskModel> GetSearchTasks(SearchModel searchInfo, Pager pager);
+        public Task AddNewTaskAsync(TaskModel task);
+        public Task<List<TaskModel>> GetAllTasksAsync(Pager pager, int? option);
+        public Task DeleteATaskAsync(int taskId);
+        public Task<TaskModel> GetATaskAsync(int taskId);
+        public Task<bool> UpdateATaskAsync(TaskModel updatedTask);
+        public Task<List<TaskModel>> GetSearchTasksAsync(SearchModel searchInfo, Pager pager);
     }
 }

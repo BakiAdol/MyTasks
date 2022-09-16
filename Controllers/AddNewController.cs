@@ -23,11 +23,11 @@ namespace MyTasks.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Index(TaskModel task)
+        public async Task<IActionResult> Index(TaskModel task)
         {
             if (!ModelState.IsValid) return View();
 
-            myTaskService.AddNewTask(task);
+            await myTaskService.AddNewTaskAsync(task);
 
             TempData["GetNotification"] = 0;
 

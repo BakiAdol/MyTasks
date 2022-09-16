@@ -20,7 +20,7 @@ namespace MyTasks.Controllers
 
         #region Methods
         [HttpGet]
-        public IActionResult Index(string? SearchText, int? Option, int? Priority, int? Order, int page=1)
+        public async Task<IActionResult> Index(string? SearchText, int? Option, int? Priority, int? Order, int page=1)
         {
             if(SearchText == null || Option == null || Priority == null || Order == null)
             {
@@ -43,7 +43,7 @@ namespace MyTasks.Controllers
                 PageItemShow = 5
             };
 
-            var searchTasks = myTaskService.GetSearchTasks(searchInfo, pager);
+            var searchTasks = await myTaskService.GetSearchTasksAsync(searchInfo, pager);
 
             ViewBag.searchInfo = searchInfo;
             ViewBag.pager = pager;
