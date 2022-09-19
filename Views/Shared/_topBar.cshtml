@@ -1,19 +1,21 @@
-﻿@{
-    var PageOption = ViewBag.PageOption;
-    var itemShowNumber = ViewBag.pager.PageItemShow;
-    var itemShowOrder = ViewBag.pager.OrderOfItemShow;
-    var high = ViewBag.pager.HighPriority;
-    var low = ViewBag.pager.LowPriority;
-    var medium = ViewBag.pager.MediumPriority;
+﻿@model MyTasks.Models.AllTasksModel
+
+@{
+    var taskOption = Model.TaskOption;
+    var pageItemShow = Model.PageItemShow;
+    var orderOfItemShow = Model.OrderOfItemShow;
+    var taskHighPriority = Model.TaskHighPriority;
+    var taskMediumPriority = Model.TaskMediumPriority;
+    var taskLowPriority = Model.TaskLowPriority;
 }
 <div class="topBar displayFjcsb">
     <div class="topBarLeft">
         <p class="topBarSubHeading">
             @(
-                PageOption == null ? "All" :
-                PageOption == 0 ? "Not Started" :
-                PageOption == 1 ? "In Progress" :
-                PageOption == 2 ? "Completed" : "Overdue"
+                taskOption == null ? "All" :
+                taskOption == 0 ? "Not Started" :
+                taskOption == 1 ? "In Progress" :
+                taskOption == 2 ? "Completed" : "Overdue"
             )
              Tasks
         </p>
@@ -23,31 +25,39 @@
             <p class="displayInlineBlock optionLable">Show: </p>
             <select class="displayInlineBlock selectOption"
                     onchange="window.location.href=this.value">
-                <option selected=@(itemShowNumber==2)
+                <option selected=@(pageItemShow==2)
                     value="@Url.Action("Index", "Tasks", 
-                    new { option = PageOption, page = 1, show = 2, order = itemShowOrder,
-                    high = high, medium = medium, low = low})">
+                    new AllTasksModel{ TaskOption = taskOption, CurrentPage = 1, 
+                        PageItemShow = 2, OrderOfItemShow = orderOfItemShow,
+                    TaskHighPriority = taskHighPriority, TaskMediumPriority = taskMediumPriority, 
+                    TaskLowPriority = taskLowPriority})">
                     2
                 </option>
 
-                <option selected=@(itemShowNumber==3)
+                <option selected=@(pageItemShow==3)
                         value="@Url.Action("Index", "Tasks",
-                    new { option = PageOption, page = 1, show = 3, order = itemShowOrder,
-                    high = high, medium = medium, low = low})">
+                    new AllTasksModel{ TaskOption = taskOption, CurrentPage = 1,
+                        PageItemShow = 3, OrderOfItemShow = orderOfItemShow,
+                    TaskHighPriority = taskHighPriority, TaskMediumPriority = taskMediumPriority,
+                    TaskLowPriority = taskLowPriority})">
                     3
                 </option>
 
-                <option selected=@(itemShowNumber==4)
+                <option selected=@(pageItemShow==4)
                         value="@Url.Action("Index", "Tasks",
-                    new { option = PageOption, page = 1, show = 4, order = itemShowOrder,
-                    high = high, medium = medium, low = low})">
+                    new AllTasksModel{ TaskOption = taskOption, CurrentPage = 1,
+                        PageItemShow = 4, OrderOfItemShow = orderOfItemShow,
+                    TaskHighPriority = taskHighPriority, TaskMediumPriority = taskMediumPriority,
+                    TaskLowPriority = taskLowPriority})">
                     4
                 </option>
 
-                <option selected=@(itemShowNumber==5)
+                <option selected=@(pageItemShow==5)
                         value="@Url.Action("Index", "Tasks",
-                    new { option = PageOption, page = 1, show = 5, order = itemShowOrder,
-                    high = high, medium = medium, low = low})">
+                    new AllTasksModel{ TaskOption = taskOption, CurrentPage = 1,
+                        PageItemShow = 5, OrderOfItemShow = orderOfItemShow,
+                    TaskHighPriority = taskHighPriority, TaskMediumPriority = taskMediumPriority,
+                    TaskLowPriority = taskLowPriority})">
                     5
                 </option>
             </select>
@@ -56,17 +66,21 @@
             <p class="displayInlineBlock optionLable">Sort By: </p>
             <select class="displayInlineBlock selectOption" 
                 onchange="window.location.href=this.value">
-                <option selected=@(itemShowOrder==0)
+                <option selected=@(orderOfItemShow==0)
                         value="@Url.Action("Index", "Tasks",
-                    new { option = PageOption, page = 1, show = itemShowNumber, order = 0,
-                    high = high, medium = medium, low = low})">
+                    new AllTasksModel{ TaskOption = taskOption, CurrentPage = 1,
+                        PageItemShow = pageItemShow, OrderOfItemShow = 0,
+                    TaskHighPriority = taskHighPriority, TaskMediumPriority = taskMediumPriority,
+                    TaskLowPriority = taskLowPriority})">
                     Latest
                 </option>
 
-                <option selected=@(itemShowOrder==1)
+                <option selected=@(orderOfItemShow==1)
                         value="@Url.Action("Index", "Tasks",
-                    new { option = PageOption, page = 1, show = itemShowNumber, order = 1,
-                    high = high, medium = medium, low = low})">
+                    new AllTasksModel{ TaskOption = taskOption, CurrentPage = 1,
+                        PageItemShow = pageItemShow, OrderOfItemShow = 1,
+                    TaskHighPriority = taskHighPriority, TaskMediumPriority = taskMediumPriority,
+                    TaskLowPriority = taskLowPriority})">
                     Oldest
                 </option>
             </select>

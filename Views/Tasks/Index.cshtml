@@ -1,23 +1,16 @@
-﻿@model IEnumerable<MyTasks.Models.TaskModel>
-@{
-    var PageOption = ViewBag.PageOption;
-    var itemShowNumber = ViewBag.pager.PageItemShow;
-    var itemShowOrder = ViewBag.pager.OrderOfItemShow;
-    var high = ViewBag.pager.HighPriority;
-    var low = ViewBag.pager.LowPriority;
-    var medium = ViewBag.pager.MediumPriority;
+﻿@model MyTasks.Models.AllTasksModel
 
-    // object for action parameter
-    dynamic dd = new System.Dynamic.ExpandoObject();
-    dd.option = PageOption;
-    dd.page = 1;
-    dd.show = itemShowNumber;
-    dd.order = itemShowOrder;
-    dd.high = high;
-    dd.medium = medium;
-    dd.low = low;
-    ViewData["actionParameter"] = dd;
+@{
+    var taskControllerName = Model.ControllerName;
+    var taskActionName = Model.ActionName;
+    var taskOption = Model.TaskOption;
+    var pageItemShow = Model.PageItemShow;
+    var orderOfItemShow = Model.OrderOfItemShow;
+    var taskHighPriority = Model.TaskHighPriority;
+    var taskMediumPriority = Model.TaskMediumPriority;
+    var taskLowPriority = Model.TaskLowPriority;
 }
+
 <partial name="_navBar" />
 
 <div class="allTaksTopBarContainer">
@@ -30,29 +23,38 @@
         <div class="allTaskFilterItem">
             <p class="filterTitle">Priority</p>
             <div class="filterItems">
-                <a href="@Url.Action("Index", "Tasks",
-                    new { option = PageOption, page = 1, show = itemShowNumber, order = itemShowOrder,
-                    high = 1-high, medium = medium, low = low})">
+                <a href="@Url.Action(taskActionName.ToString(), taskControllerName.ToString(),
+                    new AllTasksModel{ TaskOption = taskOption, CurrentPage = 1, 
+                        PageItemShow = pageItemShow, OrderOfItemShow = orderOfItemShow,
+                    TaskHighPriority = 1 - taskHighPriority, TaskMediumPriority = taskMediumPriority,
+                    TaskLowPriority = taskLowPriority})">
+
                     <input type="checkbox" class="filterCheckbox"
-                           checked="@(high == 1)" />
+                           checked="@(taskHighPriority == 1)" />
                 </a>
                 <label>High</label>
             </div>
             <div class="filterItems">
-                <a href="@Url.Action("Index", "Tasks",
-                    new { option = PageOption, page = 1, show = itemShowNumber, order = itemShowOrder,
-                    high = high, medium = 1-medium, low = low})">
+                <a href="@Url.Action(taskActionName.ToString(), taskControllerName.ToString(),
+                    new AllTasksModel{ TaskOption = taskOption, CurrentPage = 1,
+                        PageItemShow = pageItemShow, OrderOfItemShow = orderOfItemShow,
+                    TaskHighPriority = taskHighPriority, TaskMediumPriority = 1 - taskMediumPriority,
+                    TaskLowPriority = taskLowPriority})">
+
                     <input type="checkbox" class="filterCheckbox"
-                           checked="@(medium == 1)" />
+                           checked="@(taskMediumPriority == 1)" />
                 </a>
                 <label>Medium</label>
             </div>
             <div class="filterItems">
-                <a href="@Url.Action("Index", "Tasks",
-                    new { option = PageOption, page = 1, show = itemShowNumber, order = itemShowOrder,
-                    high = high, medium = medium, low = 1-low})">
+                <a href="@Url.Action(taskActionName.ToString(), taskControllerName.ToString(),
+                    new AllTasksModel{ TaskOption = taskOption, CurrentPage = 1,
+                        PageItemShow = pageItemShow, OrderOfItemShow = orderOfItemShow,
+                    TaskHighPriority = taskHighPriority, TaskMediumPriority = taskMediumPriority,
+                    TaskLowPriority = 1 - taskLowPriority})">
+
                     <input type="checkbox" class="filterCheckbox"
-                           checked="@(low == 1)" />
+                           checked="@(taskLowPriority == 1)" />
                 </a>
                 <label>Low</label>
             </div>
@@ -64,15 +66,17 @@
 
         <div class="fullPageTasksShow"> 
             @{
-                foreach (var task in Model)
+                foreach (var task in Model.Tasks)
                 {
-                    @Html.Partial("_taskCard",task)
+                    ViewData["controllerName"] = Model.ControllerName;
+                    ViewData["actionName"] = Model.ActionName;
+                    <partial name="_taskNewCard" model="task" />
                 }
             }
         </div>
-        <div class="pagerContainer">
+        <!-- <div class="pagerContainer">
             <partial name="_taskPagerLayout" />
-        </div>
+        </div> -->
     </div>
 
 </div>

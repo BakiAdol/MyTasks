@@ -27,31 +27,40 @@ namespace MyTasks.Services
             dbContext.MyTasks.Add(task);
             await dbContext.SaveChangesAsync();
         }
-        public async Task<List<TaskModel>> GetAllTasksAsync(Pager pager, int? option)
+        public async Task<AllTasksModel> GetAllTasksAsync(AllTasksModel allTasksModel)
         {
             List<TaskModel> tasks = null;
+            allTasksModel.Tasks = new List<TaskModel>();
+
+            int? taskOption = allTasksModel.TaskOption;
+            int taskHighPriority = allTasksModel.TaskHighPriority;
+            int taskMediumPriority = allTasksModel.TaskMediumPriority;
+            int taskLowPrioriry = allTasksModel.TaskLowPriority;
+            int taskShowOrder = allTasksModel.OrderOfItemShow;
+            int taskCurrentPage = allTasksModel.CurrentPage;
+            int taskNumberOfItemShow = allTasksModel.PageItemShow;
 
             // all task filter by option
             tasks = await dbContext.MyTasks
-                .Where(task => option == null ? task.Status != -1 :
-                option == 3 ? task.DueDate < DateTime.Now && task.Status != 2 :
-                task.Status == option)
+                .Where(task => taskOption == null ? task.Status != -1 :
+                taskOption == 3 ? task.DueDate < DateTime.Now && task.Status != 2 :
+                task.Status == taskOption)
                 .ToListAsync();
 
-            if (tasks == null) return new List<TaskModel>();
+            if (tasks == null) return allTasksModel;
 
-            bool isUncheckAllPriority = (pager.HighPriority == pager.MediumPriority
-                && pager.MediumPriority == pager.LowPriority && pager.LowPriority == 0);
+            bool isUncheckAllPriority = (taskHighPriority == taskMediumPriority
+                && taskMediumPriority == taskLowPrioriry && taskLowPrioriry == 0);
             
             if(!isUncheckAllPriority)
             {
                 tasks = tasks.Where(task => (
-                task.Priority == 0 && pager.HighPriority == 1) ||
-                (task.Priority == 1 && pager.MediumPriority == 1) ||
-                (task.Priority == 2 && pager.LowPriority == 1)).ToList();
+                task.Priority == 0 && taskHighPriority == 1) ||
+                (task.Priority == 1 && taskMediumPriority == 1) ||
+                (task.Priority == 2 && taskLowPrioriry == 1)).ToList();
             }
 
-            if (pager.OrderOfItemShow == 0) // latest taks
+            if (taskShowOrder == 0) // latest taks
             {
                 tasks = tasks.OrderByDescending(task => task.Id).ToList();
             }
@@ -60,16 +69,18 @@ namespace MyTasks.Services
                 tasks = tasks.OrderBy(task => task.Id).ToList();
             }
 
-            if(tasks == null) return new List<TaskModel>();
+            if(tasks == null) return allTasksModel;
 
-            int skipePages = (pager.CurrentPageNumber - 1) * pager.PageItemShow;
+            int skipePages = (taskCurrentPage - 1) * taskNumberOfItemShow;
 
-            pager.TotalPage = (tasks.Count + pager.PageItemShow-1)/pager.PageItemShow;
+            allTasksModel.TotalPages = (tasks.Count + taskNumberOfItemShow-1)/taskNumberOfItemShow;
             tasks = tasks.Skip(skipePages)
-                .Take(pager.PageItemShow)
+                .Take(taskNumberOfItemShow)
                 .ToList();
 
-            return tasks;
+            allTasksModel.Tasks = tasks;
+
+            return allTasksModel;
         }
         public async Task DeleteATaskAsync(int taskId)
         {

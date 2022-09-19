@@ -5,7 +5,7 @@ namespace MyTasks.Services
     public interface IMyTaskService
     {
         public Task AddNewTaskAsync(TaskModel task);
-        public Task<List<TaskModel>> GetAllTasksAsync(Pager pager, int? option);
+        public Task<AllTasksModel> GetAllTasksAsync(AllTasksModel allTasksModel);
         public Task DeleteATaskAsync(int taskId);
         public Task<TaskModel> GetATaskAsync(int taskId);
         public Task<bool> UpdateATaskAsync(TaskModel updatedTask);
