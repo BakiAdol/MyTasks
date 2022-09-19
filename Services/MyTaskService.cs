@@ -110,13 +110,17 @@ namespace MyTasks.Services
 
             return true;
         }
-        public async Task<List<TaskModel>> GetSearchTasksAsync(SearchModel searchInfo, Pager pager)
+        public async Task<SearchTasksModel> GetSearchTasksAsync(SearchTasksModel searchTasksModel)
         {
             List<TaskModel> tasks = null;
+            searchTasksModel.Tasks = new List<TaskModel>();
 
-            int srPriority = searchInfo.Priority;
-            int srOrder = searchInfo.Order;
-            int srOption = searchInfo.Option;
+            int srPriority = searchTasksModel.TaskPriority;
+            int srOrder = searchTasksModel.OrderOfItemShow;
+            int srOption = searchTasksModel.TaskStatus;
+            string srText = searchTasksModel.SearchText;
+            int srCurrentPage = searchTasksModel.CurrentPage;
+            int srPgaeItemShow = searchTasksModel.PageItemShow;
 
             tasks = await dbContext.MyTasks
                 .Where(task => srOption == 0 ? task.Status != -1 :
@@ -124,33 +128,38 @@ namespace MyTasks.Services
                     task.Status != 2 : task.Status == srOption - 1)
                 .ToListAsync();
 
-            if (tasks == null) return new List<TaskModel>();
+            if (tasks == null) return searchTasksModel;
 
             tasks = tasks
                 .Where(task => srPriority == 0 ? task.Priority != -1 : task.Priority == srPriority - 1)
                 .ToList();
 
-            if (tasks == null) return new List<TaskModel>();
+            if (tasks == null) return searchTasksModel;
 
             tasks = tasks
-                .Where(task => task.MyTask.Contains(searchInfo.SearchText) ||
-                        task.Description.Contains(searchInfo.SearchText))
+                .Where(task => task.MyTask.Contains(srText) ||
+                        task.Description.Contains(srText))
                 .ToList();
 
-            if (tasks == null) return new List<TaskModel>();
+            if (tasks == null) return searchTasksModel;
 
             tasks = (srOrder == 0 ? tasks.OrderByDescending(task => task.Id) :
                  tasks.OrderBy(task => task.Id)).ToList();
 
             // pager...........
-            if (tasks == null) return new List<TaskModel>();
-            int skipePages = (pager.CurrentPageNumber - 1) * pager.PageItemShow;
-            pager.TotalPage = (tasks.Count + pager.PageItemShow - 1) / pager.PageItemShow;
+            if (tasks == null) return searchTasksModel;
+
+            int skipePages = (srCurrentPage - 1) * srPgaeItemShow;
+
+            searchTasksModel.TotalPages = (tasks.Count + srPgaeItemShow - 1) / srPgaeItemShow;
+            
             tasks = tasks.Skip(skipePages)
-            .Take(pager.PageItemShow)
+            .Take(srPgaeItemShow)
             .ToList();
 
-            return tasks ?? new List<TaskModel>();
+            searchTasksModel.Tasks = tasks;
+
+            return searchTasksModel;
         }
         #endregion
     }

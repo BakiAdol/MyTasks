@@ -1,32 +1,36 @@
-﻿@model IEnumerable<MyTasks.Models.TaskModel>
+﻿@model MyTasks.Models.SearchTasksModel
 
 <partial name="_navBar" />
 
 <partial name="_searchBox"/>
 
+
+
 <div class="searchResultShowContainer">
     @{
-        foreach (var task in Model)
+        foreach (var task in Model.Tasks)
         {
-            @Html.Partial("_taskCard",task)
+            ViewData["controllerName"] = Model.ControllerName;
+            ViewData["actionName"] = Model.ActionName;
+            <partial name="_taskNewCard" model="task" />
         }
     }
 </div>
 
 @{
-    if (ViewBag.pager != null)
-    {
-        dynamic dd = new System.Dynamic.ExpandoObject();
-        dd.page = 1;
-        dd.SearchText = ViewBag.searchInfo.SearchText;
-        dd.Option = ViewBag.searchInfo.Option;
-        dd.Priority = ViewBag.searchInfo.Priority;
-        dd.Order = ViewBag.searchInfo.Order;
-        ViewData["actionParameter"] = dd;
+    //if (ViewBag.pager != null)
+    //{
+    //    dynamic dd = new System.Dynamic.ExpandoObject();
+    //    dd.page = 1;
+    //    dd.SearchText = ViewBag.searchInfo.SearchText;
+    //    dd.Option = ViewBag.searchInfo.Option;
+    //    dd.Priority = ViewBag.searchInfo.Priority;
+    //    dd.Order = ViewBag.searchInfo.Order;
+    //    ViewData["actionParameter"] = dd;
 
-        <div class="pagerContainer">
-            <partial name="_taskPagerLayout" />
-        </div>
-    }
+    //    <div class="pagerContainer">
+    //        <partial name="_taskPagerLayout" />
+    //    </div>
+    //}
 }
 

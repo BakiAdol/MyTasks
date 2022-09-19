@@ -9,6 +9,6 @@ namespace MyTasks.Services
         public Task DeleteATaskAsync(int taskId);
         public Task<TaskModel> GetATaskAsync(int taskId);
         public Task<bool> UpdateATaskAsync(TaskModel updatedTask);
-        public Task<List<TaskModel>> GetSearchTasksAsync(SearchModel searchInfo, Pager pager);
+        public Task<SearchTasksModel> GetSearchTasksAsync(SearchTasksModel searchTasksModel);
     }
 }

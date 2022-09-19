@@ -1,10 +1,5 @@
 ﻿@using MyTasks.Enums
-@{
-    var SearchText = ViewBag.searchInfo.SearchText;
-    var Option = ViewBag.searchInfo.Option;
-    var Priority = ViewBag.searchInfo.Priority;
-    var Order = ViewBag.searchInfo.Order;
-}
+@model MyTasks.Models.SearchTasksModel
 
 <div class="">
     <form asp-controller="Search" asp-action="Index" method="get"
@@ -12,7 +7,7 @@
         <div class="serchBoxLeftContainer">
             <div class="searchBoxTextInputContainer">
                 <input class="textInputStyle inputTypeTextStyle"
-                       value="@(SearchText??"")" 
+                       value="@(Model.SearchText??"")" 
                     name="SearchText" placeholder="Search task" />
             </div>
 
@@ -26,12 +21,12 @@
                     <tr>
                         <td>
                             <select class="selectOption"
-                                name="Option">
+                                name="TaskStatus">
                                 @{
                                     foreach (var optionValue in Enum.GetValues(typeof(TaskOptionEnum)))
                                     {
                                         <option value="@Convert.ToInt32(optionValue)"
-                                            selected="@(Convert.ToInt32(optionValue)==(int)Option)">
+                                        selected="@(Convert.ToInt32(optionValue)==(int)Model.TaskStatus)">
                                             @optionValue
                                         </option>
                                     }
@@ -40,12 +35,12 @@
                         </td>
                         <td>
                             <select class="selectOption"
-                                    name="Priority">
+                                    name="TaskPriority">
                                 @{
                                     foreach (var priorityValue in Enum.GetValues(typeof(PriorityEnum)))
                                     {
                                         <option value="@Convert.ToInt32(priorityValue)"
-                                        selected="@(Convert.ToInt32(priorityValue)==(int)Priority)">
+                                        selected="@(Convert.ToInt32(priorityValue)==(int)Model.TaskPriority)">
                                             @priorityValue
                                         </option>
                                     }
@@ -54,12 +49,12 @@
                         </td>
                         <td>
                             <select class="selectOption"
-                                    name="Order">
+                                    name="OrderOfItemShow">
                                 @{
                                     foreach (var orderValue in Enum.GetValues(typeof(OrderDateEnum)))
                                     {
                                         <option value="@Convert.ToInt32(orderValue)"
-                                        selected="@(Convert.ToInt32(orderValue)==(int)Order)">
+                                        selected="@(Convert.ToInt32(orderValue)==(int)Model.OrderOfItemShow)">
                                             @orderValue
                                         </option>
                                     }
