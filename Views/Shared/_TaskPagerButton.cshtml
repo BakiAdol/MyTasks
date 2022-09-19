@@ -3,13 +3,13 @@
     var actionParameter = ViewData["ActionParameter"];
     var buttonText = ViewData["TaskPagerButtonText"];
 
-    var controllerName = ViewBag.controller;
-    var actionName = ViewBag.action;
+    var controllerName = ViewData["controllerName"];
+    var actionName = ViewData["actionName"];
 
-    var currentPageNo = ViewBag.pager.CurrentPageNumber;
-    
+    var currentPageNo = ViewData["currentPageNumber"];
+
     var isPrimaryColourButton =
-    (buttonText.ToString() != "First" && buttonText.ToString() != "Last")
+    ((string)buttonText != "First" && buttonText.ToString() != "Last")
     && (int)currentPageNo == (int)pageNumber;
 }
 <a href="@Url.Action((string)actionName, (string)controllerName, actionParameter)"

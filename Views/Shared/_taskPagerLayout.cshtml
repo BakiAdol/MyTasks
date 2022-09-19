@@ -1,16 +1,25 @@
 ﻿@{
+    var currentPageNumber = ViewData["currentPageNumber"];
+    var totalPages = ViewData["totalPages"];
+    var controllerName = ViewData["controllerName"];
+    var actionName = ViewData["actionName"];
+    var pageItemShow = ViewData["pageItemShow"];
+    var orderOfItemShow = ViewData["orderOfItemShow"];
+}
+
+@{
     List<KeyValuePair<string, int>> pageButtons = new List<KeyValuePair<string, int>>();
     pageButtons.Add(new KeyValuePair<string, int>("First", 1));
 
-    int displayPage = Math.Max(1, ViewBag.pager.CurrentPageNumber - 2);
-    int maxDisplayPage = Math.Min(ViewBag.pager.CurrentPageNumber + 2, ViewBag.pager.TotalPage);
+    int displayPage = Math.Max(1, (int)currentPageNumber - 2);
+    int maxDisplayPage = Math.Min((int)currentPageNumber + 2, (int)totalPages);
 
     for (; displayPage <= maxDisplayPage; displayPage++)
     {
         pageButtons.Add(new KeyValuePair<string, int>(displayPage.ToString(), displayPage));
     }
 
-    pageButtons.Add(new KeyValuePair<string, int>("Last", ViewBag.pager.TotalPage));
+    pageButtons.Add(new KeyValuePair<string, int>("Last", (int)totalPages));
 }
 <div class="pagerBody">
     @{
@@ -18,10 +27,35 @@
         {
             ViewData["TaskPagerButtonText"] = pairPageButton.Key;
             ViewData["TaskPagerPageNumber"] = pairPageButton.Value;
+            ViewData["controllerName"] = controllerName;
+            ViewData["actionName"] = ViewData["actionName"];
+            ViewData["currentPageNumber"] = currentPageNumber;
 
-            dynamic dynamicObject = ViewData["actionParameter"];
-            dynamicObject.page = pairPageButton.Value;
-            ViewData["actionParameter"] = dynamicObject;
+            if((string)controllerName == "Tasks")
+            {
+                var actionParameter = new AllTasksModel
+                {
+                    TaskOption = (ViewData["taskOption"] == null ? null : (int)ViewData["taskOption"]),
+                    CurrentPage = pairPageButton.Value,
+                    PageItemShow = (int)pageItemShow,
+                    OrderOfItemShow = (int)orderOfItemShow,
+                    TaskHighPriority = (int)ViewData["taskHighPriority"],
+                    TaskMediumPriority = (int)ViewData["taskMediumPriority"],
+                    TaskLowPriority = (int)ViewData["taskLowPriority"]
+                };
+                ViewData["actionParameter"] = actionParameter;
+            }else{
+                var actionParameter = new SearchTasksModel
+                {
+                    CurrentPage = pairPageButton.Value,
+                    PageItemShow = (int)pageItemShow,
+                    OrderOfItemShow = (int)orderOfItemShow,
+                    TaskStatus = (int)ViewData["TaskStatus"],
+                    TaskPriority = (int)ViewData["TaskPriority"],
+                    SearchText = (string)ViewData["SearchText"],
+                };
+                ViewData["actionParameter"] = actionParameter;
+            }
 
             <partial name="_TaskPagerButton" view-data="ViewData" />
         }

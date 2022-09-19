@@ -18,19 +18,21 @@
 </div>
 
 @{
-    //if (ViewBag.pager != null)
-    //{
-    //    dynamic dd = new System.Dynamic.ExpandoObject();
-    //    dd.page = 1;
-    //    dd.SearchText = ViewBag.searchInfo.SearchText;
-    //    dd.Option = ViewBag.searchInfo.Option;
-    //    dd.Priority = ViewBag.searchInfo.Priority;
-    //    dd.Order = ViewBag.searchInfo.Order;
-    //    ViewData["actionParameter"] = dd;
+    if (Model.TotalPages != 0)
+    {
+        ViewData["currentPageNumber"] = Model.CurrentPage;
+        ViewData["totalPages"] = Model.TotalPages;
+        ViewData["controllerName"] = Model.ControllerName;
+        ViewData["actionName"] = Model.ActionName;
+        ViewData["pageItemShow"] = Model.PageItemShow;
+        ViewData["orderOfItemShow"] = Model.OrderOfItemShow;
+        ViewData["TaskStatus"] = Model.TaskStatus;
+        ViewData["TaskPriority"] = Model.TaskPriority;
+        ViewData["SearchText"] = Model.SearchText;
 
-    //    <div class="pagerContainer">
-    //        <partial name="_taskPagerLayout" />
-    //    </div>
-    //}
+        <div class="pagerContainer">
+            <partial name="_taskPagerLayout" view-data="ViewData" />
+        </div>
+    }
 }
 

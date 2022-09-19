@@ -9,6 +9,8 @@
     var taskHighPriority = Model.TaskHighPriority;
     var taskMediumPriority = Model.TaskMediumPriority;
     var taskLowPriority = Model.TaskLowPriority;
+    var currentPageNumber = Model.CurrentPage;
+    var totalPages = Model.TotalPages;
 }
 
 <partial name="_navBar" />
@@ -74,9 +76,21 @@
                 }
             }
         </div>
-        <!-- <div class="pagerContainer">
-            <partial name="_taskPagerLayout" />
-        </div> -->
+        <div class="pagerContainer">
+            @{
+                ViewData["currentPageNumber"] = currentPageNumber;
+                ViewData["totalPages"] = totalPages;
+                ViewData["controllerName"] = Model.ControllerName;
+                ViewData["actionName"] = Model.ActionName;
+                ViewData["taskOption"] = taskOption;
+                ViewData["pageItemShow"] = pageItemShow;
+                ViewData["orderOfItemShow"] = orderOfItemShow;
+                ViewData["taskHighPriority"] = taskHighPriority;
+                ViewData["taskMediumPriority"] = taskMediumPriority;
+                ViewData["taskLowPriority"] = taskLowPriority;
+            }
+            <partial name="_taskPagerLayout" view-data="ViewData"/>
+        </div>
     </div>
 
 </div>
