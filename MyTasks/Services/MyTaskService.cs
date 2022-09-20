@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using MyTasks.Data;
+using MyTasksClassLib.DataAccess;
 using MyTasksClassLib.Models;
 using System.Threading.Tasks;
 

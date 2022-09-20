@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using MyTasks.Data;
+using MyTasksClassLib.DataAccess;
 using MyTasks.Services;
 
 var builder = WebApplication.CreateBuilder(args);

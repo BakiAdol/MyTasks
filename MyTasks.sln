@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyTasks", "MyTasks\MyTasks.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTasksClassLib.Models", "MyTasksClassLib.Models\MyTasksClassLib.Models.csproj", "{E53E0EAC-EB25-48AD-B98C-FA07885ECFB1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTasksClassLib.DataAccess", "MyTasksClassLib.DataAccess\MyTasksClassLib.DataAccess.csproj", "{B7F917A1-1182-4B0F-8A5F-461F39011AF6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{E53E0EAC-EB25-48AD-B98C-FA07885ECFB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E53E0EAC-EB25-48AD-B98C-FA07885ECFB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E53E0EAC-EB25-48AD-B98C-FA07885ECFB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7F917A1-1182-4B0F-8A5F-461F39011AF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7F917A1-1182-4B0F-8A5F-461F39011AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7F917A1-1182-4B0F-8A5F-461F39011AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7F917A1-1182-4B0F-8A5F-461F39011AF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

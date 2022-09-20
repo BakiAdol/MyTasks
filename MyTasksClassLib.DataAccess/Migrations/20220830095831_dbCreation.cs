@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace MyTasks.Migrations
+namespace MyTasksClassLib.DataAccess.Migrations
 {
     public partial class dbCreation : Migration
     {

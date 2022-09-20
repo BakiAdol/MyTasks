@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MyTasks.Data;
+using MyTasksClassLib.DataAccess;
 
 #nullable disable
 
-namespace MyTasks.Migrations
+namespace MyTasksClassLib.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220909105950_addDescriptionField")]
-    partial class addDescriptionField
+    [Migration("20220830095831_dbCreation")]
+    partial class dbCreation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,17 +41,12 @@ namespace MyTasks.Migrations
                     b.Property<string>("CreatedSource")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("DueDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("MyTask")
                         .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Priority")
                         .HasColumnType("int");

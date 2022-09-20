@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyTasksClassLib.Models;
 
-namespace MyTasks.Data
+namespace MyTasksClassLib.DataAccess
 {
-    public class ApplicationDbContext: DbContext
+    public class ApplicationDbContext : DbContext
     {
         #region Ctor
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options): base(options)
-        { 
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        {
         }
         #endregion
 

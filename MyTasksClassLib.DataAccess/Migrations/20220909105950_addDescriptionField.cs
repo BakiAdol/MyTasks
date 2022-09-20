@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace MyTasks.Migrations
+namespace MyTasksClassLib.DataAccess.Migrations
 {
     public partial class addDescriptionField : Migration
     {
