@@ -1,6 +1,6 @@
 ﻿using MyTasksClassLib.Models;
 
-namespace MyTasks.Services
+namespace MyTasksClassLib.DataAccess.Repository.IRepository
 {
     public interface IMyTaskService
     {

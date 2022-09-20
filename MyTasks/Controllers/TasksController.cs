@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MyTasksClassLib.Models;
-using MyTasks.Services;
+using MyTasksClassLib.DataAccess.Repository.IRepository;
 
 namespace MyTasks.Controllers
 {

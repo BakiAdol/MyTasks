@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using MyTasksClassLib.DataAccess;
-using MyTasks.Services;
+using MyTasksClassLib.DataAccess.Repository.IRepository;
+using MyTasksClassLib.DataAccess.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 

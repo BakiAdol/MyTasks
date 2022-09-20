@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyTasksClassLib.Models;
-using MyTasks.Services;
+using MyTasksClassLib.DataAccess.Repository.IRepository;
 
 namespace MyTasks.Controllers
 {

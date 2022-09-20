@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿//using Microsoft.AspNetCore.Mvc.Filters;
+//using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using MyTasksClassLib.DataAccess;
+using MyTasksClassLib.DataAccess.Repository.IRepository;
 using MyTasksClassLib.Models;
 using System.Threading.Tasks;
 
-namespace MyTasks.Services
+namespace MyTasksClassLib.DataAccess.Repository
 {
     public class MyTaskService: IMyTaskService
     {
