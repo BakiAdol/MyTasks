@@ -6,7 +6,7 @@ using MyTasksClassLib.DataAccess.Repository;
 var builder = WebApplication.CreateBuilder(args);
 
 // dependencie injection
-builder.Services.AddScoped<IMyTaskService, MyTaskService>();
+builder.Services.AddScoped<IMyTaskRepository, MyTaskRepository>();
 
 // db connection build
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(

@@ -7,11 +7,11 @@ namespace MyTasks.Controllers
     public class AddNewController : Controller
     {
         #region Props
-        private readonly IMyTaskService myTaskService;
+        private readonly IMyTaskRepository myTaskService;
         #endregion
 
         #region Ctor
-        public AddNewController(IMyTaskService myTaskService)
+        public AddNewController(IMyTaskRepository myTaskService)
         {
             this.myTaskService = myTaskService;
         }

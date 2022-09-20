@@ -8,11 +8,11 @@ namespace MyTasks.Controllers
     public class TasksController : Controller
     {
         #region Props
-        private readonly IMyTaskService myTaskService;
+        private readonly IMyTaskRepository myTaskService;
         #endregion
 
         #region Ctor
-        public TasksController(IMyTaskService myTaskService)
+        public TasksController(IMyTaskRepository myTaskService)
         {
             this.myTaskService = myTaskService;
         }

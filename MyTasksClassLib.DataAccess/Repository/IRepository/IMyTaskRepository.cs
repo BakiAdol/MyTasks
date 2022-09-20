@@ -2,7 +2,7 @@
 
 namespace MyTasksClassLib.DataAccess.Repository.IRepository
 {
-    public interface IMyTaskService
+    public interface IMyTaskRepository
     {
         public Task AddNewTaskAsync(TaskModel task);
         public Task<AllTasksModel> GetAllTasksAsync(AllTasksModel allTasksModel);

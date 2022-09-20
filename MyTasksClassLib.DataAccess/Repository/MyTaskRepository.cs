@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace MyTasksClassLib.DataAccess.Repository
 {
-    public class MyTaskService: IMyTaskService
+    public class MyTaskRepository: IMyTaskRepository
     {
         #region Props
         private readonly ApplicationDbContext dbContext;
         #endregion
 
         #region Ctor
-        public MyTaskService(ApplicationDbContext dbContext)
+        public MyTaskRepository(ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;
         }
