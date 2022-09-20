@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MyTasksClassLib.Models\MyTasksClassLib.Models.csproj" />
+    <ProjectReference Include="..\MyTasksClassLib.Utils\MyTasksClassLib.Utils.csproj" />
   </ItemGroup>
 
 </Project>

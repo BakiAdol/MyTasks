@@ -6,6 +6,7 @@ using MyTasksClassLib.DataAccess;
 using MyTasksClassLib.DataAccess.Repository.IRepository;
 using MyTasksClassLib.Models;
 using System.Threading.Tasks;
+using MyTasksClassLib.Utils.TasksFilter;
 
 namespace MyTasksClassLib.DataAccess.Repository
 {
@@ -30,7 +31,7 @@ namespace MyTasksClassLib.DataAccess.Repository
         }
         public async Task<AllTasksModel> GetAllTasksAsync(AllTasksModel allTasksModel)
         {
-            List<TaskModel> tasks = null;
+            List<TaskModel> tasks;
             allTasksModel.Tasks = new List<TaskModel>();
 
             int? taskOption = allTasksModel.TaskOption;
@@ -41,43 +42,20 @@ namespace MyTasksClassLib.DataAccess.Repository
             int taskCurrentPage = allTasksModel.CurrentPage;
             int taskNumberOfItemShow = allTasksModel.PageItemShow;
 
-            // all task filter by option
+            int skipTasks = (taskCurrentPage - 1) * taskNumberOfItemShow;
+
             tasks = await dbContext.MyTasks
-                .Where(task => taskOption == null ? task.Status != -1 :
-                taskOption == 3 ? task.DueDate < DateTime.Now && task.Status != 2 :
-                task.Status == taskOption)
-                .ToListAsync();
+                    .GetOptionTasks(taskOption)
+                    .GetPriorityFilterTasks(taskHighPriority, taskMediumPriority, taskLowPrioriry)
+                    .OrderTasks(taskShowOrder)
+                    .ToListAsync();
 
-            if (tasks == null) return allTasksModel;
-
-            bool isUncheckAllPriority = (taskHighPriority == taskMediumPriority
-                && taskMediumPriority == taskLowPrioriry && taskLowPrioriry == 0);
+            allTasksModel.TotalPages = 
+                (tasks.Count + taskNumberOfItemShow - 1) / taskNumberOfItemShow;
             
-            if(!isUncheckAllPriority)
-            {
-                tasks = tasks.Where(task => (
-                task.Priority == 0 && taskHighPriority == 1) ||
-                (task.Priority == 1 && taskMediumPriority == 1) ||
-                (task.Priority == 2 && taskLowPrioriry == 1)).ToList();
-            }
+            tasks = tasks.Skip(skipTasks).Take(taskNumberOfItemShow).ToList();
 
-            if (taskShowOrder == 0) // latest taks
-            {
-                tasks = tasks.OrderByDescending(task => task.Id).ToList();
-            }
-            else // oldest taks
-            {
-                tasks = tasks.OrderBy(task => task.Id).ToList();
-            }
-
-            if(tasks == null) return allTasksModel;
-
-            int skipePages = (taskCurrentPage - 1) * taskNumberOfItemShow;
-
-            allTasksModel.TotalPages = (tasks.Count + taskNumberOfItemShow-1)/taskNumberOfItemShow;
-            tasks = tasks.Skip(skipePages)
-                .Take(taskNumberOfItemShow)
-                .ToList();
+            tasks ??= new List<TaskModel>();
 
             allTasksModel.Tasks = tasks;
 
@@ -124,7 +102,7 @@ namespace MyTasksClassLib.DataAccess.Repository
         }
         public async Task<SearchTasksModel> GetSearchTasksAsync(SearchTasksModel searchTasksModel)
         {
-            List<TaskModel> tasks = null;
+            List<TaskModel> tasks;
             searchTasksModel.Tasks = new List<TaskModel>();
 
             int srPriority = searchTasksModel.TaskPriority;
@@ -134,40 +112,20 @@ namespace MyTasksClassLib.DataAccess.Repository
             int srCurrentPage = searchTasksModel.CurrentPage;
             int srPgaeItemShow = searchTasksModel.PageItemShow;
 
+            int skipeTasks = (srCurrentPage - 1) * srPgaeItemShow;
+
             tasks = await dbContext.MyTasks
-                .Where(task => srOption == 0 ? task.Status != -1 :
-                    srOption == 4 ? (task.DueDate.Day < DateTime.Now.Day) &&
-                    task.Status != 2 : task.Status == srOption - 1)
-                .ToListAsync();
-
-            if (tasks == null) return searchTasksModel;
-
-            tasks = tasks
-                .Where(task => srPriority == 0 ? task.Priority != -1 : task.Priority == srPriority - 1)
-                .ToList();
-
-            if (tasks == null) return searchTasksModel;
-
-            tasks = tasks
-                .Where(task => task.MyTask.Contains(srText) ||
-                        task.Description.Contains(srText))
-                .ToList();
-
-            if (tasks == null) return searchTasksModel;
-
-            tasks = (srOrder == 0 ? tasks.OrderByDescending(task => task.Id) :
-                 tasks.OrderBy(task => task.Id)).ToList();
-
-            // pager...........
-            if (tasks == null) return searchTasksModel;
-
-            int skipePages = (srCurrentPage - 1) * srPgaeItemShow;
+                    .GetSearchOptionTasks(srOption)
+                    .GetSearchPriorityFilterTasks(srPriority)
+                    .GetPatternMatchingTasks(srText)
+                    .OrderTasks(srOrder)
+                    .ToListAsync();
 
             searchTasksModel.TotalPages = (tasks.Count + srPgaeItemShow - 1) / srPgaeItemShow;
-            
-            tasks = tasks.Skip(skipePages)
-            .Take(srPgaeItemShow)
-            .ToList();
+
+            tasks = tasks.Skip(skipeTasks).Take(srPgaeItemShow).ToList();
+
+            tasks ??= new List<TaskModel>();
 
             searchTasksModel.Tasks = tasks;
 
