@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using MyTasksClassLib.DataAccess;
 using MyTasksClassLib.DataAccess.Repository.IRepository;
+using MyTasksClassLib.DataAccess.TasksFilter;
 using MyTasksClassLib.Models;
 using System.Threading.Tasks;
-using MyTasksClassLib.Utils.TasksFilter;
 
 namespace MyTasksClassLib.DataAccess.Repository
 {
