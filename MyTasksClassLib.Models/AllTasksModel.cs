@@ -1,4 +1,4 @@
-﻿namespace MyTasks.Models
+﻿namespace MyTasksClassLib.Models
 {
     public class AllTasksModel : PagerModel
     {

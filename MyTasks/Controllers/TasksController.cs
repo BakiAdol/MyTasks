@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using MyTasks.Models;
+using MyTasksClassLib.Models;
 using MyTasks.Services;
 
 namespace MyTasks.Controllers

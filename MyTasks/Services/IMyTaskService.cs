@@ -1,4 +1,4 @@
-﻿using MyTasks.Models;
+﻿using MyTasksClassLib.Models;
 
 namespace MyTasks.Services
 {

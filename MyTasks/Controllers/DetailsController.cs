@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MyTasks.Models;
+using MyTasksClassLib.Models;
 using MyTasks.Services;
 using System.Threading.Tasks;
 

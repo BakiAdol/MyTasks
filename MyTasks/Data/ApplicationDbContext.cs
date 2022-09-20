@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MyTasks.Models;
+using MyTasksClassLib.Models;
 
 namespace MyTasks.Data
 {

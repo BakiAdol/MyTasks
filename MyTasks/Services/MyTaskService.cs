@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using MyTasks.Data;
-using MyTasks.Models;
+using MyTasksClassLib.Models;
 using System.Threading.Tasks;
 
 namespace MyTasks.Services

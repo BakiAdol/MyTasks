@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32804.467
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTasks", "MyTasks\MyTasks.csproj", "{72B47622-E75E-4CEA-B832-0B6B23333A6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyTasks", "MyTasks\MyTasks.csproj", "{72B47622-E75E-4CEA-B832-0B6B23333A6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTasksClassLib.Models", "MyTasksClassLib.Models\MyTasksClassLib.Models.csproj", "{E53E0EAC-EB25-48AD-B98C-FA07885ECFB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{72B47622-E75E-4CEA-B832-0B6B23333A6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72B47622-E75E-4CEA-B832-0B6B23333A6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72B47622-E75E-4CEA-B832-0B6B23333A6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E53E0EAC-EB25-48AD-B98C-FA07885ECFB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E53E0EAC-EB25-48AD-B98C-FA07885ECFB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E53E0EAC-EB25-48AD-B98C-FA07885ECFB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E53E0EAC-EB25-48AD-B98C-FA07885ECFB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

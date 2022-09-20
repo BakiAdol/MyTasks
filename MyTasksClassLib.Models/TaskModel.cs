@@ -1,7 +1,6 @@
-﻿using MyTasks.CustomValidations;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace MyTasks.Models
+namespace MyTasksClassLib.Models
 {
     public class TaskModel
     {
@@ -11,12 +10,12 @@ namespace MyTasks.Models
         [Required(ErrorMessage = "Please Enter task.")]
         [StringLength(60)]
         public string MyTask { get; set; }
-        public string Description { get; set; } = String.Empty;
+        public string Description { get; set; } = string.Empty;
         [Required]
         public int Priority { get; set; } = 0;
         public int Status { get; set; } = 0;
 
-        [DueDateValidation]
+        // [DueDateValidation]
         public DateTime DueDate { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public string? CreatedSource { get; set; }

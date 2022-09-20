@@ -1,4 +1,4 @@
-﻿namespace MyTasks.Models
+﻿namespace MyTasksClassLib.Models
 {
     public class PagerModel
     {
@@ -7,7 +7,7 @@
         public int CurrentPage { get; set; } = 1;
         public int PageItemShow { get; set; } = 2;
         public int OrderOfItemShow { get; set; } = 0;
-        public string ControllerName { get; set; } = String.Empty;
-        public string ActionName { get; set; } = String.Empty;
+        public string ControllerName { get; set; } = string.Empty;
+        public string ActionName { get; set; } = string.Empty;
     }
 }
