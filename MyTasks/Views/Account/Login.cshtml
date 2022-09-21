@@ -1,7 +1,7 @@
 ﻿@model MyTasksClassLib.Models.LoginModel
 
 <div class="logRegContainer shadowAndBackground">
-    <form asp-action="Login" asp-controller="Account">
+    <form asp-action="Login" asp-controller="Account" asp-route-returnUrl="@ViewData["returnUrl"]">
         <input type="email" placeholder="Email" asp-for="Email"
                class="textInputStyle inputTypeTextStyle" />
         <input type="password" placeholder="Password" asp-for="Password"

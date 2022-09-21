@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MyTasksClassLib.Models;
 using MyTasksClassLib.DataAccess.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MyTasks.Controllers
 {
@@ -20,6 +21,7 @@ namespace MyTasks.Controllers
 
         #region Methods
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Index(SearchTasksModel? searchTasksModel)
         {
             if(searchTasksModel == null || searchTasksModel.SearchText == "")

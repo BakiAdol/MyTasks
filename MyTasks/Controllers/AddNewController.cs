@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyTasksClassLib.Models;
 using MyTasksClassLib.DataAccess.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MyTasks.Controllers
 {
@@ -18,11 +19,13 @@ namespace MyTasks.Controllers
         #endregion
 
         #region Methods
+        [Authorize]
         public IActionResult Index()
         {
             return View();
         }
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Index(TaskModel task)
         {
             if (!ModelState.IsValid) return View();

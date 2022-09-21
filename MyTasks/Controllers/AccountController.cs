@@ -22,13 +22,18 @@ namespace MyTasks.Controllers
         }
 
         [HttpGet]
-        public IActionResult Registration()
+        public IActionResult Registration(string returnUrl = null)
         {
+            ViewData["returnUrl"] = returnUrl;
+
             return View(new RegisterModel());
         }
         [HttpPost]
-        public async Task<IActionResult> Registration(RegisterModel regInfo)
+        public async Task<IActionResult> Registration(RegisterModel regInfo, string returnUrl = null)
         {
+            ViewData["returnUrl"] = returnUrl;
+            returnUrl ??= Url.Content("~/");
+
             var user = new UserModel { UserName = regInfo.Email, Email = regInfo.Email, 
                 Name = regInfo.Name};
 
@@ -38,7 +43,7 @@ namespace MyTasks.Controllers
             {
                 await _signInManager.SignInAsync(user, isPersistent: false);
 
-                return RedirectToAction("Index", "Tasks");
+                return LocalRedirect(returnUrl);
             }
 
             AddError(res);
@@ -47,19 +52,23 @@ namespace MyTasks.Controllers
         }
        
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult Login(string returnUrl=null)
         {
+            ViewData["returnUrl"] = returnUrl;
             return View(new LoginModel());
         }
         [HttpPost]
-        public async Task<IActionResult> Login(LoginModel loginInfo)
+        public async Task<IActionResult> Login(LoginModel loginInfo, string returnUrl = null)
         {
+            ViewData["returnUrl"] = returnUrl;
+            returnUrl ??= Url.Content("~/");
+
             var res = await _signInManager.PasswordSignInAsync(loginInfo.Email, loginInfo.Password,
                 loginInfo.RememberMe, lockoutOnFailure: false);
 
             if(res.Succeeded)
             {
-                return RedirectToAction("Index", "Tasks");
+                return LocalRedirect(returnUrl);
             }
 
             ModelState.AddModelError(string.Empty, "Invalid login attempt");

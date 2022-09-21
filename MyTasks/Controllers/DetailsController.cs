@@ -2,6 +2,7 @@
 using MyTasksClassLib.Models;
 using MyTasksClassLib.DataAccess.Repository.IRepository;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MyTasks.Controllers
 {
@@ -19,12 +20,14 @@ namespace MyTasks.Controllers
         #endregion
 
         #region Methods
+        [Authorize]
         public async Task<IActionResult> Index(int taskId)
         {
             var task = await myTaskService.GetATaskAsync(taskId);
             
             return View(task);
         }
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Index(TaskModel task) // save edit task
         {
@@ -36,6 +39,7 @@ namespace MyTasks.Controllers
 
             return RedirectToAction("Index", "Tasks");
         }
+        [Authorize]
         public async Task<IActionResult> DeleteATask(int taskId)
         {
             await myTaskService.DeleteATaskAsync(taskId);

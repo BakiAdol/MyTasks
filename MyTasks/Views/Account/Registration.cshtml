@@ -1,7 +1,8 @@
 ﻿@model MyTasksClassLib.Models.RegisterModel
 
 <div class="logRegContainer shadowAndBackground">
-    <form asp-action="Registration" asp-controller="Account">
+    <form asp-action="Registration" asp-controller="Account" 
+        asp-route-returnUrl="@ViewData["returnUrl"]">
         <input placeholder="Name" asp-for="Name" 
             class="textInputStyle inputTypeTextStyle" />
         <input type="email" placeholder="Email" asp-for="Email" 

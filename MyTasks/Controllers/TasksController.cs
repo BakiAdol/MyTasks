@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MyTasksClassLib.Models;
 using MyTasksClassLib.DataAccess.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MyTasks.Controllers
 {
@@ -19,6 +20,7 @@ namespace MyTasks.Controllers
         #endregion
 
         #region Methods
+        [Authorize]
         public async Task<IActionResult> Index(AllTasksModel? allTasksModel)
         {
             if (allTasksModel == null)
