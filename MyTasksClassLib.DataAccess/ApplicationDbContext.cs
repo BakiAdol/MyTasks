@@ -14,6 +14,8 @@ namespace MyTasksClassLib.DataAccess
 
         #region Props
         public DbSet<TaskModel> MyTasks { get; set; }
+
+        public DbSet<UserModel> Users { get; set; }
         #endregion
     }
 }
