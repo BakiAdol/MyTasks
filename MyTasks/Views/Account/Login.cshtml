@@ -1,0 +1,9 @@
+﻿@model MyTasksClassLib.Models.LoginModel
+
+<form asp-action="Login" asp-controller="Account">
+    <input type="email" placeholder="Email" asp-for="Email" />
+    <input type="password" placeholder="Password" asp-for="Password" />
+    <label>Remmber Me: </label>
+    <input type="checkbox" asp-for="RememberMe"/>
+    <input type="submit" value="Register" />
+</form>

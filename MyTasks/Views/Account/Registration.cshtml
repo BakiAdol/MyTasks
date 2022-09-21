@@ -1,0 +1,9 @@
+﻿@model MyTasksClassLib.Models.RegisterModel
+
+<form asp-action="Registration" asp-controller="Account">
+    <input placeholder="Name" asp-for="Name"/>
+    <input type="email" placeholder="Email" asp-for="Email"/>
+    <input type="password" placeholder="Password" asp-for="Password"/>
+    <input type="password" placeholder="Confirm Password" asp-for="ConfirmPassword"/>
+    <input type="submit" value="Register" />
+</form>
