@@ -1,9 +1,23 @@
 ﻿@model MyTasksClassLib.Models.LoginModel
 
-<form asp-action="Login" asp-controller="Account">
-    <input type="email" placeholder="Email" asp-for="Email" />
-    <input type="password" placeholder="Password" asp-for="Password" />
-    <label>Remmber Me: </label>
-    <input type="checkbox" asp-for="RememberMe"/>
-    <input type="submit" value="Login" />
-</form>
+<div class="logRegContainer shadowAndBackground">
+    <form asp-action="Login" asp-controller="Account">
+        <input type="email" placeholder="Email" asp-for="Email"
+               class="textInputStyle inputTypeTextStyle" />
+        <input type="password" placeholder="Password" asp-for="Password"
+               class="textInputStyle inputTypeTextStyle" />
+         <div class="remberMeContainer">
+            <label class="remberMe">Remmber Me: </label>
+            <input type="checkbox" asp-for="RememberMe" class="filterCheckbox" />
+         </div>
+        <div class="logregButtonContiner">
+            <input type="submit" value="Login" class="inputTypeSubmitPrimary" />
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+    </form>
+</div>

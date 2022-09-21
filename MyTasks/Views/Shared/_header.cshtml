@@ -3,17 +3,22 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
-<a href="/" class="headerTitle">My Tasks</a>
-
-@{
-    if(SignInManager.IsSignedIn(User))
-    {
-        <a href="/">Hello @UserManager.GetUserName(User)</a>
-        <a href="@Url.Action("LogOut", "Account")">Log Out</a>
-    }
-    else
-    {
-        <a href="/Account/Registration" class="headerTitle">Register</a>
-        <a href="/Account/Login" class="headerTitle">Login</a>
-    }
-}
+<div class="headerContainer">
+    <div class="headerLeftTitleContainer">
+        <a href="/" class="headerTitle">My Tasks</a>
+    </div>
+    <div class="headerRighContainer">
+        @{
+            if (SignInManager.IsSignedIn(User))
+            {
+                <a href="/" class="headerItem">Hello @UserManager.GetUserName(User)</a>
+                <a href="@Url.Action("LogOut", "Account")" class="headerItem">Log Out</a>
+            }
+            else
+            {
+                <a href="/Account/Registration" class="headerItem">Register</a>
+                <a href="/Account/Login" class="headerItem">Login</a>
+            }
+        }
+    </div>
+</div>

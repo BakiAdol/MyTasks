@@ -1,9 +1,17 @@
 ﻿@model MyTasksClassLib.Models.RegisterModel
 
-<form asp-action="Registration" asp-controller="Account">
-    <input placeholder="Name" asp-for="Name"/>
-    <input type="email" placeholder="Email" asp-for="Email"/>
-    <input type="password" placeholder="Password" asp-for="Password"/>
-    <input type="password" placeholder="Confirm Password" asp-for="ConfirmPassword"/>
-    <input type="submit" value="Register" />
-</form>
+<div class="logRegContainer shadowAndBackground">
+    <form asp-action="Registration" asp-controller="Account">
+        <input placeholder="Name" asp-for="Name" 
+            class="textInputStyle inputTypeTextStyle" />
+        <input type="email" placeholder="Email" asp-for="Email" 
+            class="textInputStyle inputTypeTextStyle" />
+        <input type="password" placeholder="Password" asp-for="Password" 
+            class="textInputStyle inputTypeTextStyle" />
+        <input type="password" placeholder="Confirm Password" asp-for="ConfirmPassword"
+               class="textInputStyle inputTypeTextStyle" />
+        <div class="logregButtonContiner">
+            <input type="submit" value="Register" class="inputTypeSubmitPrimary" />
+        </div>
+    </form>
+</div>

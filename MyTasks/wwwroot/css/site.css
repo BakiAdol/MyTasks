@@ -122,14 +122,33 @@ textarea:focus, input:focus{
 header {
     background-color: var(--primary);
 }
+.headerContainer{
+    display:flex;
+    justify-content: space-between;
+}
+.headerLeftTitleContainer{
+    width: 40%;
+}
+.headerRighContainer {
+    width: 60%;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 4rem;
+    align-items: center;
+}
 .headerTitle {
     display: inline-block;
     font-size: 2rem;
     color: var(--white);
     padding: 1rem 0 1rem 10%;
 }
+.headerItem{
+    font-size: 1.5rem;
+    color: var(--white);
+    margin-left: 1rem;
+}
 /*------- End of Header style --------*/
-main{
+main {
     width: 100%;
 }
 .marginTopauto {
@@ -471,8 +490,26 @@ div.hoverUp:hover {
 
 /* ------------- end of search box ----------*/
 
+/* ------------ log reg ---------------------*/
+.logRegContainer{
+    width: 40%;
+    margin: 2rem auto 15rem auto;
+    padding: 1rem 1rem .05rem 1rem;
+}
+.logregButtonContiner{
+    width: 30%;
+    margin: 1.3rem auto;
+}
+.remberMeContainer{
+    margin-top: 1rem;
+}
+.remberMe {
+    font-size: 1.5rem;
+    color: var(--slate);
+}
+/* ------------- end of log reg -------------*/
 /* --------------- footer style ----------------*/
-.footerContainer{
+.footerContainer {
     background-color: var(--primary);
     margin-top: 1rem;
 }
