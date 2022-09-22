@@ -7,6 +7,8 @@ namespace MyTasksClassLib.Models
         [Key]
         public int Id { get; set; }
 
+        public string UserId { get; set; }
+
         [Required(ErrorMessage = "Please Enter task.")]
         [StringLength(60)]
         public string MyTask { get; set; }
