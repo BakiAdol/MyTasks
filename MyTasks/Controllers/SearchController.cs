@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MyTasks.Controllers
 {
+    [Authorize]
     public class SearchController : Controller
     {
         #region Props
@@ -21,7 +22,6 @@ namespace MyTasks.Controllers
 
         #region Methods
         [HttpGet]
-        [Authorize]
         public async Task<IActionResult> Index(SearchTasksModel? searchTasksModel)
         {
             if(searchTasksModel == null || searchTasksModel.SearchText == "")

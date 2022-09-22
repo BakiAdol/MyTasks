@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MyTasks.Controllers
 {
+    [Authorize]
     public class AddNewController : Controller
     {
         #region Props
@@ -19,13 +20,11 @@ namespace MyTasks.Controllers
         #endregion
 
         #region Methods
-        [Authorize]
         public IActionResult Index()
         {
             return View();
         }
         [HttpPost]
-        [Authorize]
         public async Task<IActionResult> Index(TaskModel task)
         {
             if (!ModelState.IsValid) return View();

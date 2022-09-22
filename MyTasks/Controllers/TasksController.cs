@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MyTasks.Controllers
 {
+    [Authorize]
     public class TasksController : Controller
     {
         #region Props
@@ -20,7 +21,6 @@ namespace MyTasks.Controllers
         #endregion
 
         #region Methods
-        [Authorize]
         public async Task<IActionResult> Index(AllTasksModel? allTasksModel)
         {
             if (allTasksModel == null)

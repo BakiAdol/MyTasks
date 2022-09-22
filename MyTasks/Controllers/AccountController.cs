@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MyTasksClassLib.Models;
 using System.Security.Cryptography.Xml;
 
 namespace MyTasks.Controllers
 {
+    [AllowAnonymous]
     public class AccountController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
@@ -77,6 +79,7 @@ namespace MyTasks.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> LogOut()
         {
             await _signInManager.SignOutAsync();
