@@ -9,9 +9,13 @@ namespace MyTasks.Controllers
     [AllowAnonymous]
     public class AccountController : Controller
     {
+        #region Props
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         public readonly RoleManager<IdentityRole> _roleManager;
+        #endregion
+
+        #region Ctor
         public AccountController(UserManager<IdentityUser> userManager, 
             SignInManager<IdentityUser> signInManager, RoleManager<IdentityRole> roleManager)
         {
@@ -19,6 +23,9 @@ namespace MyTasks.Controllers
             _signInManager = signInManager;
             _roleManager = roleManager;
         }
+        #endregion
+
+        #region Methods
         public IActionResult Index()
         {
             return View();
@@ -36,6 +43,7 @@ namespace MyTasks.Controllers
 
             return View(new RegisterModel());
         }
+        
         [HttpPost]
         public async Task<IActionResult> Registration(RegisterModel regInfo, string returnUrl = null)
         {
@@ -49,6 +57,8 @@ namespace MyTasks.Controllers
 
             if(res.Succeeded)
             {
+                await _userManager.AddToRoleAsync(user, "User");
+                
                 await _signInManager.SignInAsync(user, isPersistent: false);
 
                 return LocalRedirect(returnUrl);
@@ -100,5 +110,6 @@ namespace MyTasks.Controllers
                 ModelState.AddModelError(string.Empty, error.Description);
             }
         }
+        #endregion
     }
 }
