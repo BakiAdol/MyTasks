@@ -29,7 +29,7 @@ namespace MyTasksClassLib.DataAccess.Repository
             dbContext.MyTasks.Add(task);
             await dbContext.SaveChangesAsync();
         }
-        public async Task<AllTasksModel> GetAllTasksAsync(AllTasksModel allTasksModel)
+        public async Task<AllTasksModel> GetAllTasksAsync(AllTasksModel allTasksModel, string userId)
         {
             List<TaskModel> tasks;
             allTasksModel.Tasks = new List<TaskModel>();
@@ -45,6 +45,7 @@ namespace MyTasksClassLib.DataAccess.Repository
             int skipTasks = (taskCurrentPage - 1) * taskNumberOfItemShow;
 
             tasks = await dbContext.MyTasks
+                    .Where(task => task.UserId == userId)
                     .GetOptionTasks(taskOption)
                     .GetPriorityFilterTasks(taskHighPriority, taskMediumPriority, taskLowPrioriry)
                     .OrderTasks(taskShowOrder)
@@ -100,7 +101,7 @@ namespace MyTasksClassLib.DataAccess.Repository
 
             return true;
         }
-        public async Task<SearchTasksModel> GetSearchTasksAsync(SearchTasksModel searchTasksModel)
+        public async Task<SearchTasksModel> GetSearchTasksAsync(SearchTasksModel searchTasksModel, string userId)
         {
             List<TaskModel> tasks;
             searchTasksModel.Tasks = new List<TaskModel>();
@@ -115,6 +116,7 @@ namespace MyTasksClassLib.DataAccess.Repository
             int skipeTasks = (srCurrentPage - 1) * srPgaeItemShow;
 
             tasks = await dbContext.MyTasks
+                    .Where(task => task.UserId == userId)
                     .GetSearchOptionTasks(srOption)
                     .GetSearchPriorityFilterTasks(srPriority)
                     .GetPatternMatchingTasks(srText)

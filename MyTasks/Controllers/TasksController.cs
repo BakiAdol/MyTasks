@@ -33,7 +33,7 @@ namespace MyTasks.Controllers
                 allTasksModel = new AllTasksModel();
             }
 
-            var tasks = await myTaskService.GetAllTasksAsync(allTasksModel);
+            var tasks = await myTaskService.GetAllTasksAsync(allTasksModel, userId);
 
             allTasksModel.ControllerName = "Tasks";
             allTasksModel.ActionName = "Index";

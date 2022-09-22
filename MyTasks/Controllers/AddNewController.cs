@@ -2,6 +2,7 @@
 using MyTasksClassLib.Models;
 using MyTasksClassLib.DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Authorization;
+using MyTasks.Services.IServices;
 
 namespace MyTasks.Controllers
 {
@@ -10,12 +11,14 @@ namespace MyTasks.Controllers
     {
         #region Props
         private readonly IMyTaskRepository myTaskService;
+        private readonly IUserService userService;
         #endregion
 
         #region Ctor
-        public AddNewController(IMyTaskRepository myTaskService)
+        public AddNewController(IMyTaskRepository myTaskService, IUserService userService)
         {
             this.myTaskService = myTaskService;
+            this.userService = userService;
         }
         #endregion
 
@@ -27,7 +30,11 @@ namespace MyTasks.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(TaskModel task)
         {
-            if (!ModelState.IsValid) return View();
+            // if (!ModelState.IsValid) return View();
+
+            var userID = userService.GetUserId();
+
+            task.UserId = userService.GetUserId();
 
             await myTaskService.AddNewTaskAsync(task);
 
