@@ -11,12 +11,13 @@ namespace MyTasks.Controllers
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
-
+        public readonly RoleManager<IdentityRole> _roleManager;
         public AccountController(UserManager<IdentityUser> userManager, 
-            SignInManager<IdentityUser> signInManager)
+            SignInManager<IdentityUser> signInManager, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
         }
         public IActionResult Index()
         {
@@ -24,8 +25,13 @@ namespace MyTasks.Controllers
         }
 
         [HttpGet]
-        public IActionResult Registration(string returnUrl = null)
+        public async Task<IActionResult> Registration(string returnUrl = null)
         {
+            if(! await _roleManager.RoleExistsAsync("User"))
+            {
+                await _roleManager.CreateAsync(new IdentityRole("User"));
+            }
+
             ViewData["returnUrl"] = returnUrl;
 
             return View(new RegisterModel());
