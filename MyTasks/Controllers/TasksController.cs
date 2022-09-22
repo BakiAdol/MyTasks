@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using MyTasksClassLib.Models;
 using MyTasksClassLib.DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Authorization;
+using MyTasks.Services.IServices;
 
 namespace MyTasks.Controllers
 {
@@ -11,18 +12,22 @@ namespace MyTasks.Controllers
     {
         #region Props
         private readonly IMyTaskRepository myTaskService;
+        private readonly IUserService userService;
         #endregion
 
         #region Ctor
-        public TasksController(IMyTaskRepository myTaskService)
+        public TasksController(IMyTaskRepository myTaskService, IUserService userService)
         {
             this.myTaskService = myTaskService;
+            this.userService = userService;
         }
         #endregion
 
         #region Methods
         public async Task<IActionResult> Index(AllTasksModel? allTasksModel)
         {
+            var userId = userService.GetUserId();
+
             if (allTasksModel == null)
             {
                 allTasksModel = new AllTasksModel();

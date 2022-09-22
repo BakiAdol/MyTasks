@@ -5,11 +5,14 @@ using MyTasksClassLib.DataAccess.Repository;
 using Microsoft.AspNetCore.Identity;
 using MyTasksClassLib.Models;
 using MyTasks.Helpers.ClaimsHelper;
+using MyTasks.Services.IServices;
+using MyTasks.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // dependencie injection
 builder.Services.AddScoped<IMyTaskRepository, MyTaskRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 // db connection build
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
