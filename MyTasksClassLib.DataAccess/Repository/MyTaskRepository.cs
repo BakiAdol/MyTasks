@@ -1,5 +1,6 @@
 ﻿//using Microsoft.AspNetCore.Mvc.Filters;
 //using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.VisualBasic;
@@ -138,6 +139,15 @@ namespace MyTasksClassLib.DataAccess.Repository
         public async Task<List<UserModel>> GetAllUser()
         {
             var users = await dbContext.Users.ToListAsync();
+            var roles = await dbContext.Roles.ToListAsync();
+            var userRoles = await dbContext.UserRoles.ToListAsync();
+
+            foreach(var user in users)
+            {
+                var uRole = userRoles.FirstOrDefault(r => r.UserId == user.Id);
+                user.RoleId = uRole.RoleId;
+                user.RoleName = roles.FirstOrDefault(role => role.Id == uRole.RoleId).Name;
+            }
 
             return users ?? new List<UserModel>();
         }
