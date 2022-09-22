@@ -2,6 +2,7 @@
 //using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.VisualBasic;
 using MyTasksClassLib.DataAccess;
 using MyTasksClassLib.DataAccess.Repository.IRepository;
 using MyTasksClassLib.DataAccess.TasksFilter;
@@ -132,6 +133,13 @@ namespace MyTasksClassLib.DataAccess.Repository
             searchTasksModel.Tasks = tasks;
 
             return searchTasksModel;
+        }
+        
+        public async Task<List<UserModel>> GetAllUser()
+        {
+            var users = await dbContext.Users.ToListAsync();
+
+            return users ?? new List<UserModel>();
         }
         #endregion
     }

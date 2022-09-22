@@ -23,7 +23,7 @@ builder.Services.AddIdentity<UserModel, IdentityRole>().
     .AddDefaultTokenProviders();
 
 builder.Services.ConfigureApplicationCookie(opt => {
-    opt.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Home/AccessDenied");
+    opt.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Admin/AccessDenied");
 });
 
 builder.Services.AddScoped<IUserClaimsPrincipalFactory<UserModel>,

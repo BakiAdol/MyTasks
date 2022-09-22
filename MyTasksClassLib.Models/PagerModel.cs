@@ -1,8 +1,8 @@
 ﻿namespace MyTasksClassLib.Models
 {
-    public class PagerModel
+    public class PagerModel<T> where T : class
     {
-        public List<TaskModel> Tasks { get; set; } = new List<TaskModel>();
+        public List<T> Tasks { get; set; } = new List<T>();
         public int TotalPages { get; set; } = 0;
         public int CurrentPage { get; set; } = 1;
         public int PageItemShow { get; set; } = 2;

@@ -1,0 +1,24 @@
+﻿@model IEnumerable<UserModel>
+@using Microsoft.AspNetCore.Identity
+
+@inject UserManager<UserModel> UserManager
+
+<div>
+    <h1>Users</h1>
+
+    <table>
+        <tr>
+            <td>User Name</td>
+            <td>User Role</td>
+        </tr>
+        @{
+            foreach(var user in Model)
+            {
+                <tr>
+                    <td>@user.Name</td>
+                </tr>
+            }
+        }
+    </table>
+
+</div>
