@@ -1,7 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<UserModel> SignInManager
 
 <div class="headerContainer">
     <div class="headerLeftTitleContainer">
@@ -11,7 +10,7 @@
         @{
             if (SignInManager.IsSignedIn(User))
             {
-                <a href="/" class="headerItem">Hello @UserManager.GetUserName(User)</a>
+                <a href="/" class="headerItem">Hello @(User.FindFirst("Name").Value)</a>
                 <a href="@Url.Action("LogOut", "Account")" class="headerItem">Log Out</a>
             }
             else

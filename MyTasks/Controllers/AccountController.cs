@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using MyTasksClassLib.DataAccess.Migrations;
 using MyTasksClassLib.Models;
 using System.Security.Cryptography.Xml;
 
@@ -10,14 +11,14 @@ namespace MyTasks.Controllers
     public class AccountController : Controller
     {
         #region Props
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<UserModel> _userManager;
+        private readonly SignInManager<UserModel> _signInManager;
         public readonly RoleManager<IdentityRole> _roleManager;
         #endregion
 
         #region Ctor
-        public AccountController(UserManager<IdentityUser> userManager, 
-            SignInManager<IdentityUser> signInManager, RoleManager<IdentityRole> roleManager)
+        public AccountController(UserManager<UserModel> userManager, 
+            SignInManager<UserModel> signInManager, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;

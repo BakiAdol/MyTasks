@@ -4,7 +4,7 @@ using MyTasksClassLib.Models;
 
 namespace MyTasksClassLib.DataAccess
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<UserModel>
     {
         #region Ctor
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)

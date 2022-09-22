@@ -3,6 +3,8 @@ using MyTasksClassLib.DataAccess;
 using MyTasksClassLib.DataAccess.Repository.IRepository;
 using MyTasksClassLib.DataAccess.Repository;
 using Microsoft.AspNetCore.Identity;
+using MyTasksClassLib.Models;
+using MyTasks.Helpers.ClaimsHelper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,12 +15,16 @@ builder.Services.AddScoped<IMyTaskRepository, MyTaskRepository>();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>().
-    AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddIdentity<UserModel, IdentityRole>().
+    AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
 
 builder.Services.ConfigureApplicationCookie(opt => {
     opt.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Home/AccessDenied");
 });
+
+builder.Services.AddScoped<IUserClaimsPrincipalFactory<UserModel>,
+    ApplicationUserClaimsPrincipalFactory>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
