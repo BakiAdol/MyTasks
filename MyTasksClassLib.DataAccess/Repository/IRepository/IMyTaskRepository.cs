@@ -10,6 +10,6 @@ namespace MyTasksClassLib.DataAccess.Repository.IRepository
         public Task<TaskModel> GetATaskAsync(int taskId);
         public Task<bool> UpdateATaskAsync(TaskModel updatedTask);
         public Task<SearchTasksModel> GetSearchTasksAsync(SearchTasksModel searchTasksModel, string userId);
-        public Task<List<UserModel>> GetAllUser();
+        public Task<List<UserModel>> GetAllUser(string? SearchText);
     }
 }

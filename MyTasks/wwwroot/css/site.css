@@ -26,6 +26,9 @@ li{
 }
 
 /* -------- common ---------------*/
+main{
+    min-height: 80vh;
+}
 .displayFjcsb{
     display: flex;
     justify-content: space-between;
@@ -508,6 +511,49 @@ div.hoverUp:hover {
     color: var(--slate);
 }
 /* ------------- end of log reg -------------*/
+
+/* ------------- admin style -------------*/
+.findUserAdminContainer{
+    width: 50%;
+    margin: 2rem auto;
+}
+.findUserAdminContainer form{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.findUserSearchText{
+    width: 80%;
+}
+.findUserButtonContainer {
+    width: 10rem;
+    margin-top: 1.4rem;
+}
+.userTable {
+    width: 50%;
+    margin: 2rem auto;
+    font-size: 1.6rem;
+    color: var(--slate);
+    text-align: center;
+}
+.userTable tr:first-child{
+    background-color: var(--dark-gray);
+}
+.userTable tr th{
+    padding: .5rem;
+}
+.userTable tr{
+    background-color: var(--light-gray);
+}
+.changeRoleButton{
+    display: inline-block;
+    background-color: var(--primary);
+    color: var(--white);
+    padding: .5rem;
+    margin: .5rem;
+    cursor: pointer;
+}
+/* ------------- end of admin style -------------*/
 /* --------------- footer style ----------------*/
 .footerContainer {
     background-color: var(--primary);

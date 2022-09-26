@@ -136,9 +136,12 @@ namespace MyTasksClassLib.DataAccess.Repository
             return searchTasksModel;
         }
         
-        public async Task<List<UserModel>> GetAllUser()
+        public async Task<List<UserModel>> GetAllUser(string? SearchText)
         {
             var users = await dbContext.Users.ToListAsync();
+            if(SearchText != null) users = users
+                    .Where(user => user.Name.Contains(SearchText, StringComparison.InvariantCultureIgnoreCase))
+                    .ToList();
             var roles = await dbContext.Roles.ToListAsync();
             var userRoles = await dbContext.UserRoles.ToListAsync();
 

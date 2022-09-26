@@ -19,9 +19,11 @@ namespace MyTasks.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> UserList()
+        public async Task<IActionResult> UserList(string? SearchText)
         {
-            var users = await myTaskService.GetAllUser();
+            ViewBag.SearchText = SearchText;
+
+            var users = await myTaskService.GetAllUser(SearchText);
 
             return View(users);
         }

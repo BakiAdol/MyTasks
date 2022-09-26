@@ -4,12 +4,24 @@
 @inject UserManager<UserModel> UserManager
 
 <div>
-    <h1>Users</h1>
+    <div class="findUserAdminContainer">
+        <form>
+            <div class="searchBoxTextInputContainer findUserSearchText">
+                <input class="textInputStyle inputTypeTextStyle"
+                       value="@(ViewBag.SearchText ?? "")"
+                       name="SearchText" placeholder="Find Users" />
+            </div>
+            <div class="findUserButtonContainer">
+                <input class="inputTypeSubmitPrimary" type="submit" value="Find" />
+            </div>
+        </form>
+    </div>
 
-    <table>
+    <table class="userTable">
         <tr>
-            <td>User Name</td>
-            <td>User Role</td>
+            <th>User Name</th>
+            <th>User Role</th>
+            <th>Action</th>
         </tr>
         @{
             foreach(var user in Model)
@@ -17,6 +29,9 @@
                 <tr>
                     <td>@user.Name</td>
                     <td>@user.RoleName</td>
+                    <td>
+                        <a class="changeRoleButton">Change Role</a>
+                    </td>
                 </tr>
             }
         }
