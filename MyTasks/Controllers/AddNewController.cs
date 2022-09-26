@@ -3,6 +3,7 @@ using MyTasksClassLib.Models;
 using MyTasksClassLib.DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Authorization;
 using MyTasks.Services.IServices;
+using System.Threading.Tasks;
 
 namespace MyTasks.Controllers
 {
@@ -25,16 +26,20 @@ namespace MyTasks.Controllers
         #region Methods
         public IActionResult Index()
         {
-            return View();
-        }
-        [HttpPost]
-        public async Task<IActionResult> Index(TaskModel task)
-        {
-            // if (!ModelState.IsValid) return View();
-
+            var tModel = new TaskModel();
             var userID = userService.GetUserId();
 
-            task.UserId = userService.GetUserId();
+            tModel.UserId = userService.GetUserId();
+
+            return View(tModel);
+        }
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public async Task<IActionResult> Index(TaskModel task)
+        {
+            if (!ModelState.IsValid) return View();
+
+            task.Description ??= string.Empty;
 
             await myTaskService.AddNewTaskAsync(task);
 

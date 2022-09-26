@@ -2,7 +2,7 @@
 
 namespace MyTasks.CustomValidations
 {
-    public class DueDateValidation : ValidationAttribute
+    public class AddNewTaskDueDateValidation : ValidationAttribute
     {
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {

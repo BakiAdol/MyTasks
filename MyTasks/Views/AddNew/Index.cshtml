@@ -3,13 +3,13 @@
 <partial name="_navBar" />
 
 <div class="addNewTaskFormContainer shadowAndBackground">
+    <p class="formTitle">Add New Task</p>
     <form asp-controller="AddNew" asp-action="Index">
-
-        <p class="formTitle">Add New Task</p>
-        
+        <input asp-for="UserId" hidden/>
         <span asp-validation-for="MyTask" class="ErrorMessageText"></span>
         <input asp-for="MyTask" class="textInputStyle inputTypeTextStyle" placeholder="Task" />
 
+        <span asp-validation-for="Description" class="ErrorMessageText"></span>
         <textarea asp-for="Description" rows="3" class="textInputStyle textAreaStyle"
                   placeholder="Task Description"></textarea>
 
@@ -21,12 +21,12 @@
                     <option value="1">Medium</option>
                     <option value="2">Low</option>
                 </select>
+                <span asp-validation-for="Priority" class="ErrorMessageText"></span>
             </div>
             <div class="">
                 <p>Due Date: </p>
                 <input asp-for="DueDate" type="date" class="inputTypeDate" required
-                value="@DateTime.Today.ToString("yyyy-MM-dd")" min="@DateTime.Today.ToString("yyyy-MM-dd")">
-            
+                       value="@DateTime.Today.ToString("yyyy-MM-dd")" min="@DateTime.Today.ToString("yyyy-MM-dd")">
                 <span asp-validation-for="DueDate" class="ErrorMessageText"></span>
             </div>
         </div>

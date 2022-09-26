@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyTasksClassLib.Models", "M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyTasksClassLib.DataAccess", "MyTasksClassLib.DataAccess\MyTasksClassLib.DataAccess.csproj", "{B7F917A1-1182-4B0F-8A5F-461F39011AF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTasksClassLib.Utils", "MyTasksClassLib.Utils\MyTasksClassLib.Utils.csproj", "{36FF211E-F8EA-4495-8863-C7BD97F8ADF5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTasksClassLib.Util", "MyTasksClassLib.Util\MyTasksClassLib.Util.csproj", "{3BFBCE3F-D961-432A-8CA2-9DA5E792A998}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{B7F917A1-1182-4B0F-8A5F-461F39011AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7F917A1-1182-4B0F-8A5F-461F39011AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7F917A1-1182-4B0F-8A5F-461F39011AF6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{36FF211E-F8EA-4495-8863-C7BD97F8ADF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{36FF211E-F8EA-4495-8863-C7BD97F8ADF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{36FF211E-F8EA-4495-8863-C7BD97F8ADF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{36FF211E-F8EA-4495-8863-C7BD97F8ADF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BFBCE3F-D961-432A-8CA2-9DA5E792A998}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BFBCE3F-D961-432A-8CA2-9DA5E792A998}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BFBCE3F-D961-432A-8CA2-9DA5E792A998}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BFBCE3F-D961-432A-8CA2-9DA5E792A998}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
