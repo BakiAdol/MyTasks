@@ -24,13 +24,16 @@
             <th>Action</th>
         </tr>
         @{
-            foreach(var user in Model.Tasks)
+            foreach (var user in Model.Tasks)
             {
                 <tr>
                     <td>@user.Name</td>
                     <td>@user.RoleName</td>
                     <td>
-                        <a class="changeRoleButton">Change Role</a>
+                        <a class="changeRoleButton"
+                            asp-action="ChangeRole" asp-controller="Admin" asp-route-email=@user.Email>
+                            Change Role to @(user.RoleName == "Admin" ? "User" : "Admin")
+                        </a>
                     </td>
                 </tr>
             }
@@ -48,9 +51,9 @@
             ViewData["orderOfItemShow"] = Model.OrderOfItemShow;
             ViewData["SearchText"] = Model.SearchText;
 
-            <div class="pagerContainer">
-                <partial name="_taskPagerLayout" view-data="ViewData" />
-            </div>
+                        <div class="pagerContainer">
+                            <partial name="_taskPagerLayout" view-data="ViewData" />
+                        </div>
         }
     }
 

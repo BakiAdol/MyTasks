@@ -31,6 +31,13 @@ namespace MyTasks.Controllers
 
             return View(searchUsersModel);
         }
+
+        public async Task<IActionResult> ChangeRole(string Email)
+        {
+            await myTaskService.UpdateUserRole(Email);
+
+            return RedirectToAction("UserList");
+        }
         public IActionResult AccessDenied()
         {
             return View();

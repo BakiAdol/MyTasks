@@ -547,8 +547,8 @@ div.hoverUp:hover {
 }
 .changeRoleButton{
     display: inline-block;
-    background-color: var(--primary);
-    color: var(--white);
+    background-color: var(--dark-gray);
+    color: var(--slate);
     padding: .5rem;
     margin: .5rem;
     cursor: pointer;

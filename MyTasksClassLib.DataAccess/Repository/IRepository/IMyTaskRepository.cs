@@ -11,5 +11,6 @@ namespace MyTasksClassLib.DataAccess.Repository.IRepository
         public Task<bool> UpdateATaskAsync(TaskModel updatedTask);
         public Task<SearchTasksModel> GetSearchTasksAsync(SearchTasksModel searchTasksModel, string userId);
         public Task GetAllUser(SearchUsersModel searchUsersModel);
+        public Task UpdateUserRole(string Email);
     }
 }

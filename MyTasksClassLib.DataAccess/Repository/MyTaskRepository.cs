@@ -16,12 +16,14 @@ namespace MyTasksClassLib.DataAccess.Repository
     {
         #region Props
         private readonly ApplicationDbContext dbContext;
+        private readonly UserManager<UserModel> _userManager;
         #endregion
 
         #region Ctor
-        public MyTaskRepository(ApplicationDbContext dbContext)
+        public MyTaskRepository(ApplicationDbContext dbContext, UserManager<UserModel> _userManager)
         {
             this.dbContext = dbContext;
+            this._userManager = _userManager;
         }
         #endregion
 
@@ -159,10 +161,34 @@ namespace MyTasksClassLib.DataAccess.Repository
             foreach(var user in users)
             {
                 var uRole = userRoles.FirstOrDefault(r => r.UserId == user.Id);
-                user.RoleId = uRole.RoleId;
-                user.RoleName = roles.FirstOrDefault(role => role.Id == uRole.RoleId).Name;
+                if (uRole == null) user.RoleName = "User";
+                else
+                {
+                    user.RoleId = uRole.RoleId;
+                    user.RoleName = roles.FirstOrDefault(role => role.Id == uRole.RoleId).Name;
+                }
             }
             searchUsersModel.Tasks = users ?? new List<UserModel>();
+        }
+        public async Task UpdateUserRole(string Email)
+        {
+            var dbUser = dbContext.Users.FirstOrDefault(u => u.Email == Email);
+            if (dbUser == null) return;
+
+            var dbUserRole = dbContext.UserRoles.FirstOrDefault(u => u.UserId == dbUser.Id);
+
+            var prevRoleName = "User";
+
+            if (dbUserRole != null)
+            {
+                prevRoleName = dbContext.Roles.Where(r => r.Id == dbUserRole.RoleId)
+                .Select(e => e.Name).FirstOrDefault();
+            }
+
+            await _userManager.RemoveFromRoleAsync(dbUser, prevRoleName);
+            await _userManager.AddToRoleAsync(dbUser,
+                prevRoleName == "Admin" ? "User" : "Admin");
+
         }
         #endregion
     }
