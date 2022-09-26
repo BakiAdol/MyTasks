@@ -1,4 +1,4 @@
-﻿@model IEnumerable<UserModel>
+﻿@model MyTasksClassLib.Models.SearchUsersModel
 @using Microsoft.AspNetCore.Identity
 
 @inject UserManager<UserModel> UserManager
@@ -8,7 +8,7 @@
         <form>
             <div class="searchBoxTextInputContainer findUserSearchText">
                 <input class="textInputStyle inputTypeTextStyle"
-                       value="@(ViewBag.SearchText ?? "")"
+                       value="@(Model.SearchText ?? "")"
                        name="SearchText" placeholder="Find Users" />
             </div>
             <div class="findUserButtonContainer">
@@ -24,7 +24,7 @@
             <th>Action</th>
         </tr>
         @{
-            foreach(var user in Model)
+            foreach(var user in Model.Tasks)
             {
                 <tr>
                     <td>@user.Name</td>
@@ -36,5 +36,22 @@
             }
         }
     </table>
+
+    @{
+        if (Model.TotalPages != 0)
+        {
+            ViewData["currentPageNumber"] = Model.CurrentPage;
+            ViewData["totalPages"] = Model.TotalPages;
+            ViewData["controllerName"] = Model.ControllerName;
+            ViewData["actionName"] = Model.ActionName;
+            ViewData["pageItemShow"] = Model.PageItemShow;
+            ViewData["orderOfItemShow"] = Model.OrderOfItemShow;
+            ViewData["SearchText"] = Model.SearchText;
+
+            <div class="pagerContainer">
+                <partial name="_taskPagerLayout" view-data="ViewData" />
+            </div>
+        }
+    }
 
 </div>

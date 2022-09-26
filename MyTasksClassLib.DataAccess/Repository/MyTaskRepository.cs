@@ -136,12 +136,23 @@ namespace MyTasksClassLib.DataAccess.Repository
             return searchTasksModel;
         }
         
-        public async Task<List<UserModel>> GetAllUser(string? SearchText)
+        public async Task GetAllUser(SearchUsersModel searchUsersModel)
         {
+            string SearchText = searchUsersModel.SearchText;
+            int skipUsers = (searchUsersModel.CurrentPage - 1) * searchUsersModel.PageItemShow;
+            int userShow = searchUsersModel.PageItemShow;
+
             var users = await dbContext.Users.ToListAsync();
             if(SearchText != null) users = users
                     .Where(user => user.Name.Contains(SearchText, StringComparison.InvariantCultureIgnoreCase))
                     .ToList();
+
+            searchUsersModel.TotalPages = 
+                (users.Count + userShow - 1) / userShow;
+
+
+            users = users.Skip(skipUsers).Take(userShow).ToList();
+
             var roles = await dbContext.Roles.ToListAsync();
             var userRoles = await dbContext.UserRoles.ToListAsync();
 
@@ -151,8 +162,7 @@ namespace MyTasksClassLib.DataAccess.Repository
                 user.RoleId = uRole.RoleId;
                 user.RoleName = roles.FirstOrDefault(role => role.Id == uRole.RoleId).Name;
             }
-
-            return users ?? new List<UserModel>();
+            searchUsersModel.Tasks = users ?? new List<UserModel>();
         }
         #endregion
     }

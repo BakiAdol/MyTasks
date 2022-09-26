@@ -44,7 +44,9 @@
                     TaskLowPriority = (int)ViewData["taskLowPriority"]
                 };
                 ViewData["actionParameter"] = actionParameter;
-            }else{
+            }
+            else if((string)controllerName == "Search")
+            {
                 var actionParameter = new SearchTasksModel
                 {
                     CurrentPage = pairPageButton.Value,
@@ -53,6 +55,15 @@
                     TaskStatus = (int)ViewData["TaskStatus"],
                     TaskPriority = (int)ViewData["TaskPriority"],
                     SearchText = (string)ViewData["SearchText"],
+                };
+                ViewData["actionParameter"] = actionParameter;
+            }
+            else{
+                var actionParameter = new SearchUsersModel
+                {
+                    CurrentPage = pairPageButton.Value,
+                    SearchText = (string)ViewData["SearchText"],
+                    TotalPages = (int)ViewData["totalPages"],
                 };
                 ViewData["actionParameter"] = actionParameter;
             }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyTasksClassLib.DataAccess.Repository.IRepository;
+using MyTasksClassLib.Models;
 using System.Data;
 
 namespace MyTasks.Controllers
@@ -19,13 +20,16 @@ namespace MyTasks.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> UserList(string? SearchText)
+        public async Task<IActionResult> UserList(SearchUsersModel? searchUsersModel)
         {
-            ViewBag.SearchText = SearchText;
+            searchUsersModel.PageItemShow = 5;
 
-            var users = await myTaskService.GetAllUser(SearchText);
+            await myTaskService.GetAllUser(searchUsersModel);
 
-            return View(users);
+            searchUsersModel.ControllerName = "Admin";
+            searchUsersModel.ActionName = "UserList";
+
+            return View(searchUsersModel);
         }
         public IActionResult AccessDenied()
         {
