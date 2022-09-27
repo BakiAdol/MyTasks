@@ -92,7 +92,7 @@ namespace MyTasksClassLib.DataAccess.Repository
         public async Task UpdateATaskAsync(TaskModel updatedTask)
         {
             dbContext.MyTasks.Update(updatedTask);
-
+  
             await dbContext.SaveChangesAsync();
         }
         public async Task<SearchTasksModel> GetSearchTasksAsync(SearchTasksModel searchTasksModel, string userId)
@@ -179,6 +179,17 @@ namespace MyTasksClassLib.DataAccess.Repository
             await _userManager.AddToRoleAsync(dbUser,
                 prevRoleName == "Admin" ? "User" : "Admin");
 
+        }
+        public String GetUserRoleName(string userId)
+        {
+            var dbUser = dbContext.Users.FirstOrDefault(u => u.Id == userId);
+            if (dbUser == null) return "User Role Not Found!";
+            var dbUserRole = dbContext.UserRoles.FirstOrDefault(u => u.UserId == dbUser.Id);
+            if (dbUserRole == null) return "User Role Not Found!";
+            var userRoleName = dbContext.Roles.Where(r => r.Id == dbUserRole.RoleId)
+                .Select(e => e.Name).FirstOrDefault();
+
+            return userRoleName??string.Empty;
         }
         #endregion
     }

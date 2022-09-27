@@ -109,6 +109,13 @@ namespace MyTasks.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> Profile(string User)
+        {
+            return View();
+        }
+
         private void AddError(IdentityResult res) 
         {
             foreach(var error in res.Errors)

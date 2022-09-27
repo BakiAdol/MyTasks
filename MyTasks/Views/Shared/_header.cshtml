@@ -1,6 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 
 @inject SignInManager<UserModel> SignInManager
+@inject UserManager<UserModel> UserManager
 
 <div class="headerContainer">
     <div class="headerLeftTitleContainer">
@@ -10,7 +11,15 @@
         @{
             if (SignInManager.IsSignedIn(User))
             {
-                <a href="/" class="headerItem">Hello @(User.FindFirst("Name").Value)</a>
+                <a href="@Url.Action("Profile", "Account", new{
+                    User = UserManager.GetUserAsync(User).Result.Id
+                })" class="headerItem">Hello @(User.FindFirst("Name")?.Value)</a>
+
+                if (User.FindFirst("RoleName")?.Value == "Admin")
+                {
+                    <a href="@Url.Action("UserList", "Admin")" class="headerItem">Admin Panel</a>
+                }
+
                 <a href="@Url.Action("LogOut", "Account")" class="headerItem">Log Out</a>
             }
             else

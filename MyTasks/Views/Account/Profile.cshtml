@@ -1,0 +1,19 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject UserManager<UserModel> UserManager
+@{
+    var userDetail = UserManager.GetUserAsync(User).Result;
+}
+<div class="profileContainer shadowAndBackground">
+    <div class="profilePicContainer">
+        <img src="/img/profileImage.jpg" />
+    </div>
+    <p>User Role : @(User.FindFirst("RoleName").Value)</p>
+    <p>User Name : @userDetail.Name</p>
+    <p>Email : @userDetail.Email</p>
+
+    <div class="editProfileButtonContainer">
+        <a class="inputTypeSubmitPrimary">Edit Profile</a>
+    </div>
+    
+</div>
