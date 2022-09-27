@@ -8,6 +8,7 @@ using MyTasksClassLib.DataAccess;
 using MyTasksClassLib.DataAccess.Repository.IRepository;
 using MyTasksClassLib.DataAccess.TasksFilter;
 using MyTasksClassLib.Models;
+using MyTasksClassLib.Models.ViewModels;
 using System.Threading.Tasks;
 
 namespace MyTasksClassLib.DataAccess.Repository
@@ -28,10 +29,26 @@ namespace MyTasksClassLib.DataAccess.Repository
         #endregion
 
         #region Methods
-        public async Task AddNewTaskAsync(TaskModel task)
+        public async Task AddNewTaskAsync(AddNewViewModel newTask, string userId)
         {
-            dbContext.MyTasks.Add(task);
-            await dbContext.SaveChangesAsync();
+            try
+            {
+                TaskModel newEntityTask = new()
+                { 
+                    MyTask = newTask.MyTask,
+                    Description = newTask.Description??string.Empty,
+                    Priority = newTask.Priority,
+                    DueDate = newTask.DueDate,
+                    UserId = userId
+                };
+
+                dbContext.MyTasks.Add(newEntityTask);
+                await dbContext.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Failed to add task!");
+            }
         }
         public async Task<AllTasksModel> GetAllTasksAsync(AllTasksModel allTasksModel, string userId)
         {

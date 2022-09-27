@@ -4,6 +4,7 @@ using MyTasksClassLib.DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Authorization;
 using MyTasks.Services.IServices;
 using System.Threading.Tasks;
+using MyTasksClassLib.Models.ViewModels;
 
 namespace MyTasks.Controllers
 {
@@ -26,22 +27,17 @@ namespace MyTasks.Controllers
         #region Methods
         public IActionResult Index()
         {
-            var tModel = new TaskModel();
-            var userID = userService.GetUserId();
-
-            tModel.UserId = userService.GetUserId();
-
-            return View(tModel);
+            return View();
         }
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public async Task<IActionResult> Index(TaskModel task)
+        public async Task<IActionResult> Index(AddNewViewModel newTask)
         {
             if (!ModelState.IsValid) return View();
 
-            task.Description ??= string.Empty;
+            var userID = userService.GetUserId();
 
-            await myTaskService.AddNewTaskAsync(task);
+            await myTaskService.AddNewTaskAsync(newTask, userID);
 
             TempData["GetNotification"] = 0;
 

@@ -7,22 +7,12 @@ namespace MyTasksClassLib.Models
     public class TaskModel
     {
         [Key]
-        public int Id { get; set; } = 0;
-
+        public int Id { get; set; }
         public string UserId { get; set; } = string.Empty;
-
-        [Required(ErrorMessage = "Please Enter task.")]
-        [StringLength(60)]
-        public string MyTask { get; set; }
-        public string? Description { get; set; } = string.Empty;
-
-        [Required]
-        [PrioritySelectValidation]
+        public string MyTask { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
         public int Priority { get; set; } = 0;
         public int Status { get; set; } = 0;
-
-        [Required]
-        [AddNewTaskDueDateValidation]
         public DateTime DueDate { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public string? CreatedSource { get; set; }

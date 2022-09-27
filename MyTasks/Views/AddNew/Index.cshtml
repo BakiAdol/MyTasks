@@ -1,15 +1,13 @@
-﻿@model MyTasksClassLib.Models.TaskModel
+﻿@model MyTasksClassLib.Models.ViewModels.AddNewViewModel
 
 <partial name="_navBar" />
 
 <div class="addNewTaskFormContainer shadowAndBackground">
     <p class="formTitle">Add New Task</p>
     <form asp-controller="AddNew" asp-action="Index">
-        <input asp-for="UserId" hidden/>
         <span asp-validation-for="MyTask" class="ErrorMessageText"></span>
         <input asp-for="MyTask" class="textInputStyle inputTypeTextStyle" placeholder="Task" />
 
-        <span asp-validation-for="Description" class="ErrorMessageText"></span>
         <textarea asp-for="Description" rows="3" class="textInputStyle textAreaStyle"
                   placeholder="Task Description"></textarea>
 
