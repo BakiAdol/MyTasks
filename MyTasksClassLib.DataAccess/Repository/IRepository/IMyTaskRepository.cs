@@ -6,13 +6,14 @@ namespace MyTasksClassLib.DataAccess.Repository.IRepository
     public interface IMyTaskRepository
     {
         Task AddNewTaskAsync(TaskModel newTask);
-        public Task<AllTasksModel> GetAllTasksAsync(AllTasksModel allTasksModel, string userId);
-        public Task DeleteATaskAsync(int taskId);
-        public Task<TaskModel> GetATaskAsync(int taskId);
-        public Task UpdateATaskAsync(TaskModel updatedTask);
-        public Task<SearchTasksModel> GetSearchTasksAsync(SearchTasksModel searchTasksModel, string userId);
-        public Task GetAllUser(SearchUsersModel searchUsersModel);
-        public Task UpdateUserRole(string Email);
+        Task<AllTasksModel> GetAllTasksAsync(AllTasksModel allTasksModel, string userId);
+        Task DeleteATaskAsync(int taskId);
+        Task<TaskModel> GetATaskAsync(int taskId);
+        Task UpdateATaskAsync(TaskModel updatedTask);
+        Task<SearchTasksModel> GetSearchTasksAsync(SearchTasksModel searchTasksModel, string userId);
+        Task GetAllUser(SearchUsersModel searchUsersModel);
+        Task UpdateUserRole(string Email);
         String GetUserRoleName(string userId);
+        UserModel GetUser(string userId);
     }
 }

@@ -191,6 +191,17 @@ namespace MyTasksClassLib.DataAccess.Repository
 
             return userRoleName??string.Empty;
         }
+        public UserModel GetUser(string userId)
+        {
+            var dbUser = dbContext.Users.FirstOrDefault(u => u.Id == userId);
+            if (dbUser == null) return new UserModel();
+            var dbUserRole = dbContext.UserRoles.FirstOrDefault(u => u.UserId == dbUser.Id);
+            if (dbUserRole == null) return new UserModel();
+            var userRoleName = dbContext.Roles.Where(r => r.Id == dbUserRole.RoleId)
+                .Select(e => e.Name).FirstOrDefault();
+            dbUser.RoleName = userRoleName??string.Empty;
+            return dbUser;
+        }
         #endregion
     }
 }

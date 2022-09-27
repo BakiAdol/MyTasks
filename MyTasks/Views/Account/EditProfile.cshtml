@@ -3,14 +3,18 @@
     <div class="profilePicContainer">
         <img src="/img/profileImage.jpg" />
     </div>
-    <p>User Role : @Model.RoleName</p>
-    <p>User Name : @Model.Name</p>
-    <p>Email : @Model.Email</p>
+    <input asp-for="Name" value="@(Model.Name??"Enter your name")" />
+    <input asp-for="Email" value="@(Model.Email??"Enter your email")" />
+
+    <div>
+        <label>Add or Upate Profile Picture</label>
+        <input type="file" />
+    </div>
 
     <div class="editProfileButtonContainer">
         <a href="@Url.Action("EditProfile", "Account", new {
             User = Model.Id
-        })" class="inputTypeSubmitPrimary">Edit Profile</a>
+        })" class="inputTypeSubmitPrimary">Save</a>
     </div>
-    
+
 </div>

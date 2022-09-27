@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MyTasksClassLib.DataAccess.Migrations;
+using MyTasksClassLib.DataAccess.Repository.IRepository;
 using MyTasksClassLib.Models;
 using System.Security.Cryptography.Xml;
 
@@ -14,15 +15,18 @@ namespace MyTasks.Controllers
         private readonly UserManager<UserModel> _userManager;
         private readonly SignInManager<UserModel> _signInManager;
         public readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IMyTaskRepository _myTaskRepository;
         #endregion
 
         #region Ctor
         public AccountController(UserManager<UserModel> userManager, 
-            SignInManager<UserModel> signInManager, RoleManager<IdentityRole> roleManager)
+            SignInManager<UserModel> signInManager, RoleManager<IdentityRole> roleManager, 
+            IMyTaskRepository myTaskRepository)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
+            _myTaskRepository = myTaskRepository;
         }
         #endregion
 
@@ -111,9 +115,18 @@ namespace MyTasks.Controllers
 
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> Profile(string User)
+        public IActionResult Profile(string User)
         {
-            return View();
+            var user = _myTaskRepository.GetUser(User);
+            return View(user);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult EditProfile(string User)
+        {
+            var user = _myTaskRepository.GetUser(User);
+            return View(user);
         }
 
         private void AddError(IdentityResult res) 
