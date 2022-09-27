@@ -89,30 +89,11 @@ namespace MyTasksClassLib.DataAccess.Repository
             var task = await dbContext.MyTasks.FirstOrDefaultAsync(item => item.Id == taskId);
             return task ?? new TaskModel();
         }
-        public async Task<bool> UpdateATaskAsync(TaskModel updatedTask)
+        public async Task UpdateATaskAsync(TaskModel updatedTask)
         {
-            var oldTask = await dbContext.MyTasks.FirstOrDefaultAsync(item => item.Id == updatedTask.Id);
-
-            if (oldTask == null) return false;
-            if (updatedTask.MyTask == null) return false;
-            if (updatedTask.DueDate != oldTask.DueDate
-                && updatedTask.DueDate < DateTime.Now) {
-
-                updatedTask.DueDate = oldTask.DueDate;
-
-                return false;
-            }
-
-            oldTask.MyTask = updatedTask.MyTask;
-            oldTask.Status = updatedTask.Status;
-            oldTask.Priority = updatedTask.Priority;
-            oldTask.DueDate = updatedTask.DueDate;
-            oldTask.UpdatedDate = DateTime.Now;
-            oldTask.Description = updatedTask.Description??"";
+            dbContext.MyTasks.Update(updatedTask);
 
             await dbContext.SaveChangesAsync();
-
-            return true;
         }
         public async Task<SearchTasksModel> GetSearchTasksAsync(SearchTasksModel searchTasksModel, string userId)
         {

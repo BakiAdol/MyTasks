@@ -1,4 +1,4 @@
-﻿@model MyTasksClassLib.Models.TaskModel
+﻿@model MyTasksClassLib.Models.ViewModels.DetailViewModel
 
 <partial name="_navBar" />
 
@@ -53,7 +53,7 @@
                 </div>
                 <div class="dueDateOptionSelector">
                     <p>Due Date: </p>
-                    <input asp-for="DueDate" type="date" class="inputTypeDate" required
+                    <input asp-for="NewDueDate" type="date" class="inputTypeDate" required
                            value="@Model.DueDate.ToString("yyyy-MM-dd")" min="@minDate.ToString("yyyy-MM-dd")">
                 </div>
             </div>

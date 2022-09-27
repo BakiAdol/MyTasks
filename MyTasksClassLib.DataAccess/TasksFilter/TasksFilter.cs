@@ -13,7 +13,7 @@ namespace MyTasksClassLib.DataAccess.TasksFilter
             int? taskOption)
         {
             return existingQuery.Where(task => taskOption == null ? task.Status != -1 :
-                taskOption == 3 ? task.DueDate < DateTime.Now && task.Status != 2 :
+                taskOption == 3 ? task.DueDate.Date < DateTime.Now.Date && task.Status != 2 :
                 task.Status == taskOption);
         }
 
