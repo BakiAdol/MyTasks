@@ -29,20 +29,11 @@ namespace MyTasksClassLib.DataAccess.Repository
         #endregion
 
         #region Methods
-        public async Task AddNewTaskAsync(AddNewViewModel newTask, string userId)
+        public async Task AddNewTaskAsync(TaskModel newTask)
         {
             try
             {
-                TaskModel newEntityTask = new()
-                { 
-                    MyTask = newTask.MyTask,
-                    Description = newTask.Description??string.Empty,
-                    Priority = newTask.Priority,
-                    DueDate = newTask.DueDate,
-                    UserId = userId
-                };
-
-                dbContext.MyTasks.Add(newEntityTask);
+                dbContext.MyTasks.Add(newTask);
                 await dbContext.SaveChangesAsync();
             }
             catch (Exception)
@@ -50,6 +41,7 @@ namespace MyTasksClassLib.DataAccess.Repository
                 throw new Exception("Failed to add task!");
             }
         }
+        
         public async Task<AllTasksModel> GetAllTasksAsync(AllTasksModel allTasksModel, string userId)
         {
             List<TaskModel> tasks;

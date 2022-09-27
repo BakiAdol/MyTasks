@@ -5,7 +5,7 @@ namespace MyTasksClassLib.DataAccess.Repository.IRepository
 {
     public interface IMyTaskRepository
     {
-        public Task AddNewTaskAsync(AddNewViewModel newTask, string userId);
+        Task AddNewTaskAsync(TaskModel newTask);
         public Task<AllTasksModel> GetAllTasksAsync(AllTasksModel allTasksModel, string userId);
         public Task DeleteATaskAsync(int taskId);
         public Task<TaskModel> GetATaskAsync(int taskId);

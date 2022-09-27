@@ -12,12 +12,12 @@ namespace MyTasks.Controllers
     public class AddNewController : Controller
     {
         #region Props
-        private readonly IMyTaskRepository myTaskService;
+        private readonly IMyTasksService myTaskService;
         private readonly IUserService userService;
         #endregion
 
         #region Ctor
-        public AddNewController(IMyTaskRepository myTaskService, IUserService userService)
+        public AddNewController(IMyTasksService myTaskService, IUserService userService)
         {
             this.myTaskService = myTaskService;
             this.userService = userService;
@@ -37,7 +37,7 @@ namespace MyTasks.Controllers
 
             var userID = userService.GetUserId();
 
-            await myTaskService.AddNewTaskAsync(newTask, userID);
+            await myTaskService.AddNewTaskServiceAsync(newTask, userID);
 
             TempData["GetNotification"] = 0;
 

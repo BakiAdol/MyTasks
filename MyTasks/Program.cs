@@ -11,6 +11,7 @@ using MyTasks.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // dependencie injection
+builder.Services.AddScoped<IMyTasksService, MyTasksService>();
 builder.Services.AddScoped<IMyTaskRepository, MyTaskRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 
