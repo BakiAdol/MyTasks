@@ -577,13 +577,14 @@ div.hoverUp:hover {
     padding: 1rem;
 }
 .profilePicContainer {
-    width: 20rem;
-    height: 18rem;
+    width: 18rem;
+    height: 20rem;
     margin: 1rem auto;
 }
 .profilePicContainer img{
     width: 100%;
-    height: 100%
+    height: 100%;
+    object-fit: cover;
 }
 .profileContainer p {
     width: 100%;

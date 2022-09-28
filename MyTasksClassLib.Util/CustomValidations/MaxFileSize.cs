@@ -23,7 +23,7 @@ namespace MyTasksClassLib.Util.CustomValidations
                 {
                     return new ValidationResult(
                         ErrorMessage ?? 
-                        $"File size must be less than {_maxFileSize/1024} MB!");
+                        $"File size must be less than {_maxFileSize/(1024*1024)} MB!");
                 }
             }
             return ValidationResult.Success;

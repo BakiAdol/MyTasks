@@ -1,7 +1,7 @@
 ﻿@model MyTasksClassLib.Models.UserModel
 <div class="profileContainer shadowAndBackground">
     <div class="profilePicContainer">
-        <img src="/img/profileImage.jpg" />
+        <img src="/img/@(Model.PhoneNumber ?? "profileImage.jpg")" />
     </div>
     <p>User Role : @Model.RoleName</p>
     <p>User Name : @Model.Name</p>

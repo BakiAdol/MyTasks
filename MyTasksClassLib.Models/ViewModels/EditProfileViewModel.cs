@@ -21,7 +21,7 @@ namespace MyTasksClassLib.Models.ViewModels
 
         [DataType(DataType.Upload)]
         [AllowExtension(new string[] { ".jpg", ".png" })]
-        [MaxFileSize(2 * 1024)]
+        [MaxFileSize(5 * 1024 * 1024)]
         public IFormFile? ProfilePicture { get; set; }
     }
 }

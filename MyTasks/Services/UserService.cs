@@ -60,10 +60,10 @@ namespace MyTasks.Services
 
                 if (existingUser.PhoneNumber != null)
                 {
-
+                    DeleteFile(imageFolderPath, existingUser.PhoneNumber);
                 }
 
-                var uniqueFileName = await UploadFile(updatedUser.ProfilePicture, imageFolderPath);
+                var uniqueFileName = await UploadFileAsync(updatedUser.ProfilePicture, imageFolderPath);
                 existingUser.PhoneNumber = uniqueFileName;
             }
 
@@ -73,7 +73,7 @@ namespace MyTasks.Services
             await _myTaskRepository.UpdateUserAsync(existingUser);
         }
 
-        private async Task<string> UploadFile(IFormFile formFile, string folderPath)
+        private async Task<string> UploadFileAsync(IFormFile formFile, string folderPath)
         {
             string uniqueFileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") 
                 + "_" + formFile.FileName;
@@ -86,6 +86,15 @@ namespace MyTasks.Services
             }
 
             return uniqueFileName;
+        }
+        private void DeleteFile(string folderPath, string fileName)
+        {
+            var path = Path.Combine(folderPath, fileName);
+            if(System.IO.File.Exists(path))
+            {
+                System.IO.File.Delete(path);
+            }
+            int aa = 5;
         }
         #endregion
     }
