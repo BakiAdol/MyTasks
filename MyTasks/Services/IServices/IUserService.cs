@@ -1,7 +1,12 @@
-﻿namespace MyTasks.Services.IServices
+﻿using MyTasksClassLib.Models;
+using MyTasksClassLib.Models.ViewModels;
+
+namespace MyTasks.Services.IServices
 {
     public interface IUserService
     {
-        public string GetUserId();
+        string GetUserId();
+        Task<UserModel> GetUserAsync(string userId);
+        Task<EditProfileViewModel> GetEditUserAsync(string userId);
     }
 }

@@ -120,6 +120,20 @@ textarea:focus, input:focus{
     cursor: pointer;
     text-align: center;
 }
+input[type=file]{
+    display: none;
+}
+.inputFileStyle{
+    display: inline-block;
+    width: 100%;
+    background-color: var(--gray);
+    margin-top: 1.5rem;
+    padding: .7rem;
+    font-size: 1.6rem;
+    color: var(--slate);
+    box-sizing: border-box;
+    cursor: pointer;
+}
 /* -------- end of common ---------*/
 /*------- Header style --------------**/
 header {

@@ -11,9 +11,7 @@
         @{
             if (SignInManager.IsSignedIn(User))
             {
-                <a href="@Url.Action("Profile", "Account", new{
-                    User = UserManager.GetUserAsync(User).Result.Id
-                })" class="headerItem">Hello @(User.FindFirst("Name")?.Value)</a>
+                <a href="@Url.Action("Profile", "Account")" class="headerItem">Hello @(User.FindFirst("Name")?.Value)</a>
 
                 if (User.FindFirst("RoleName")?.Value == "Admin")
                 {

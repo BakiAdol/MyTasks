@@ -1,20 +1,23 @@
-﻿@model MyTasksClassLib.Models.UserModel
+﻿@model MyTasksClassLib.Models.ViewModels.EditProfileViewModel
 <div class="profileContainer shadowAndBackground">
-    <div class="profilePicContainer">
-        <img src="/img/profileImage.jpg" />
-    </div>
-    <input asp-for="Name" value="@(Model.Name??"Enter your name")" />
-    <input asp-for="Email" value="@(Model.Email??"Enter your email")" />
+    <p>Update Profile</p>
+    
+    <form enctype="multipart/form-data" asp-controller="Account" asp-action="EditProfile">
+        <span asp-validation-for="Name" class="ErrorMessageText"></span>
+        <input asp-for="Name" class="textInputStyle inputTypeTextStyle"
+            value="@(Model.Name??"")" placeholder="Enter your name" />
 
-    <div>
-        <label>Add or Upate Profile Picture</label>
-        <input type="file" />
-    </div>
+        <span asp-validation-for="Email" class="ErrorMessageText"></span>
+        <input asp-for="Email" class="textInputStyle inputTypeTextStyle"
+            value="@(Model.Email??"")" placeholder="Enter your email" />
 
-    <div class="editProfileButtonContainer">
-        <a href="@Url.Action("EditProfile", "Account", new {
-            User = Model.Id
-        })" class="inputTypeSubmitPrimary">Save</a>
-    </div>
+        <div>
+            <label for="propicUpload" class="inputFileStyle">Add or Upate Profile Picture</label>
+            <input id="propicUpload" type="file" asp-for="ProfilePicture" />
+        </div>
 
+        <div class="editProfileButtonContainer">
+            <input type="submit" value="Save" class="inputTypeSubmitPrimary" />
+        </div>
+    </form>
 </div>

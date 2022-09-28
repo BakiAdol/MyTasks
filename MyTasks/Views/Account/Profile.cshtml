@@ -8,9 +8,7 @@
     <p>Email : @Model.Email</p>
 
     <div class="editProfileButtonContainer">
-        <a href="@Url.Action("EditProfile", "Account", new {
-            User = Model.Id
-        })" class="inputTypeSubmitPrimary">Edit Profile</a>
+        <a href="@Url.Action("EditProfile", "Account")" class="inputTypeSubmitPrimary">Edit Profile</a>
     </div>
     
 </div>

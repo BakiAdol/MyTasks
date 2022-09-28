@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using MyTasks.Services.IServices;
 using MyTasksClassLib.DataAccess.Migrations;
 using MyTasksClassLib.DataAccess.Repository.IRepository;
 using MyTasksClassLib.Models;
+using MyTasksClassLib.Models.ViewModels;
 using System.Security.Cryptography.Xml;
 
 namespace MyTasks.Controllers
@@ -16,17 +18,19 @@ namespace MyTasks.Controllers
         private readonly SignInManager<UserModel> _signInManager;
         public readonly RoleManager<IdentityRole> _roleManager;
         private readonly IMyTaskRepository _myTaskRepository;
+        private readonly IUserService _userService;
         #endregion
 
         #region Ctor
         public AccountController(UserManager<UserModel> userManager, 
             SignInManager<UserModel> signInManager, RoleManager<IdentityRole> roleManager, 
-            IMyTaskRepository myTaskRepository)
+            IMyTaskRepository myTaskRepository, IUserService userService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
             _myTaskRepository = myTaskRepository;
+            _userService = userService;
         }
         #endregion
 
@@ -115,18 +119,29 @@ namespace MyTasks.Controllers
 
         [HttpGet]
         [Authorize]
-        public IActionResult Profile(string User)
+        public async Task<IActionResult> Profile()
         {
-            var user = _myTaskRepository.GetUser(User);
+            var userId = _userManager.GetUserId(User);
+
+            var user = await _userService.GetUserAsync(userId);
             return View(user);
         }
 
         [HttpGet]
         [Authorize]
-        public IActionResult EditProfile(string User)
+        public async Task<IActionResult> EditProfile()
         {
-            var user = _myTaskRepository.GetUser(User);
+            var userId = _userManager.GetUserId(User);
+            var user = await _userService.GetEditUserAsync(userId);
             return View(user);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> EditProfile(EditProfileViewModel user)
+        {
+            if(!ModelState.IsValid) return View(user);
+            return RedirectToAction("Profile");
         }
 
         private void AddError(IdentityResult res) 

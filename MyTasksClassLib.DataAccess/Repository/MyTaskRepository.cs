@@ -1,6 +1,4 @@
-﻿//using Microsoft.AspNetCore.Mvc.Filters;
-//using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.VisualBasic;
@@ -191,14 +189,17 @@ namespace MyTasksClassLib.DataAccess.Repository
 
             return userRoleName??string.Empty;
         }
-        public UserModel GetUser(string userId)
+        public async Task<UserModel> GetUserAsync(string userId)
         {
-            var dbUser = dbContext.Users.FirstOrDefault(u => u.Id == userId);
+            var dbUser = await dbContext.Users.FirstOrDefaultAsync(u => u.Id == userId);
             if (dbUser == null) return new UserModel();
-            var dbUserRole = dbContext.UserRoles.FirstOrDefault(u => u.UserId == dbUser.Id);
+
+            var dbUserRole = await dbContext.UserRoles.FirstOrDefaultAsync(u => u.UserId == dbUser.Id);
             if (dbUserRole == null) return new UserModel();
-            var userRoleName = dbContext.Roles.Where(r => r.Id == dbUserRole.RoleId)
-                .Select(e => e.Name).FirstOrDefault();
+
+            var userRoleName = await dbContext.Roles.Where(r => r.Id == dbUserRole.RoleId)
+                .Select(e => e.Name).FirstOrDefaultAsync();
+
             dbUser.RoleName = userRoleName??string.Empty;
             return dbUser;
         }
