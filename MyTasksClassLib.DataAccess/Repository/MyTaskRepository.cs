@@ -203,6 +203,10 @@ namespace MyTasksClassLib.DataAccess.Repository
             dbUser.RoleName = userRoleName??string.Empty;
             return dbUser;
         }
+        public async Task UpdateUserAsync(UserModel user)
+        {
+            await _userManager.UpdateAsync(user);
+        }
         #endregion
     }
 }

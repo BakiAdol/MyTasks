@@ -15,5 +15,6 @@ namespace MyTasksClassLib.DataAccess.Repository.IRepository
         Task UpdateUserRole(string Email);
         String GetUserRoleName(string userId);
         Task<UserModel> GetUserAsync(string userId);
+        Task UpdateUserAsync(UserModel user);
     }
 }

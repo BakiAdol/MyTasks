@@ -11,14 +11,16 @@ namespace MyTasks.Services
         #region Prop
         private readonly IHttpContextAccessor _contextAccessor;
         private readonly IMyTaskRepository _myTaskRepository;
+        private readonly IWebHostEnvironment _webHostEnvironment;
         #endregion
 
         #region Ctor
         public UserService(IHttpContextAccessor contextAccessor, 
-            IMyTaskRepository myTaskRepository)
+            IMyTaskRepository myTaskRepository, IWebHostEnvironment webHostEnvironment)
         {
             _contextAccessor = contextAccessor;
             _myTaskRepository = myTaskRepository;
+            _webHostEnvironment = webHostEnvironment;
         }
         #endregion
 
@@ -44,6 +46,46 @@ namespace MyTasks.Services
         {
             var userDetail = await _myTaskRepository.GetUserAsync(userId);
             return userDetail;
+        }
+        
+        public async Task UpdateUserProfileAsync(EditProfileViewModel updatedUser)
+        {
+            var existingUser =
+                    await _myTaskRepository.GetUserAsync(GetUserId());
+
+            if (updatedUser.ProfilePicture != null)
+            {
+                string imageFolderPath = 
+                    Path.Combine(_webHostEnvironment.WebRootPath, "img");
+
+                if (existingUser.PhoneNumber != null)
+                {
+
+                }
+
+                var uniqueFileName = await UploadFile(updatedUser.ProfilePicture, imageFolderPath);
+                existingUser.PhoneNumber = uniqueFileName;
+            }
+
+            existingUser.Name = updatedUser.Name;
+            existingUser.Email = updatedUser.Email;
+
+            await _myTaskRepository.UpdateUserAsync(existingUser);
+        }
+
+        private async Task<string> UploadFile(IFormFile formFile, string folderPath)
+        {
+            string uniqueFileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") 
+                + "_" + formFile.FileName;
+
+            string filePath = Path.Combine(folderPath, uniqueFileName);
+
+            using(var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                await formFile.CopyToAsync(fileStream);
+            }
+
+            return uniqueFileName;
         }
         #endregion
     }

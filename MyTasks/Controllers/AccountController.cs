@@ -141,6 +141,9 @@ namespace MyTasks.Controllers
         public async Task<IActionResult> EditProfile(EditProfileViewModel user)
         {
             if(!ModelState.IsValid) return View(user);
+
+            await _userService.UpdateUserProfileAsync(user);
+
             return RedirectToAction("Profile");
         }
 

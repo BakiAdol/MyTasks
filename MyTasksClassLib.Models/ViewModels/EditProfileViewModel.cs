@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using MyTasksClassLib.Util.CustomValidations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -17,6 +18,10 @@ namespace MyTasksClassLib.Models.ViewModels
         [Required]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+
+        [DataType(DataType.Upload)]
+        [AllowExtension(new string[] { ".jpg", ".png" })]
+        [MaxFileSize(2 * 1024)]
         public IFormFile? ProfilePicture { get; set; }
     }
 }

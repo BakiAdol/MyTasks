@@ -11,6 +11,7 @@
         <input asp-for="Email" class="textInputStyle inputTypeTextStyle"
             value="@(Model.Email??"")" placeholder="Enter your email" />
 
+        <span asp-validation-for="ProfilePicture" class="ErrorMessageText"></span>
         <div>
             <label for="propicUpload" class="inputFileStyle">Add or Upate Profile Picture</label>
             <input id="propicUpload" type="file" asp-for="ProfilePicture" />

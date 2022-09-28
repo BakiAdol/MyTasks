@@ -8,5 +8,6 @@ namespace MyTasks.Services.IServices
         string GetUserId();
         Task<UserModel> GetUserAsync(string userId);
         Task<EditProfileViewModel> GetEditUserAsync(string userId);
+        Task UpdateUserProfileAsync(EditProfileViewModel updatedUser);
     }
 }
