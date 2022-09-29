@@ -591,6 +591,7 @@ div.hoverUp:hover {
     font-size: 1.9rem;
     color: var(--slate);
     padding: .3rem;
+    border: none;
 }
 .editProfileButtonContainer a {
     display: inline-block;
