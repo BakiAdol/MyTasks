@@ -2,8 +2,14 @@
 
 <div class="logRegContainer shadowAndBackground">
     <form asp-action="Login" asp-controller="Account" asp-route-returnUrl="@ViewData["returnUrl"]">
+
+        @Html.ValidationMessage("LoginFailed", new { @class = "ErrorMessageText" })
+
+        <span asp-validation-for="Email" class="ErrorMessageText"></span>
         <input type="email" placeholder="Email" asp-for="Email"
                class="textInputStyle inputTypeTextStyle" />
+
+        <span asp-validation-for="Password" class="ErrorMessageText"></span>
         <input type="password" placeholder="Password" asp-for="Password"
                class="textInputStyle inputTypeTextStyle" />
          <div class="remberMeContainer">

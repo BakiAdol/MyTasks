@@ -28,12 +28,8 @@ namespace MyTasks.Controllers
         {
             var userId = userService.GetUserId();
 
-            if (allTasksModel == null)
-            {
-                allTasksModel = new AllTasksModel();
-            }
-
-            var tasks = await myTaskService.GetAllTasksAsync(allTasksModel, userId);
+            allTasksModel ??= new AllTasksModel();
+            await myTaskService.GetAllTasksAsync(allTasksModel, userId);
 
             allTasksModel.ControllerName = "Tasks";
             allTasksModel.ActionName = "Index";

@@ -8,12 +8,18 @@ namespace MyTasks.Controllers
 {
     public class AdminController : Controller
     {
+        #region Props
         private readonly IMyTaskRepository myTaskService;
+        #endregion
 
+        #region Ctor
         public AdminController(IMyTaskRepository myTaskService)
         {
             this.myTaskService = myTaskService;
         }
+        #endregion
+
+        #region Methods
         public IActionResult Index()
         {
             return View();
@@ -22,6 +28,8 @@ namespace MyTasks.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UserList(SearchUsersModel? searchUsersModel)
         {
+            searchUsersModel ??= new SearchUsersModel();
+
             searchUsersModel.PageItemShow = 5;
 
             await myTaskService.GetAllUser(searchUsersModel);
@@ -42,5 +50,6 @@ namespace MyTasks.Controllers
         {
             return View();
         }
+        #endregion
     }
 }

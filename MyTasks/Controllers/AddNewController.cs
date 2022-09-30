@@ -29,6 +29,7 @@ namespace MyTasks.Controllers
         {
             return View();
         }
+        
         [HttpPost]
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> Index(AddNewViewModel newTask)

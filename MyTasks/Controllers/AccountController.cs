@@ -41,7 +41,7 @@ namespace MyTasks.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Registration(string returnUrl = null)
+        public async Task<IActionResult> Registration(string? returnUrl = null)
         {
             if(! await _roleManager.RoleExistsAsync("Admin"))
             {
@@ -59,10 +59,15 @@ namespace MyTasks.Controllers
         }
         
         [HttpPost]
-        public async Task<IActionResult> Registration(RegisterModel regInfo, string returnUrl = null)
+        public async Task<IActionResult> Registration(RegisterModel regInfo, string? returnUrl = null)
         {
             ViewData["returnUrl"] = returnUrl;
             returnUrl ??= Url.Content("~/");
+
+            if(!ModelState.IsValid)
+            {
+                return View(new RegisterModel());
+            }
 
             var user = new UserModel { UserName = regInfo.Email, Email = regInfo.Email, 
                 Name = regInfo.Name};
@@ -84,16 +89,21 @@ namespace MyTasks.Controllers
         }
        
         [HttpGet]
-        public IActionResult Login(string returnUrl=null)
+        public IActionResult Login(string? returnUrl=null)
         {
             ViewData["returnUrl"] = returnUrl;
             return View(new LoginModel());
         }
         [HttpPost]
-        public async Task<IActionResult> Login(LoginModel loginInfo, string returnUrl = null)
+        public async Task<IActionResult> Login(LoginModel loginInfo, string? returnUrl = null)
         {
             ViewData["returnUrl"] = returnUrl;
             returnUrl ??= Url.Content("~/");
+
+            if (!ModelState.IsValid)
+            {
+                return View(new LoginModel());
+            }
 
             var res = await _signInManager.PasswordSignInAsync(loginInfo.Email, loginInfo.Password,
                 loginInfo.RememberMe, lockoutOnFailure: false);
@@ -103,7 +113,7 @@ namespace MyTasks.Controllers
                 return LocalRedirect(returnUrl);
             }
 
-            ModelState.AddModelError(string.Empty, "Invalid login attempt");
+            ModelState.AddModelError("LoginFailed", "Invalid login attempt");
 
             return View(loginInfo);
         }
