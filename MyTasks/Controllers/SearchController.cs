@@ -12,15 +12,13 @@ namespace MyTasks.Controllers
     public class SearchController : Controller
     {
         #region Props
-        private readonly IMyTaskRepository myTaskService;
-        private readonly IUserService userService;
+        private readonly IMyTasksService _myTaskService;
         #endregion
 
         #region Ctor
-        public SearchController(IMyTaskRepository myTaskService, IUserService userService)
+        public SearchController(IMyTasksService myTaskService)
         {
-            this.myTaskService = myTaskService;
-            this.userService = userService;
+            _myTaskService = myTaskService;
         }
         #endregion
 
@@ -28,8 +26,6 @@ namespace MyTasks.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(SearchTasksModel? searchTasksModel)
         {
-            var userId = userService.GetUserId();
-
             if (searchTasksModel == null || searchTasksModel.SearchText == "")
             {
                 return View(new SearchTasksModel());
@@ -37,7 +33,7 @@ namespace MyTasks.Controllers
 
             searchTasksModel.PageItemShow = 5;
 
-            searchTasksModel = await myTaskService.GetSearchTasksAsync(searchTasksModel, userId);
+            await _myTaskService.GetSearchTasksAsync(searchTasksModel);
             
             searchTasksModel.ControllerName = "Search";
             searchTasksModel.ActionName = "Index";

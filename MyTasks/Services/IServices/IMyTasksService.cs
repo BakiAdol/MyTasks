@@ -10,5 +10,6 @@ namespace MyTasks.Services.IServices
         Task<DetailViewModel> GetATaskDetailAsync(int taskId);
         Task UpdateTaskAsync(DetailViewModel updatedTask);
         Task DeleteTaskAsync(int taskId);
+        Task GetSearchTasksAsync(SearchTasksModel searchTaskModel);
     }
 }

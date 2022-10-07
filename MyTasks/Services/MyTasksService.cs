@@ -93,10 +93,31 @@ namespace MyTasks.Services
 
             await _taskRepository.UpdateATaskAsync(task);
         }
+        
         public async Task DeleteTaskAsync(int taskId)
         {
             TaskModel task = await _taskRepository.GetATaskAsync(taskId);
             await _taskRepository.DeleteATaskAsync(task);
+        }
+
+        public async Task GetSearchTasksAsync(SearchTasksModel searchTaskModel)
+        {
+            GetSearchTasksModel tasksInfo = new() { 
+                UserId = _userid,
+                Option = searchTaskModel.TaskStatus,
+                TaskPriority = searchTaskModel.TaskPriority,
+                TaskShowOrder = searchTaskModel.OrderOfItemShow,
+                SearchText = searchTaskModel.SearchText,
+                CurrentPage = searchTaskModel.CurrentPage,
+                NumberOfItemShow = searchTaskModel.PageItemShow,
+                SkipTasks =
+                (searchTaskModel.CurrentPage - 1) * searchTaskModel.PageItemShow
+            };
+
+            searchTaskModel.Tasks = 
+                await _taskRepository.GetSearchTasksAsync(tasksInfo);
+
+            searchTaskModel.TotalPages = tasksInfo.TotalPage;
         }
         #endregion
     }

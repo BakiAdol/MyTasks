@@ -41,7 +41,7 @@ namespace MyTasksClassLib.DataAccess.TasksFilter
             int srOption)
         {
             return existingQuery.Where(task => srOption == 0 ? task.Status != -1 :
-                    srOption == 4 ? (task.DueDate.Day < DateTime.Now.Day) &&
+                    srOption == 4 ? (task.DueDate.Date < DateTime.Now.Date) &&
                     task.Status != 2 : task.Status == srOption - 1);
         }
 

@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic.FileIO;
 using MyTasksClassLib.DataAccess.Repository.IRepository;
 using MyTasksClassLib.DataAccess.TasksFilter;
 using MyTasksClassLib.Models;
@@ -68,13 +70,28 @@ namespace MyTasksClassLib.DataAccess.Repository
             return tasks;
         }
 
-        
-        public Task<SearchTasksModel> GetSearchTasksAsync(SearchTasksModel searchTasksModel, string userId)
+        public async Task<List<TaskModel>> GetSearchTasksAsync(GetSearchTasksModel tasksInfo)
         {
-            throw new NotImplementedException();
-        }
+            List<TaskModel> tasks = await GetAll()
+                      .Where(task => task.UserId == tasksInfo.UserId)
+                      .GetSearchOptionTasks(tasksInfo.Option)
+                      .GetSearchPriorityFilterTasks(tasksInfo.TaskPriority)
+                      .GetPatternMatchingTasks(tasksInfo.SearchText)
+                      .OrderTasks(tasksInfo.TaskShowOrder)
+                      .ToListAsync();
 
-        
+            tasks ??= new List<TaskModel>();
+
+            tasksInfo.TotalPage =
+                (tasks.Count + tasksInfo.NumberOfItemShow - 1) / tasksInfo.NumberOfItemShow;
+
+            tasks = tasks
+                    .Skip(tasksInfo.SkipTasks)
+                    .Take(tasksInfo.NumberOfItemShow)
+                    .ToList();
+
+            return tasks;
+        }
         #endregion
     }
 }
