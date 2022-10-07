@@ -12,15 +12,13 @@ namespace MyTasks.Controllers
     public class AddNewController : Controller
     {
         #region Props
-        private readonly IMyTasksService myTaskService;
-        private readonly IUserService userService;
+        private readonly IMyTasksService _taskService;
         #endregion
 
         #region Ctor
-        public AddNewController(IMyTasksService myTaskService, IUserService userService)
+        public AddNewController(IMyTasksService taskService)
         {
-            this.myTaskService = myTaskService;
-            this.userService = userService;
+            _taskService = taskService;
         }
         #endregion
 
@@ -36,9 +34,7 @@ namespace MyTasks.Controllers
         {
             if (!ModelState.IsValid) return View();
 
-            var userID = userService.GetUserId();
-
-            await myTaskService.AddNewTaskServiceAsync(newTask, userID);
+            await _taskService.AddNewTaskAsync(newTask);
 
             TempData["GetNotification"] = 0;
 

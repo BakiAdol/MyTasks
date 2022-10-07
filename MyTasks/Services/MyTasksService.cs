@@ -11,6 +11,7 @@ namespace MyTasks.Services
         #region Props
         private readonly ITaskRepository _taskRepository;
         private readonly IUserService _userService;
+        public readonly string _userid;
         #endregion
 
         #region Ctor
@@ -18,6 +19,7 @@ namespace MyTasks.Services
         {
             _taskRepository = taskRepository;
             _userService = userService;
+            _userid = userService.GetUserId();
         }
         #endregion
 
@@ -25,10 +27,8 @@ namespace MyTasks.Services
 
         public async Task GetAllTasksAsync(AllTasksModel allTasksModel)
         {
-            string userId = _userService.GetUserId();
-
             GetTasksModel getTasksModel = new() { 
-                UserId = userId,
+                UserId = _userid,
                 Option = allTasksModel.TaskOption,
                 TaskHighPriority = allTasksModel.TaskHighPriority,
                 TaskMediumPriority = allTasksModel.TaskMediumPriority,
@@ -45,25 +45,18 @@ namespace MyTasks.Services
             allTasksModel.TotalPages = getTasksModel.TotalPage;
         }
 
-        public async Task AddNewTaskServiceAsync(AddNewViewModel newTask, string userId)
+        public async Task AddNewTaskAsync(AddNewViewModel newTask)
         {
-            try
+            TaskModel newEntityTask = new()
             {
-                TaskModel newEntityTask = new()
-                {
-                    MyTask = newTask.MyTask,
-                    Description = newTask.Description ?? string.Empty,
-                    Priority = newTask.Priority,
-                    DueDate = newTask.DueDate,
-                    UserId = userId
-                };
+                MyTask = newTask.MyTask,
+                Description = newTask.Description ?? string.Empty,
+                Priority = newTask.Priority,
+                DueDate = newTask.DueDate,
+                UserId = _userid
+            };
 
-                // await _myTaskRepository.AddNewTaskAsync(newEntityTask);
-            }
-            catch (Exception)
-            {
-                throw new Exception("Failed to add task!");
-            }
+            await _taskRepository.AddNewTaskAsync(newEntityTask);
         }
 
         public async Task<DetailViewModel> GetATaskDetailServiceAsync(int taskId)

@@ -17,9 +17,9 @@ namespace MyTasksClassLib.DataAccess.Repository
         {
         }
 
-        public Task AddNewTaskAsync(TaskModel newTask)
+        public async Task AddNewTaskAsync(TaskModel newTask)
         {
-            throw new NotImplementedException();
+            await CreateAsync(newTask);
         }
 
         public Task DeleteATaskAsync(int taskId)

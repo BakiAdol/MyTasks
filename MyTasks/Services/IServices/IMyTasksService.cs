@@ -7,7 +7,7 @@ namespace MyTasks.Services.IServices
     {
         Task GetAllTasksAsync(AllTasksModel allTasksModel);
 
-        Task AddNewTaskServiceAsync(AddNewViewModel newTask, string userId);
+        Task AddNewTaskAsync(AddNewViewModel newTask);
         Task<DetailViewModel> GetATaskDetailServiceAsync(int taskId);
         Task UpdateTaskServiceAsync(DetailViewModel updatedTask);
     }
