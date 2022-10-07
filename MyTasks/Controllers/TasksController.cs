@@ -11,25 +11,22 @@ namespace MyTasks.Controllers
     public class TasksController : Controller
     {
         #region Props
-        private readonly IMyTaskRepository myTaskService;
-        private readonly IUserService userService;
+        private readonly IMyTasksService _myTaskService;
         #endregion
 
         #region Ctor
-        public TasksController(IMyTaskRepository myTaskService, IUserService userService)
+        public TasksController(IMyTasksService myTaskService)
         {
-            this.myTaskService = myTaskService;
-            this.userService = userService;
+            _myTaskService = myTaskService;
         }
         #endregion
 
         #region Methods
         public async Task<IActionResult> Index(AllTasksModel? allTasksModel)
         {
-            var userId = userService.GetUserId();
-
             allTasksModel ??= new AllTasksModel();
-            await myTaskService.GetAllTasksAsync(allTasksModel, userId);
+
+            await _myTaskService.GetAllTasksAsync(allTasksModel);
 
             allTasksModel.ControllerName = "Tasks";
             allTasksModel.ActionName = "Index";

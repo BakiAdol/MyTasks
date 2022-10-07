@@ -15,6 +15,8 @@ builder.Services.AddScoped<IMyTasksService, MyTasksService>();
 builder.Services.AddScoped<IMyTaskRepository, MyTaskRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 
+builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+
 // db connection build
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultConnection")));
