@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyTasksClassLib.Models
+namespace MyTasksClassLib.Models.ViewModels
 {
     public class RegisterModel
     {

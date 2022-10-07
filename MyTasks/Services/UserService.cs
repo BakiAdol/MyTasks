@@ -8,6 +8,7 @@ namespace MyTasks.Services
 {
     public class UserService : IUserService
     {
+        private readonly IUnitOfUserWork _unitOfUserWork;
         #region Prop
         private readonly IHttpContextAccessor _contextAccessor;
         private readonly IMyTaskRepository _myTaskRepository;
@@ -15,9 +16,10 @@ namespace MyTasks.Services
         #endregion
 
         #region Ctor
-        public UserService(IHttpContextAccessor contextAccessor, 
+        public UserService(IUnitOfUserWork unitOfUserWork, IHttpContextAccessor contextAccessor, 
             IMyTaskRepository myTaskRepository, IWebHostEnvironment webHostEnvironment)
         {
+            _unitOfUserWork = unitOfUserWork;
             _contextAccessor = contextAccessor;
             _myTaskRepository = myTaskRepository;
             _webHostEnvironment = webHostEnvironment;
@@ -25,6 +27,36 @@ namespace MyTasks.Services
         #endregion
 
         #region Methods
+        public async Task GetAllUserAsync(SearchUsersModel searchUsersModel)
+        {
+            GetUserModel usersInfo = new()
+            {
+                SearchText = searchUsersModel.SearchText,
+                UsersShow = searchUsersModel.PageItemShow,
+                SkipUsers = (searchUsersModel.CurrentPage - 1) * searchUsersModel.PageItemShow
+            };
+            
+            var users = await _unitOfUserWork.Users.GetAllUserAsync(usersInfo);
+            var roles = await _unitOfUserWork.Roles.GetAllRolesAsync();
+            var userRoles = await _unitOfUserWork.UserRoles.GetAllUserRolesAsync();
+
+            searchUsersModel.TotalPages = usersInfo.TotalPages;
+
+            foreach (var user in users)
+            {
+                var uRole = userRoles.FirstOrDefault(r => r.UserId == user.Id);
+                if (uRole == null) user.RoleName = "User";
+                else
+                {
+                    user.RoleId = uRole.RoleId;
+                    user.RoleName = roles.FirstOrDefault(role => role.Id == uRole.RoleId).Name;
+                }
+            }
+            searchUsersModel.Tasks = users ?? new List<UserModel>();
+        }
+
+
+
         public string GetUserId()
         {
             return _contextAccessor.HttpContext.User?.FindFirst(ClaimTypes.NameIdentifier).Value;

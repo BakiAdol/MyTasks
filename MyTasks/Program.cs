@@ -7,6 +7,7 @@ using MyTasksClassLib.Models;
 using MyTasks.Helpers.ClaimsHelper;
 using MyTasks.Services.IServices;
 using MyTasks.Services;
+using Abp.Domain.Uow;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,7 @@ builder.Services.AddScoped<IMyTaskRepository, MyTaskRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+builder.Services.AddTransient<IUnitOfUserWork, UnitOfUserWork>();
 
 // db connection build
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
