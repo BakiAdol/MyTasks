@@ -59,39 +59,44 @@ namespace MyTasks.Services
             await _taskRepository.AddNewTaskAsync(newEntityTask);
         }
 
-        public async Task<DetailViewModel> GetATaskDetailServiceAsync(int taskId)
+        public async Task<DetailViewModel> GetATaskDetailAsync(int taskId)
         {
-            //TaskModel task = await _myTaskRepository.GetATaskAsync(taskId);
+            TaskModel task = await _taskRepository.GetATaskAsync(taskId);
 
-            //DetailViewModel taskDetail = new()
-            //{
-            //    Id = task.Id,
-            //    MyTask = task.MyTask,
-            //    Description = task.Description,
-            //    Priority = task.Priority,
-            //    Status = task.Status,
-            //    CreatedDate = task.CreatedDate,
-            //    UpdatedDate = task.UpdatedDate,
-            //    DueDate = task.DueDate
-            //};
+            if (_userid != task.UserId) return new DetailViewModel();
 
-            //return taskDetail;
+            DetailViewModel taskDetail = new()
+            {
+                Id = task.Id,
+                MyTask = task.MyTask,
+                Description = task.Description,
+                Priority = task.Priority,
+                Status = task.Status,
+                CreatedDate = task.CreatedDate,
+                UpdatedDate = task.UpdatedDate,
+                DueDate = task.DueDate
+            };
 
-            return new DetailViewModel();
+            return taskDetail;
         }
 
-        public async Task UpdateTaskServiceAsync(DetailViewModel updatedTask)
+        public async Task UpdateTaskAsync(DetailViewModel updatedTask)
         {
-            //TaskModel task = await _myTaskRepository.GetATaskAsync(updatedTask.Id);
+            TaskModel task = await _taskRepository.GetATaskAsync(updatedTask.Id);
 
-            //task.MyTask = updatedTask.MyTask;
-            //task.Description = updatedTask.Description ?? string.Empty;
-            //task.Priority = updatedTask.Priority;
-            //task.Status = updatedTask.Status;
-            //task.DueDate = updatedTask.NewDueDate;
-            //task.UpdatedDate = DateTime.Now;
+            task.MyTask = updatedTask.MyTask;
+            task.Description = updatedTask.Description ?? string.Empty;
+            task.Priority = updatedTask.Priority;
+            task.Status = updatedTask.Status;
+            task.DueDate = updatedTask.NewDueDate;
+            task.UpdatedDate = DateTime.Now;
 
-            //await _myTaskRepository.UpdateATaskAsync(task);
+            await _taskRepository.UpdateATaskAsync(task);
+        }
+        public async Task DeleteTaskAsync(int taskId)
+        {
+            TaskModel task = await _taskRepository.GetATaskAsync(taskId);
+            await _taskRepository.DeleteATaskAsync(task);
         }
         #endregion
     }

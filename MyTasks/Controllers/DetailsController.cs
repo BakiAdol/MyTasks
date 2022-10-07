@@ -12,14 +12,12 @@ namespace MyTasks.Controllers
     public class DetailsController : Controller
     {
         #region Props
-        private readonly IMyTaskRepository _myTaskRepository;
         private readonly IMyTasksService _myTasksService;
         #endregion
 
         #region Ctor
-        public DetailsController(IMyTaskRepository myTaskService, IMyTasksService myTasksService)
+        public DetailsController(IMyTasksService myTasksService)
         {
-            _myTaskRepository = myTaskService;
             _myTasksService = myTasksService;
         }
         #endregion
@@ -27,22 +25,24 @@ namespace MyTasks.Controllers
         #region Methods
         public async Task<IActionResult> Index(int taskId)
         {
-            var taskDetail = await _myTasksService.GetATaskDetailServiceAsync(taskId);
+            var taskDetail = await _myTasksService.GetATaskDetailAsync(taskId);
             
             return View(taskDetail);
         }
+        
         [HttpPost]
-        public async Task<IActionResult> Index(DetailViewModel updatedTask) // save edit task
+        public async Task<IActionResult> Index(DetailViewModel updatedTask)
         {
-            await _myTasksService.UpdateTaskServiceAsync(updatedTask);
+            await _myTasksService.UpdateTaskAsync(updatedTask);
 
             TempData["GetNotification"] = 1;
 
             return RedirectToAction("Index", "Tasks");
         }
+        
         public async Task<IActionResult> DeleteATask(int taskId)
         {
-            await _myTaskRepository.DeleteATaskAsync(taskId);
+            await _myTasksService.DeleteTaskAsync(taskId);
 
             TempData["GetNotification"] = 2;
 

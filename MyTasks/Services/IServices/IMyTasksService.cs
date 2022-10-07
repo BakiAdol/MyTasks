@@ -6,9 +6,9 @@ namespace MyTasks.Services.IServices
     public interface IMyTasksService
     {
         Task GetAllTasksAsync(AllTasksModel allTasksModel);
-
         Task AddNewTaskAsync(AddNewViewModel newTask);
-        Task<DetailViewModel> GetATaskDetailServiceAsync(int taskId);
-        Task UpdateTaskServiceAsync(DetailViewModel updatedTask);
+        Task<DetailViewModel> GetATaskDetailAsync(int taskId);
+        Task UpdateTaskAsync(DetailViewModel updatedTask);
+        Task DeleteTaskAsync(int taskId);
     }
 }

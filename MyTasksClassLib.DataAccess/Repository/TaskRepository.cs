@@ -12,19 +12,38 @@ namespace MyTasksClassLib.DataAccess.Repository
 {
     public class TaskRepository : Repository<TaskModel>, ITaskRepository
     {
+        #region Props
+        private readonly ApplicationDbContext _dbContext;
+        #endregion
+
+        #region Ctor
         public TaskRepository(ApplicationDbContext dbContext) 
             : base(dbContext)
         {
+            _dbContext = dbContext;
         }
+        #endregion
 
+        #region Methods
         public async Task AddNewTaskAsync(TaskModel newTask)
         {
             await CreateAsync(newTask);
         }
 
-        public Task DeleteATaskAsync(int taskId)
+        public async Task<TaskModel> GetATaskAsync(int taskId)
         {
-            throw new NotImplementedException();
+            var task = await _dbContext.MyTasks.FirstOrDefaultAsync(item => item.Id == taskId);
+            return task ?? new TaskModel();
+        }
+
+        public async Task UpdateATaskAsync(TaskModel updatedTask)
+        {
+            await UpdateAsync(updatedTask);
+        }
+
+        public async Task DeleteATaskAsync(TaskModel taskToDelete)
+        {
+            await DeleteAsync(taskToDelete);
         }
 
         public async Task<List<TaskModel>> GetAllTasksAsync(GetTasksModel tasksInfo)
@@ -49,19 +68,13 @@ namespace MyTasksClassLib.DataAccess.Repository
             return tasks;
         }
 
-        public Task<TaskModel> GetATaskAsync(int taskId)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public Task<SearchTasksModel> GetSearchTasksAsync(SearchTasksModel searchTasksModel, string userId)
         {
             throw new NotImplementedException();
         }
 
-        public Task UpdateATaskAsync(TaskModel updatedTask)
-        {
-            throw new NotImplementedException();
-        }
+        
+        #endregion
     }
 }

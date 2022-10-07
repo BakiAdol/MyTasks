@@ -11,7 +11,7 @@ namespace MyTasksClassLib.DataAccess.Repository.IRepository
     {
         Task AddNewTaskAsync(TaskModel newTask);
         Task<List<TaskModel>> GetAllTasksAsync(GetTasksModel tasksInfo);
-        Task DeleteATaskAsync(int taskId);
+        Task DeleteATaskAsync(TaskModel updatedTask);
         Task<TaskModel> GetATaskAsync(int taskId);
         Task UpdateATaskAsync(TaskModel updatedTask);
         Task<SearchTasksModel> GetSearchTasksAsync(SearchTasksModel searchTasksModel, string userId);
