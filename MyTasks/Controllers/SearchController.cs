@@ -41,6 +41,5 @@ namespace MyTasks.Controllers
             return View(searchTasksModel);
         }
         #endregion
-
     }
 }

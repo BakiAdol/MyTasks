@@ -8,20 +8,17 @@ namespace MyTasks.Services
 {
     public class UserService : IUserService
     {
-        private readonly IUnitOfUserWork _unitOfUserWork;
         #region Prop
+        private readonly IUnitOfUserWork _unitOfUserWork;
         private readonly IHttpContextAccessor _contextAccessor;
-        private readonly IMyTaskRepository _myTaskRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
         #endregion
 
         #region Ctor
-        public UserService(IUnitOfUserWork unitOfUserWork, IHttpContextAccessor contextAccessor, 
-            IMyTaskRepository myTaskRepository, IWebHostEnvironment webHostEnvironment)
+        public UserService(IUnitOfUserWork unitOfUserWork, IHttpContextAccessor contextAccessor, IWebHostEnvironment webHostEnvironment)
         {
             _unitOfUserWork = unitOfUserWork;
             _contextAccessor = contextAccessor;
-            _myTaskRepository = myTaskRepository;
             _webHostEnvironment = webHostEnvironment;
         }
         #endregion
@@ -55,8 +52,6 @@ namespace MyTasks.Services
             searchUsersModel.Tasks = users ?? new List<UserModel>();
         }
 
-
-
         public string GetUserId()
         {
             return _contextAccessor.HttpContext.User?.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -64,7 +59,7 @@ namespace MyTasks.Services
 
         public async Task<EditProfileViewModel> GetEditUserAsync(string userId)
         {
-            var userDetail = await _myTaskRepository.GetUserAsync(userId);
+            var userDetail = await _unitOfUserWork.Users.GetUserAsync(userId);
 
             EditProfileViewModel user = new()
             {
@@ -74,16 +69,17 @@ namespace MyTasks.Services
 
             return user;
         }
+        
         public async Task<UserModel> GetUserAsync(string userId)
         {
-            var userDetail = await _myTaskRepository.GetUserAsync(userId);
+            var userDetail = await _unitOfUserWork.Users.GetUserAsync(userId);
             return userDetail;
         }
         
         public async Task UpdateUserProfileAsync(EditProfileViewModel updatedUser)
         {
             var existingUser =
-                    await _myTaskRepository.GetUserAsync(GetUserId());
+                    await _unitOfUserWork.Users.GetUserAsync(GetUserId());
 
             if (updatedUser.ProfilePicture != null)
             {
@@ -102,7 +98,17 @@ namespace MyTasks.Services
             existingUser.Name = updatedUser.Name;
             existingUser.Email = updatedUser.Email;
 
-            await _myTaskRepository.UpdateUserAsync(existingUser);
+            await _unitOfUserWork.Users.UpdateUserAsync(existingUser);
+        }
+
+        public async Task UpdateUserRoleAsync(string email)
+        {
+            await _unitOfUserWork.Users.UpdateUserRole(email);
+        }
+
+        public String GetUserRoleNameAsync(string userId)
+        {
+            return _unitOfUserWork.Users.GetUserRoleName(userId);
         }
 
         private async Task<string> UploadFileAsync(IFormFile formFile, string folderPath)
@@ -119,6 +125,7 @@ namespace MyTasks.Services
 
             return uniqueFileName;
         }
+        
         private void DeleteFile(string folderPath, string fileName)
         {
             var path = Path.Combine(folderPath, fileName);

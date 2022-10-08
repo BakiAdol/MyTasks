@@ -6,7 +6,6 @@ using MyTasksClassLib.DataAccess.Migrations;
 using MyTasksClassLib.DataAccess.Repository.IRepository;
 using MyTasksClassLib.Models;
 using MyTasksClassLib.Models.ViewModels;
-using System.Security.Cryptography.Xml;
 
 namespace MyTasks.Controllers
 {
@@ -17,19 +16,17 @@ namespace MyTasks.Controllers
         private readonly UserManager<UserModel> _userManager;
         private readonly SignInManager<UserModel> _signInManager;
         public readonly RoleManager<IdentityRole> _roleManager;
-        private readonly IMyTaskRepository _myTaskRepository;
         private readonly IUserService _userService;
         #endregion
 
         #region Ctor
         public AccountController(UserManager<UserModel> userManager, 
-            SignInManager<UserModel> signInManager, RoleManager<IdentityRole> roleManager, 
-            IMyTaskRepository myTaskRepository, IUserService userService)
+            SignInManager<UserModel> signInManager, RoleManager<IdentityRole> roleManager 
+            , IUserService userService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
-            _myTaskRepository = myTaskRepository;
             _userService = userService;
         }
         #endregion

@@ -1,23 +1,26 @@
-﻿using MyTasksClassLib.DataAccess.Repository.IRepository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Identity;
+using MyTasksClassLib.DataAccess.Repository.IRepository;
+using MyTasksClassLib.Models;
 
 namespace MyTasksClassLib.DataAccess.Repository
 {
     public class UnitOfUserWork : IUnitOfUserWork
     {
+        #region Props
         private readonly ApplicationDbContext _dbContext;
+        private readonly UserManager<UserModel> _userManager;
+        #endregion
 
-        public UnitOfUserWork(ApplicationDbContext dbContext)
+        #region Ctor
+        public UnitOfUserWork(ApplicationDbContext dbContext, UserManager<UserModel> userManager)
         {
             _dbContext = dbContext;
-            Users = new UserRepository(_dbContext);
+            _userManager = userManager; 
+            Users = new UserRepository(_dbContext, _userManager);
             Roles = new RoleRepository(_dbContext);
             UserRoles = new UserRolesRepository(_dbContext);
         }
+        #endregion
 
         public IUserRepository Users { get; private set; }
         public IRoleRepository Roles { get; private set; }

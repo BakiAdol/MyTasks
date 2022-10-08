@@ -7,15 +7,12 @@ using MyTasksClassLib.Models;
 using MyTasks.Helpers.ClaimsHelper;
 using MyTasks.Services.IServices;
 using MyTasks.Services;
-using Abp.Domain.Uow;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // dependencie injection
 builder.Services.AddScoped<IMyTasksService, MyTasksService>();
-builder.Services.AddScoped<IMyTaskRepository, MyTaskRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
-
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 builder.Services.AddTransient<IUnitOfUserWork, UnitOfUserWork>();
 

@@ -24,7 +24,6 @@ namespace MyTasks.Services
         #endregion
 
         #region Methods
-
         public async Task GetAllTasksAsync(AllTasksModel allTasksModel)
         {
             GetTasksModel getTasksModel = new() { 

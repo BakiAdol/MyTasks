@@ -564,8 +564,9 @@ div.hoverUp:hover {
     background-color: var(--dark-gray);
     color: var(--slate);
     padding: .5rem;
-    margin: .5rem;
+    margin: 1rem;
     cursor: pointer;
+    width: 200px;
 }
 /* ------------- end of admin style -------------*/
 

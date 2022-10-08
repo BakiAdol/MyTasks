@@ -9,16 +9,14 @@ namespace MyTasks.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly IUserService _userService;
         #region Props
-        private readonly IMyTaskRepository myTaskService;
+        private readonly IUserService _userService;
         #endregion
 
         #region Ctor
-        public AdminController(IUserService userService, IMyTaskRepository myTaskService)
+        public AdminController(IUserService userService)
         {
             _userService = userService;
-            this.myTaskService = myTaskService;
         }
         #endregion
 
@@ -45,10 +43,11 @@ namespace MyTasks.Controllers
 
         public async Task<IActionResult> ChangeRole(string Email)
         {
-            await myTaskService.UpdateUserRole(Email);
+            await _userService.UpdateUserRoleAsync(Email);
 
             return RedirectToAction("UserList");
         }
+        
         public IActionResult AccessDenied()
         {
             return View();
